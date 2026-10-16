@@ -343,3 +343,21 @@ body>header{
  html{scroll-behavior:auto}
  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
+
+
+/* Match the Starter Pack section header to the Bonus Pack warm bronze theme */
+#packShowcase .starter-showcase{
+ border-color:rgba(236,157,38,.45)!important;
+ background:linear-gradient(145deg,rgba(94,51,25,.34),rgba(40,23,64,.55))!important;
+}
+#packShowcase .starter-showcase .pack-showcase-title{
+ background:linear-gradient(90deg,#51301d,#171b38)!important;
+ border-color:#a66a1d!important;
+}
+#packShowcase .starter-showcase .pack-showcase-title>span{
+ background:#774b19!important;
+}
+#packShowcase .starter-showcase .pack-showcase-title::after{
+ border-color:#d89228!important;
+ background:#674016!important;
+}
