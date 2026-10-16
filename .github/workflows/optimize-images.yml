@@ -4,17 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "index.html"
-      - "mechnova.css"
-      - "theme-unified.css"
-      - "promo-codes-2026.html"
-      - "about.html"
-      - "affiliate.html"
-      - "contact.html"
-      - "editorial-policy.html"
-      - "privacy-policy.html"
-      - "terms-and-disclaimer.html"
-      - "404.html"
+      - "images/**"
+      - "scripts/optimize_images.py"
   workflow_dispatch:
 
 permissions:
@@ -22,6 +13,8 @@ permissions:
 
 jobs:
   optimize-images:
+    # Run for human image/script changes only. The optimizer's own image commit is already optimized.
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
