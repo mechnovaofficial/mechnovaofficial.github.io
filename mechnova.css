@@ -1541,3 +1541,108 @@ footer{font-size:13px;line-height:1.9}
  #monetizationHub .earning-card .btn{transition:none!important}
  #monetizationHub .earning-card:hover{transform:none}
 }
+
+
+/* Reference-matched promo code cards: code + copy button on top, rewards below. */
+#codes .code-grid{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:12px!important;
+}
+#codes .code-card{
+ gap:10px!important;
+ padding:14px!important;
+ border:1px solid #8260c4!important;
+ border-radius:13px!important;
+ background:linear-gradient(145deg,#5b39a3 0%,#52319a 100%)!important;
+ box-shadow:0 6px 17px rgba(12,5,38,.22)!important;
+}
+#codes .code-card:hover{
+ transform:translateY(-1px)!important;
+ border-color:#a38bea!important;
+ box-shadow:0 9px 20px rgba(12,5,38,.3)!important;
+}
+#codes .code-top{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) 40px!important;
+ align-items:center!important;
+ gap:10px!important;
+}
+#codes .code-name{
+ min-height:40px!important;
+ display:flex!important;
+ align-items:center!important;
+ box-sizing:border-box!important;
+ padding:10px 12px!important;
+ border:1px dashed #8d79c8!important;
+ border-radius:10px!important;
+ background:#321a59!important;
+ color:#ffe17a!important;
+ font-size:13px!important;
+ line-height:1.3!important;
+ font-weight:900!important;
+ letter-spacing:1px!important;
+ overflow-wrap:anywhere!important;
+}
+#codes .promo-code-status{
+ position:absolute!important;
+ width:1px!important;
+ height:1px!important;
+ padding:0!important;
+ margin:-1px!important;
+ overflow:hidden!important;
+ clip:rect(0,0,0,0)!important;
+ clip-path:inset(50%)!important;
+ white-space:nowrap!important;
+ border:0!important;
+}
+#codes .promo-code-copy{
+ width:40px!important;
+ height:40px!important;
+ min-width:40px!important;
+ border:0!important;
+ border-radius:10px!important;
+ background:linear-gradient(145deg,#ffe17a,#ffc64c)!important;
+ color:#241532!important;
+ font-size:20px!important;
+ box-shadow:none!important;
+}
+#codes .promo-code-copy:hover{
+ border:0!important;
+ background:#ffe990!important;
+ color:#241532!important;
+ transform:translateY(-1px)!important;
+}
+#codes .code-card .reward{
+ margin:0!important;
+ color:#d9ccef!important;
+ font-size:13px!important;
+ font-weight:400!important;
+ line-height:1.55!important;
+ overflow-wrap:anywhere!important;
+}
+#codes .code-card .reward strong{
+ color:#f8f2ff!important;
+ font-weight:900!important;
+}
+#codes .code-expires-inline{
+ color:#ffe08b!important;
+ font-size:12px!important;
+ font-weight:750!important;
+}
+@media(max-width:700px){
+ #codes .code-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ #codes .code-card{padding:10px!important;gap:8px!important}
+ #codes .code-top{grid-template-columns:minmax(0,1fr) 36px!important;gap:6px!important}
+ #codes .code-name{min-height:38px!important;padding:8px!important;font-size:11px!important;letter-spacing:.4px!important}
+ #codes .promo-code-copy{width:36px!important;height:38px!important;min-width:36px!important}
+ #codes .code-card .reward{font-size:12px!important;line-height:1.45!important}
+}
+@media(max-width:400px){
+ #codes .code-grid{grid-template-columns:minmax(0,1fr)!important}
+ #codes .code-card{padding:12px!important}
+ #codes .code-name{font-size:13px!important;letter-spacing:.8px!important}
+ #codes .code-top{grid-template-columns:minmax(0,1fr) 40px!important;gap:8px!important}
+ #codes .promo-code-copy{width:40px!important;height:40px!important;min-width:40px!important}
+ #codes .code-card .reward{font-size:13px!important}
+}
