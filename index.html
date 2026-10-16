@@ -743,7 +743,7 @@ function renderCodes(){
    top.append(name,badge);
    if(effectiveType!=="expired"){
     const btn=document.createElement("button");btn.className="card-btn promo-code-copy";btn.type="button";btn.setAttribute("aria-label","Copy promo code "+c.code);btn.textContent="⧉";
-    btn.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(c.code);btn.textContent="✓";btn.setAttribute("aria-label","Copied "+c.code);setTimeout(()=>{btn.textContent="⧉";btn.setAttribute("aria-label","Copy promo code "+c.code);},1400);}catch(e){window.prompt("Copy this code:",c.code);}});
+    btn.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(c.code);btn.textContent="✓";btn.classList.add("is-copied");btn.setAttribute("aria-label","Copied "+c.code);setTimeout(()=>{btn.textContent="⧉";btn.classList.remove("is-copied");btn.setAttribute("aria-label","Copy promo code "+c.code);},1400);}catch(e){window.prompt("Copy this code:",c.code);}});
     top.append(btn);
    }
    const reward=document.createElement("div");reward.className="reward";
@@ -1412,7 +1412,10 @@ document.querySelectorAll('.public-side-link').forEach(link=>link.addEventListen
     "#packShowcase .pack-showcase-group",
     "#packShowcase .showcase-pack-card",
     "#codes .section-head",
+    "#codes .category-title",
     "#codes .promo-code-hub",
+    "#monetizationHub .section-head",
+    "#monetizationHub .earning-card",
     "#allPlayersGrid .code-card",
     "#newPlayersGrid .code-card",
     "#returningPlayersGrid .code-card",
