@@ -2096,3 +2096,91 @@ footer{font-size:13px;line-height:1.9}
  #monetizationHub .partner-youtube-mark{transition:none!important}
  #monetizationHub .partner-youtube-mark:hover{transform:none!important}
 }
+
+
+/* MechNova signature heading treatment — cinematic, premium, readable */
+:root{
+  --mn-heading-cyan:#51e4ff;
+  --mn-heading-violet:#b18cff;
+  --mn-heading-gold:#ffd27a;
+}
+h1,h2,h3{
+  text-wrap:balance;
+}
+.hero h1{
+  color:#f7fbff;
+  text-shadow:0 0 18px rgba(54,217,255,.16),0 8px 32px rgba(0,0,0,.35);
+  letter-spacing:.035em;
+}
+.hero h1 span{
+  background:linear-gradient(100deg,#56e7ff 0%,#9b8cff 48%,#ffcf78 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 13px rgba(81,228,255,.18));
+}
+.section-head h2,
+.section h2,
+.panel>h2{
+  color:#f6f9ff;
+  background:linear-gradient(100deg,#ffffff 0%,#a9f0ff 42%,#bca6ff 78%,#ffe0a1 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  position:relative;
+  letter-spacing:.015em;
+  text-shadow:none;
+}
+.section-head h2::after,
+.section h2::after,
+.panel>h2::after{
+  content:"";
+  display:block;
+  width:clamp(54px,9%,96px);
+  height:3px;
+  margin-top:9px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#36d9ff,#9b72ff,#ffd27a);
+  box-shadow:0 0 12px rgba(54,217,255,.3);
+  opacity:.95;
+}
+h3{
+  color:#dff8ff;
+  text-shadow:0 0 16px rgba(54,217,255,.12);
+}
+.pack-showcase-title h3,
+.promo-code-hub-heading h3,
+.category-title h3,
+.video-feed-heading,
+#promoOfficialProofTitle{
+  background:linear-gradient(100deg,#f6fbff,#8eeaff 58%,#c1a6ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.mn-brand-name{
+  background:linear-gradient(100deg,#50e5ff 0%,#a88bff 48%,#ffd27a 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:#65dfff;
+  text-shadow:none;
+}
+.public-side-label,.ticker-label{
+  color:#8deaff;
+  letter-spacing:.12em;
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero h1 span{
+    background-size:180% 100%;
+    animation:mnHeadingShimmer 8s ease-in-out infinite alternate;
+  }
+  @keyframes mnHeadingShimmer{
+    from{background-position:0% 50%}
+    to{background-position:100% 50%}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .hero h1 span{animation:none!important}
+}
