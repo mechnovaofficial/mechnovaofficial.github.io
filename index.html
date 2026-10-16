@@ -733,10 +733,10 @@ function renderCodes(){
    }
    const reward=document.createElement("div");reward.className="reward";
    const rewardText=String(c.reward||"").trim();
-   const rankMatch=rewardText.match(/^(Rank(?:-|\\s)\\s*\\d+\\s+[^,·]+)(.*)$/i);
+   const rankMatch=rewardText.match(/^(Rank(?:-|\s)\s*\d+\s+[^,·]+)(.*)$/i);
    if(rankMatch){
     const lead=document.createElement("strong");lead.textContent=rankMatch[1].trim();reward.append(lead);
-    const remainder=rankMatch[2].replace(/^[,\\s·]+/,"");
+    const remainder=rankMatch[2].replace(/^[,\s·]+/,"");
     if(remainder)reward.append(document.createTextNode(" · "+remainder));
    }else reward.textContent=rewardText;
    const expiryValue=dateInputValue(c.expiresAt);
