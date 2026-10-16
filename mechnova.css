@@ -1833,3 +1833,217 @@ footer{font-size:13px;line-height:1.9}
   padding-left:35px!important;
  }
 }
+
+
+/* MECHNOVA cinematic motion pass: hero energy, code sweeps, 3D packs and partner sheen. */
+@keyframes mnBrandGradientFlow{
+ 0%,100%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+}
+@keyframes mnLogoPulse{
+ 0%,100%{filter:drop-shadow(0 0 2px rgba(99,241,255,.2))}
+ 50%{filter:drop-shadow(0 0 7px rgba(99,241,255,.45)) drop-shadow(0 0 13px rgba(213,139,255,.18))}
+}
+@keyframes mnEnergyPulse{
+ 0%,100%{opacity:.55;transform:scale(1)}
+ 50%{opacity:.9;transform:scale(1.045)}
+}
+@keyframes mnCodeNameGlow{
+ 0%,100%{text-shadow:0 0 3px rgba(255,225,122,.12)}
+ 50%{text-shadow:0 0 10px rgba(255,225,122,.44)}
+}
+@keyframes mnCopyPop{
+ 0%{transform:scale(.88)}
+ 55%{transform:scale(1.12)}
+ 100%{transform:scale(1)}
+}
+@keyframes mnCopyRipple{
+  0%{opacity:.8;transform:scale(.75)}
+  100%{opacity:0;transform:scale(1.65)}
+}
+@keyframes mnCategoryScan{
+  0%,15%{transform:translateX(-135%)}
+  80%,100%{transform:translateX(300%)}
+}
+@keyframes mnPartnerButtonPulse{
+  0%,100%{box-shadow:0 5px 15px rgba(255,0,40,.18)}
+  50%{box-shadow:0 5px 22px rgba(255,0,40,.34)}
+}
+
+/* Brand wordmark shimmer and logo energy */
+.logo .brand-wordmark,
+.logo .brand-wordmark>span,
+.mn-brand-name{
+ background-size:230% 100%!important;
+ animation:mnBrandGradientFlow 7.5s ease-in-out infinite!important;
+}
+.logo .brand-logo{
+ animation:mnLogoPulse 5.5s ease-in-out infinite;
+ transform-origin:center;
+}
+.hero::before{
+ animation:mnEnergyPulse 8s ease-in-out infinite;
+ transform-origin:center;
+}
+
+/* Active promo cards get a low-intensity light pass on hover/focus. */
+#codes .code-card{
+ position:relative!important;
+ isolation:isolate;
+ overflow:hidden!important;
+ transition:transform .23s ease,border-color .23s ease,box-shadow .23s ease,filter .23s ease!important;
+}
+#codes .code-card>*{position:relative;z-index:1}
+#codes .code-card::before{
+ content:"";
+ position:absolute;
+ z-index:0;
+ top:-12%;
+ left:-125%;
+ width:62%;
+ height:124%;
+ pointer-events:none;
+ opacity:.75;
+ transform:skewX(-17deg);
+ background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.025) 32%,rgba(113,234,255,.18) 50%,rgba(214,154,255,.08) 64%,transparent 100%);
+}
+#codes .code-card:hover::before,
+#codes .code-card:focus-within::before{animation:mnCodeSweep .85s ease-out}
+#codes .code-card:hover,
+#codes .code-card:focus-within{
+ transform:translateY(-2px)!important;
+ filter:saturate(1.07);
+}
+#codes .code-name{animation:mnCodeNameGlow 4.8s ease-in-out infinite}
+#codes .promo-code-copy{position:relative;overflow:visible}
+#codes .promo-code-copy.is-copied{
+ background:linear-gradient(145deg,#7bffc5,#29d78e)!important;
+ color:#062b21!important;
+ box-shadow:0 0 0 2px rgba(123,255,197,.25),0 0 19px rgba(41,215,142,.38)!important;
+ animation:mnCopyPop .32s cubic-bezier(.2,.75,.25,1) both;
+}
+#codes .promo-code-copy.is-copied::after{
+ content:"";
+ position:absolute;
+ inset:0;
+ border:2px solid rgba(123,255,197,.95);
+ border-radius:inherit;
+ pointer-events:none;
+ animation:mnCopyRipple .62s ease-out both;
+}
+
+/* Pack cards feel holographic, with a 3D lift and one clean light sweep. */
+#packShowcase .showcase-pack-card{
+ isolation:isolate;
+ transform-style:preserve-3d;
+}
+#packShowcase .showcase-pack-card::before{
+ content:"";
+ position:absolute;
+ z-index:4;
+ top:-36%;
+ bottom:-36%;
+ left:-105%;
+ width:43%;
+ opacity:0;
+ pointer-events:none;
+ transform:skewX(-18deg);
+ background:linear-gradient(100deg,transparent,rgba(255,255,255,.18) 38%,rgba(119,233,255,.24) 50%,rgba(255,255,255,.06) 64%,transparent);
+ transition:left .7s cubic-bezier(.2,.75,.25,1),opacity .2s ease;
+}
+#packShowcase .showcase-pack-card:hover::before,
+#packShowcase .showcase-pack-card:focus-within::before{
+ left:150%;
+ opacity:1;
+}
+@media(hover:hover) and (pointer:fine){
+ #packShowcase .showcase-pack-card:hover,
+ #packShowcase .showcase-pack-card:focus-within{
+  transform:perspective(1000px) rotateX(1deg) rotateY(-1.15deg) translateY(-5px)!important;
+  border-color:#7feaff!important;
+  box-shadow:0 16px 32px rgba(0,0,0,.3),0 0 22px rgba(76,221,255,.16)!important;
+ }
+ #packShowcase .showcase-pack-card.is-bonus:hover,
+ #packShowcase .showcase-pack-card.is-bonus:focus-within{
+  border-color:#ffd27a!important;
+  box-shadow:0 16px 32px rgba(0,0,0,.3),0 0 22px rgba(255,193,91,.17)!important;
+ }
+}
+
+/* Player category headers use a moving laser underline. */
+#codes #allPlayersSection .category-title,
+#codes #newPlayersSection .category-title,
+#codes #returningPlayersSection .category-title{position:relative}
+#codes #allPlayersSection .category-title::after,
+#codes #newPlayersSection .category-title::after,
+#codes #returningPlayersSection .category-title::after{
+ content:"";
+ position:absolute;
+ left:12px;
+ bottom:-1px;
+ width:30%;
+ height:2px;
+ border-radius:999px;
+ background:linear-gradient(90deg,transparent,#63efff,rgba(210,159,255,.75),transparent);
+ box-shadow:0 0 10px rgba(87,225,255,.22);
+ pointer-events:none;
+ animation:mnCategoryScan 5.5s ease-in-out infinite;
+}
+#codes #newPlayersSection .category-title::after{
+ background:linear-gradient(90deg,transparent,#ffe09a,rgba(255,170,75,.75),transparent);
+ box-shadow:0 0 10px rgba(255,201,104,.2);
+}
+#codes #returningPlayersSection .category-title::after{
+ background:linear-gradient(90deg,transparent,#d7b7ff,rgba(149,124,255,.75),transparent);
+ box-shadow:0 0 10px rgba(188,140,255,.2);
+}
+
+/* YouTube-red partner cards: shine only when engaged; keep text above the effect. */
+#monetizationHub .earning-card>*{position:relative;z-index:1}
+#monetizationHub .earning-card::after{
+ content:"";
+ position:absolute;
+ z-index:0;
+ top:-30%;
+ bottom:-30%;
+ left:-120%;
+ width:48%;
+ opacity:0;
+ pointer-events:none;
+ transform:skewX(-18deg);
+ background:linear-gradient(100deg,transparent,rgba(255,255,255,.14),rgba(255,0,51,.1),transparent);
+ transition:left .68s cubic-bezier(.2,.75,.25,1),opacity .18s ease;
+}
+#monetizationHub .earning-card:hover::after,
+#monetizationHub .earning-card:focus-within::after{left:155%;opacity:1}
+#monetizationHub .earning-card .btn:hover,
+#monetizationHub .earning-card .btn:focus-visible{animation:mnPartnerButtonPulse 1.8s ease-in-out infinite}
+.portal-sidebar .video-card:hover{
+ transform:translateY(-3px);
+ box-shadow:0 12px 26px rgba(0,0,0,.3),0 0 16px rgba(76,221,255,.12);
+}
+
+/* Keep the full experience calm and usable on devices or settings that reduce motion. */
+@media(hover:none){
+ #codes .code-card:hover{transform:none!important;filter:none!important}
+ #codes .code-card::before{display:none!important}
+ #packShowcase .showcase-pack-card::before{display:none!important}
+ #packShowcase .showcase-pack-card:hover{transform:none!important}
+ #monetizationHub .earning-card::after{display:none!important}
+ #monetizationHub .earning-card:hover{transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .logo .brand-wordmark,.logo .brand-wordmark>span,.mn-brand-name,.logo .brand-logo,
+ .hero::before,.hero::after,.hero .tag,.hero h1,.hero p,.hero .hero-actions .btn,.hero h1 span,
+ #codes .code-name,#codes .code-card::before,#codes .promo-code-copy.is-copied::after,
+ #codes #allPlayersSection .category-title::after,
+ #codes #newPlayersSection .category-title::after,
+ #codes #returningPlayersSection .category-title::after,
+ #packShowcase .showcase-pack-card::before,
+ #monetizationHub .earning-card .btn{animation:none!important}
+ #codes .code-card,#packShowcase .showcase-pack-card,#monetizationHub .earning-card,
+ #monetizationHub .earning-card .btn,.portal-sidebar .video-card{transition:none!important}
+ #codes .code-card:hover,#packShowcase .showcase-pack-card:hover,
+ #monetizationHub .earning-card:hover,.portal-sidebar .video-card:hover{transform:none!important;filter:none!important}
+ #codes .promo-code-copy.is-copied{box-shadow:none!important}
+}
