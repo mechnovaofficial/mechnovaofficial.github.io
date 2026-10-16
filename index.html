@@ -77,7 +77,7 @@
    <a href="#about" data-en="About" data-hi="हमारे बारे में">About</a>
   </nav>
   <div class="nav-right"><button class="public-menu-toggle" id="publicMenuToggle" type="button" aria-label="Open website menu" aria-expanded="false">☰ Menu</button></div>
-  <a class="nav-code-ticker" href="#codes" aria-label="Listed promo codes, click to view codes"><span class="ticker-label">RUNNING CODES</span><span class="ticker-window"><span class="ticker-track"><span>MIDGAMECHANNEL4ALL&nbsp; · &nbsp;ALL PLAYERS&nbsp; · &nbsp;EXPIRES DEC 1, 2026&nbsp; ✦ &nbsp;MIDRUSHGAME&nbsp; ✦ &nbsp;SPOOKYSHOT&nbsp; ✦ &nbsp;2GTCHEST&nbsp; ✦ &nbsp;GRASSHOPPER&nbsp; ✦ &nbsp;CHILLBOT&nbsp; ✦ &nbsp;WARTEX&nbsp; ✦ &nbsp;BACKTRACK&nbsp; ✦ &nbsp;ROBOTRUSH&nbsp; ✦ &nbsp;BIGMECH&nbsp; ✦ &nbsp;IMBACKBABY&nbsp; ✦ &nbsp;BLASTZONE&nbsp; ✦ &nbsp;</span><span aria-hidden="true">MIDGAMECHANNEL4ALL&nbsp; · &nbsp;ALL PLAYERS&nbsp; · &nbsp;EXPIRES DEC 1, 2026&nbsp; ✦ &nbsp;MIDRUSHGAME&nbsp; ✦ &nbsp;SPOOKYSHOT&nbsp; ✦ &nbsp;2GTCHEST&nbsp; ✦ &nbsp;GRASSHOPPER&nbsp; ✦ &nbsp;CHILLBOT&nbsp; ✦ &nbsp;WARTEX&nbsp; ✦ &nbsp;BACKTRACK&nbsp; ✦ &nbsp;ROBOTRUSH&nbsp; ✦ &nbsp;BIGMECH&nbsp; ✦ &nbsp;IMBACKBABY&nbsp; ✦ &nbsp;BLASTZONE&nbsp; ✦ &nbsp;</span></span></span></a>
+  <a class="nav-code-ticker" href="#codes" aria-label="Listed promo codes, click to view codes"><span class="ticker-label">RUNNING CODES</span><span class="ticker-window"><span class="ticker-track"><span>MIDGAMECHANNEL4ALL&nbsp; · &nbsp;ALL PLAYERS&nbsp; · &nbsp;EXPIRES DEC 1, 2026&nbsp; ✦ &nbsp;MIDRUSHGAME&nbsp; ✦ &nbsp;SPOOKYSHOT&nbsp; ✦ &nbsp;GRASSHOPPER&nbsp; ✦ &nbsp;CHILLBOT&nbsp; ✦ &nbsp;WARTEX&nbsp; ✦ &nbsp;BACKTRACK&nbsp; ✦ &nbsp;ROBOTRUSH&nbsp; ✦ &nbsp;BIGMECH&nbsp; ✦ &nbsp;IMBACKBABY&nbsp; ✦ &nbsp;BLASTZONE&nbsp; ✦ &nbsp;</span><span aria-hidden="true">MIDGAMECHANNEL4ALL&nbsp; · &nbsp;ALL PLAYERS&nbsp; · &nbsp;EXPIRES DEC 1, 2026&nbsp; ✦ &nbsp;MIDRUSHGAME&nbsp; ✦ &nbsp;SPOOKYSHOT&nbsp; ✦ &nbsp;2GTCHEST&nbsp; ✦ &nbsp;GRASSHOPPER&nbsp; ✦ &nbsp;CHILLBOT&nbsp; ✦ &nbsp;WARTEX&nbsp; ✦ &nbsp;BACKTRACK&nbsp; ✦ &nbsp;ROBOTRUSH&nbsp; ✦ &nbsp;BIGMECH&nbsp; ✦ &nbsp;IMBACKBABY&nbsp; ✦ &nbsp;BLASTZONE&nbsp; ✦ &nbsp;</span></span></span></a>
  </div>
 </header>
 
@@ -543,7 +543,7 @@ const codes = [
  {code:"MIDGAMECHANNEL4ALL",type:"allplayers",reward:"100,000 Credits, 1 Gold Crate, 1 Amateur Crate, 1 Prodigy Crate",expiresAt:"2026-12-01"},
  {code:"MIDRUSHGAME",type:"allplayers",reward:"100,000 Credits, 1 Gold Crate, 1 Amateur Crate, 1 Prodigy Crate"},
  {code:"SPOOKYSHOT",type:"allplayers",reward:"Five Epic skins for Ares, Tengu, Killshot, Scorpius and Eclipse"},
- {code:"2GTCHEST",type:"allplayers",reward:"100 A-Coins, 40,000 Credits, 1 Prodigy Crate"},
+ {code:"2GTCHEST",type:"expired",reward:"Expired code"},
  {code:"GRASSHOPPER",type:"newplayers",reward:"Rank 3 Lacewing, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"},
  {code:"CHILLBOT",type:"newplayers",reward:"Rank 3 Blizzfrost, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"},
  {code:"WARTEX",type:"newplayers",reward:"Rank 3 Vortex, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"},
@@ -1096,7 +1096,7 @@ async function loadPublicCodes(){
         const standard=defaultsByCode.get(canonical);
         const normalized=standard
           ? {...standard,...saved,code:standard.code,type:standard.type,reward:standard.reward,
-             expiresAt:Object.prototype.hasOwnProperty.call(standard,"expiresAt")?standard.expiresAt:(dateInputValue(saved.expiresAt)||null)}
+             expiresAt:Object.prototype.hasOwnProperty.call(standard,"expiresAt")?standard.expiresAt:null}
           : {...saved,code:canonical};
         mergedByCode.set(canonical,normalized);
       });
