@@ -788,6 +788,16 @@ function getBonusPackPromoCode(name,data){
  const inlineCode=entry?entry.replace(/^promo code:\s*/i,"").trim():"";
  return String(bonusPackCodes[name]||inlineCode||"").trim().toUpperCase();
 }
+function canonicalPromoCode(value){
+ const code=String(value||"").trim().replace(/^promo code:\\s*/i,"").toUpperCase();
+ const aliases={GRASSHOPER:"GRASSHOPPER",IMBACKBBAY:"IMBACKBABY",BLASTZPNE:"BLASTZONE",MIDFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL",MISFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL"};
+ return aliases[code]||code;
+}
+function isListedExpiredPromoCode(value){
+ const code=canonicalPromoCode(value);
+ const match=codes.find(item=>canonicalPromoCode(item.code)===code);
+ return Boolean(match&&getEffectiveCodeType(match)==="expired");
+}
 function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
  const target=$(targetId);if(!target)return;if(clearTarget)target.replaceChildren();
  const names=visiblePackNames(type);
@@ -804,7 +814,8 @@ function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
   const art=document.createElement("div");art.className="showcase-pack-art";
   const bonusPromoEntry=type==="bonus"&&Array.isArray(data[name])?data[name].map(String).find(item=>item.toLowerCase().startsWith("promo code:")):"";
   const inlineBonusPromoCode=bonusPromoEntry?bonusPromoEntry.replace(/^promo code:\s*/i,"").trim():"";
-  const bonusPromoCode=type==="bonus"?(String(bonusPackCodes[name]||inlineBonusPromoCode||"").trim()):"";
+  const rawBonusPromoCode=type==="bonus"?(String(bonusPackCodes[name]||inlineBonusPromoCode||"").trim()):"";
+  const bonusPromoCode=rawBonusPromoCode&&!isListedExpiredPromoCode(rawBonusPromoCode)?canonicalPromoCode(rawBonusPromoCode):"";
   let bonusCodeButton=null;let bonusCodeReveal=null;
   if(type==="bonus"){
    const codeOrder=BONUS_PACK_CODE_ORDER.indexOf(bonusPromoCode.toUpperCase());
@@ -864,10 +875,49 @@ function refreshPublicPacks(){
 }
 function applyPackSettings(raw={}){
  if(raw.starterPacks&&typeof raw.starterPacks==="object")starterPacks=raw.starterPacks;
- if(raw.bonusPacks&&typeof raw.bonusPacks==="object")bonusPacks={...bonusPacks,...raw.bonusPacks};
- if(raw.bonusPackCodes&&typeof raw.bonusPackCodes==="object")bonusPackCodes={...defaultBonusPromoCodes,...raw.bonusPackCodes};
- if(raw.packImages&&typeof raw.packImages==="object")packImages={...raw.packImages,...defaultPackImages};
- if(raw.packVisibility&&typeof raw.packVisibility==="object")packVisibility.starter=raw.packVisibility.starter||{},packVisibility.bonus=raw.packVisibility.bonus||{};
+ if(raw.bonusPacks&&typeof raw.bonusPacks==="object"){
+  const savedBonusPacks={...raw.bonusPacks};
+  if(Object.prototype.hasOwnProperty.call(savedBonusPacks,"Vartex")){
+   if(!Object.prototype.hasOwnProperty.call(savedBonusPacks,"Vortex"))savedBonusPacks.Vortex=savedBonusPacks.Vartex;
+   delete savedBonusPacks.Vartex;
+  }
+  Object.keys(savedBonusPacks).forEach(name=>{
+   if(Array.isArray(savedBonusPacks[name])){
+    savedBonusPacks[name]=savedBonusPacks[name].map(item=>{
+     const value=String(item);
+     if(/^\\s*promo code:/i.test(value))return "Promo Code: "+canonicalPromoCode(value);
+     return value.replace(/\\bVartex\\b/gi,"Vortex");
+    });
+   }
+  });
+  bonusPacks={...bonusPacks,...savedBonusPacks};
+ }
+ if(raw.bonusPackCodes&&typeof raw.bonusPackCodes==="object"){
+  const savedCodes={...raw.bonusPackCodes};
+  if(Object.prototype.hasOwnProperty.call(savedCodes,"Vartex")){
+   if(!Object.prototype.hasOwnProperty.call(savedCodes,"Vortex"))savedCodes.Vortex=savedCodes.Vartex;
+   delete savedCodes.Vartex;
+  }
+  Object.keys(savedCodes).forEach(name=>{savedCodes[name]=canonicalPromoCode(savedCodes[name]);});
+  bonusPackCodes={...defaultBonusPromoCodes,...savedCodes};
+ }
+ if(raw.packImages&&typeof raw.packImages==="object"){
+  const savedImages={...raw.packImages};
+  if(Object.prototype.hasOwnProperty.call(savedImages,"Vartex")){
+   if(!Object.prototype.hasOwnProperty.call(savedImages,"Vortex"))savedImages.Vortex=savedImages.Vartex;
+   delete savedImages.Vartex;
+  }
+  packImages={...savedImages,...defaultPackImages};
+ }
+ if(raw.packVisibility&&typeof raw.packVisibility==="object"){
+  packVisibility.starter=raw.packVisibility.starter||{};
+  const savedVisibility={...(raw.packVisibility.bonus||{})};
+  if(Object.prototype.hasOwnProperty.call(savedVisibility,"Vartex")){
+   if(!Object.prototype.hasOwnProperty.call(savedVisibility,"Vortex"))savedVisibility.Vortex=savedVisibility.Vartex;
+   delete savedVisibility.Vartex;
+  }
+  packVisibility.bonus=savedVisibility;
+ }
  refreshPublicPacks();
 }
 
@@ -1032,7 +1082,8 @@ async function loadPublicCodes(){
         GRASSHOPER:"GRASSHOPPER",
         IMBACKBBAY:"IMBACKBABY",
         BLASTZPNE:"BLASTZONE",
-        MIDFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL"
+        MIDFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL",
+        MISFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL"
       };
       const canonicalCode=value=>{
         const upper=String(value||"").trim().toUpperCase();
