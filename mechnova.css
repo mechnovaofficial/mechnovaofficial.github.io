@@ -2047,3 +2047,52 @@ footer{font-size:13px;line-height:1.9}
  #monetizationHub .earning-card:hover,.portal-sidebar .video-card:hover{transform:none!important;filter:none!important}
  #codes .promo-code-copy.is-copied{box-shadow:none!important}
 }
+
+
+/* Large, unmistakable YouTube mark in the empty space of Partner with MechNova. */
+#monetizationHub .section-head{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ gap:clamp(14px,3vw,34px)!important;
+}
+#monetizationHub .partner-heading-copy{
+ flex:1 1 auto;
+ min-width:0;
+}
+#monetizationHub .partner-youtube-mark{
+ position:relative;
+ z-index:2;
+ display:grid;
+ place-items:center;
+ flex:0 0 auto;
+ width:clamp(78px,9vw,116px);
+ aspect-ratio:120/84;
+ padding:0;
+ border:0;
+ border-radius:22px;
+ background:transparent;
+ line-height:0;
+ filter:drop-shadow(0 0 15px rgba(255,0,51,.32));
+ transition:transform .22s ease,filter .22s ease;
+}
+#monetizationHub .partner-youtube-mark svg{
+ display:block;
+ width:100%;
+ height:auto;
+ overflow:visible;
+}
+#monetizationHub .partner-youtube-mark:hover,
+#monetizationHub .partner-youtube-mark:focus-visible{
+ transform:translateY(-3px) scale(1.07);
+ filter:drop-shadow(0 0 11px rgba(255,0,51,.65)) drop-shadow(0 0 24px rgba(255,0,51,.28));
+}
+@media(max-width:600px){
+ #monetizationHub .section-head{gap:10px!important}
+ #monetizationHub .partner-youtube-mark{width:clamp(58px,18vw,76px);border-radius:13px}
+ #monetizationHub .section-head .sub{font-size:13px!important;line-height:1.5!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #monetizationHub .partner-youtube-mark{transition:none!important}
+ #monetizationHub .partner-youtube-mark:hover{transform:none!important}
+}
