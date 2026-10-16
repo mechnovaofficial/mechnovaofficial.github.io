@@ -825,7 +825,7 @@ function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
    const label=String(item);if(label.toLowerCase().startsWith("promo code:"))return;
    const countSuffix=label.match(/[×x][ ]*([0-9,]+)[ ]*$/);
    const countPrefix=label.match(/^([0-9,]+)/);
-   const amount=countSuffix?"×"+countSuffix[1]:countPrefix?countPrefix[1]:"×1";
+   const amount=countSuffix?countSuffix[1]:countPrefix?countPrefix[1]:"1";
    const itemWrap=document.createElement("span");itemWrap.className="showcase-reward-item";
    const reward=document.createElement("span");reward.className="showcase-reward-icon";reward.setAttribute("role","img");reward.setAttribute("aria-label",label);
    const key=Object.keys(rewardImages).find(k=>label.toLowerCase().includes(k.toLowerCase()));
