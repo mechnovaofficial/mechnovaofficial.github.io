@@ -1413,3 +1413,131 @@ footer{font-size:13px;line-height:1.9}
  color:#f4efff!important;
  border:1px solid rgba(195,175,255,.35)!important;
 }
+
+
+/* YouTube-inspired red / near-black theme for Partner with MechNova. */
+#monetizationHub.support-section{
+ position:relative!important;
+ isolation:isolate;
+ overflow:hidden;
+ padding:clamp(18px,3vw,30px)!important;
+ border:1px solid rgba(255,0,40,.42)!important;
+ border-top:4px solid #ff0033!important;
+ border-radius:18px!important;
+ background:
+  radial-gradient(ellipse at 0% 0%,rgba(255,0,40,.19),transparent 42%),
+  radial-gradient(ellipse at 100% 100%,rgba(255,0,40,.09),transparent 42%),
+  linear-gradient(145deg,#181818 0%,#0d0d0f 58%,#171114 100%)!important;
+ box-shadow:0 16px 42px rgba(0,0,0,.32),0 0 0 1px rgba(255,0,40,.08)!important;
+}
+#monetizationHub.support-section::after{
+ content:"";
+ position:absolute;
+ z-index:-1;
+ right:-70px;
+ top:-85px;
+ width:220px;
+ height:220px;
+ border:1px solid rgba(255,0,40,.19);
+ border-radius:50%;
+ box-shadow:0 0 0 18px rgba(255,0,40,.035),0 0 0 40px rgba(255,0,40,.025);
+ pointer-events:none;
+}
+#monetizationHub .section-head{
+ position:relative;
+ z-index:1;
+ margin-bottom:18px!important;
+ padding:0 0 14px!important;
+ border-bottom:1px solid rgba(255,255,255,.12)!important;
+}
+#monetizationHub .section-head h2{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ color:#fff!important;
+ font-size:clamp(23px,3vw,31px)!important;
+ font-weight:900!important;
+ letter-spacing:.1px;
+ text-shadow:0 2px 18px rgba(255,0,40,.17);
+}
+#monetizationHub .section-head h2::first-letter{
+ color:#ff0033!important;
+}
+#monetizationHub .section-head .sub{
+ color:#c7c7cc!important;
+ font-size:15px!important;
+ line-height:1.7!important;
+}
+#monetizationHub #earningPublicCards{
+ position:relative;
+ z-index:1;
+ gap:13px!important;
+}
+#monetizationHub .earning-card{
+ position:relative;
+ overflow:hidden;
+ gap:11px!important;
+ padding:18px!important;
+ border:1px solid rgba(255,255,255,.14)!important;
+ border-top:3px solid #ff0033!important;
+ border-radius:13px!important;
+ background:linear-gradient(150deg,#202020 0%,#111113 70%,#1b1013 100%)!important;
+ box-shadow:0 10px 26px rgba(0,0,0,.26)!important;
+ transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+#monetizationHub .earning-card:hover{
+ transform:translateY(-3px);
+ border-color:rgba(255,0,40,.55)!important;
+ box-shadow:0 15px 32px rgba(0,0,0,.38),0 0 18px rgba(255,0,40,.09)!important;
+}
+#monetizationHub .earning-card h3{
+ color:#fff!important;
+ font-size:18px!important;
+ font-weight:850!important;
+ line-height:1.35!important;
+}
+#monetizationHub .earning-card p{
+ color:#c9c9ce!important;
+ font-size:14px!important;
+ line-height:1.7!important;
+}
+#monetizationHub .earning-card .btn,
+#monetizationHub .earning-card .btn.secondary{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:8px;
+ min-height:42px;
+ padding:10px 15px!important;
+ border:1px solid #ff0033!important;
+ border-radius:9px!important;
+ background:#ff0033!important;
+ color:#fff!important;
+ font-weight:850!important;
+ text-decoration:none!important;
+ box-shadow:0 5px 15px rgba(255,0,40,.2)!important;
+ transition:background .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+#monetizationHub .earning-card .btn:hover,
+#monetizationHub .earning-card .btn.secondary:hover{
+ transform:translateY(-1px);
+ border-color:#ff3358!important;
+ background:#cc0029!important;
+ color:#fff!important;
+ box-shadow:0 8px 20px rgba(255,0,40,.28)!important;
+}
+#monetizationHub .earning-card .small{
+ color:#a9a9b1!important;
+ font-size:13px!important;
+}
+@media(max-width:600px){
+ #monetizationHub.support-section{padding:17px!important;border-radius:14px!important}
+ #monetizationHub .section-head h2{font-size:23px!important}
+ #monetizationHub .earning-card{padding:15px!important}
+ #monetizationHub .earning-card .btn{width:100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+ #monetizationHub .earning-card,
+ #monetizationHub .earning-card .btn{transition:none!important}
+ #monetizationHub .earning-card:hover{transform:none}
+}
