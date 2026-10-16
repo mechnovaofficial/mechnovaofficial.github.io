@@ -731,22 +731,22 @@ function renderCodes(){
     btn.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(c.code);btn.textContent="✓";btn.setAttribute("aria-label","Copied "+c.code);setTimeout(()=>{btn.textContent="⧉";btn.setAttribute("aria-label","Copy promo code "+c.code);},1400);}catch(e){window.prompt("Copy this code:",c.code);}});
     top.append(btn);
    }
-   const reward=document.createElement("div");reward.className="reward";reward.textContent="🎁 "+c.reward;
-   const meta=document.createElement("div");meta.className="code-card-meta";
-   const checked=document.createElement("span");checked.className="code-last-checked";checked.textContent=formatLastChecked(c.lastCheckedAt);
-   const report=document.createElement("a");report.className="code-report-link";report.href=codeReportHref(c);report.textContent=currentLang==="hi"?"कोड रिपोर्ट करें":"Report issue";
-   report.setAttribute("aria-label",(currentLang==="hi"?"इस कोड में समस्या रिपोर्ट करें: ":"Report an issue with promo code: ")+c.code);
-   meta.append(checked);
+   const reward=document.createElement("div");reward.className="reward";
+   const rewardText=String(c.reward||"").trim();
+   const rankMatch=rewardText.match(/^(Rank(?:-|\\s)\\s*\\d+\\s+[^,·]+)(.*)$/i);
+   if(rankMatch){
+    const lead=document.createElement("strong");lead.textContent=rankMatch[1].trim();reward.append(lead);
+    const remainder=rankMatch[2].replace(/^[,\\s·]+/,"");
+    if(remainder)reward.append(document.createTextNode(" · "+remainder));
+   }else reward.textContent=rewardText;
    const expiryValue=dateInputValue(c.expiresAt);
    if(expiryValue){
-    const expiryLabel=document.createElement("span");expiryLabel.className="code-expires-at";
     const expiryDate=new Date(expiryValue+"T00:00:00");
     const niceDate=Number.isNaN(expiryDate.getTime())?expiryValue:new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric"}).format(expiryDate);
-    expiryLabel.textContent=effectiveType==="expired"?"Expired on "+niceDate:"Expires "+niceDate;
-    meta.append(expiryLabel);
+    const expiryLabel=document.createElement("span");expiryLabel.className="code-expires-inline";
+    expiryLabel.textContent=" · Expires "+niceDate;reward.append(expiryLabel);
    }
-   meta.append(report);
-   card.append(top,reward,meta);root.append(card);
+   card.append(top,reward);root.append(card);
   });
  });
  const expiredVisible=expiredRevealed||filter==="expired";
