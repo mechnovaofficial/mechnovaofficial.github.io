@@ -53,6 +53,39 @@
 </style>
  <script defer src="/analytics.js?v=20261010a"></script>
 <link rel="stylesheet" href="/theme-unified.css?v=20261016-cinematic-motion-pass">
+
+/* MechNova site-wide navigation and utility icon pass */
+<style id="mechnova-icon-pass">
+/* Keep icon treatment consistent with the existing neon theme; no external icon library required. */
+footer a:not(.social-link){display:inline-flex;align-items:center;gap:5px;text-decoration:none;transition:color .18s ease,filter .18s ease}
+footer a:not(.social-link)::before{display:inline-block;font-size:.95em;line-height:1;filter:drop-shadow(0 0 4px rgba(54,217,255,.25))}
+footer a[href*="youtube.com"]::before{content:"▶";color:#ff5967}
+footer a[href*="blogspot.com"]::before{content:"✦";color:#f6bd4b}
+footer a[href*="affiliate"]::before{content:"🛍"}
+footer a[href*="privacy"]::before{content:"🛡";color:#43e6a2}
+footer a[href*="terms"]::before{content:"📄"}
+footer a[href*="editorial"]::before{content:"✎";color:#9b72ff}
+footer a[href*="contact"]::before{content:"✉";color:#36d9ff}
+footer a[href*="about"]::before{content:"ⓘ";color:#36d9ff}
+footer a[href="#admin"]::before{content:"⚙";color:#b9c9e5}
+.nav-links a{display:inline-flex;align-items:center;gap:6px}
+.nav-links a[href="#home"]::before{content:"⌂"}
+.nav-links a[href="#packs"]::before{content:"🎁"}
+.nav-links a[href="#redeem"]::before{content:"📘"}
+.nav-links a[href*="promo-codes"]::before{content:"🎟"}
+.nav-links a[href="#videos"]::before{content:"▶"}
+.nav-links a[href*="affiliate"]::before{content:"🛍"}
+.nav-links a[href="#faq"]::before{content:"❔"}
+.nav-links a[href="#about"]::before{content:"ⓘ"}
+.public-side-link{display:flex;align-items:center;gap:10px}
+.public-side-link>span:first-child{display:inline-flex;align-items:center;justify-content:center;min-width:22px}
+.btn,.public-menu-toggle,.promo-expired-toggle,.promo-code-copy{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,filter .18s ease}
+.btn:hover,.public-menu-toggle:hover,.promo-expired-toggle:hover,.promo-code-copy:hover{filter:brightness(1.12)}
+footer .social-icon{width:16px;height:16px;vertical-align:middle}
+@media(max-width:700px){footer a:not(.social-link){white-space:nowrap}footer>div:nth-child(2){display:flex;flex-wrap:wrap;justify-content:center;gap:8px 12px}}
+@media(prefers-reduced-motion:reduce){footer a:not(.social-link),.btn,.public-menu-toggle,.promo-expired-toggle,.promo-code-copy{transition:none!important}}
+</style>
+
 </head>
 <body>
 <a class="skip-link" href="#home">Skip to main content</a>
