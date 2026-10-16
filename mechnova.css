@@ -1254,3 +1254,28 @@ footer{font-size:13px;line-height:1.9}
   #codes .promo-official-proof a.btn,
   #codes .promo-official-proof a.btn.secondary{width:100%;box-sizing:border-box;text-align:center}
 }
+
+
+/* Numbered promo-code labels on Bonus Pack cards */
+#packShowcase .showcase-pack-number{
+ position:absolute;
+ top:8px;
+ left:8px;
+ z-index:5;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ max-width:calc(100% - 18px);
+ box-sizing:border-box;
+ padding:5px 8px;
+ border:1px solid #d7fbff;
+ border-radius:7px;
+ background:linear-gradient(110deg,#3ce2ff,#b0f5ff);
+ color:#071b2d;
+ font-size:10px;
+ font-weight:1000;
+ line-height:1.1;
+ letter-spacing:.25px;
+ white-space:nowrap;
+ box-shadow:0 3px 13px #18d8ff55;
+}
