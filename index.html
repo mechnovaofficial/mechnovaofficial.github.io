@@ -703,7 +703,7 @@ function renderRunningCodeTicker(){
 }
 function appendRewardHighlights(container,text){
  const source=String(text||"");
- const pattern=/(Rank(?:-|\\s)\\s*\\d+\\s+[^,·]+|\\b\\d[\\d,]*(?:\\.\\d+)?\\s*(?:A-Coins?|Credits?|Gold Crates?|Amateur Crates?|Prodigy Crates?|Pilot Marks?|Implant Parts?|Fortune Keys?|Keys?|Coins?)\\b|\\b(?:Five|[0-9]+)\\s+(?:(?:Epic|Legendary|Rare|Mythic)\\s+)?skins?\\b|\\b(?:Ares|Tengu|Killshot|Scorpius|Eclipse)\\b)/gi;
+ const pattern=/(Rank(?:-|\s)\s*\d+\s+[^,·]+|\b\d[\d,]*(?:\.\d+)?\s*(?:A-Coins?|Credits?|Gold Crates?|Amateur Crates?|Prodigy Crates?|Pilot Marks?|Implant Parts?|Fortune Keys?|Keys?|Coins?)\b|\b(?:Five|[0-9]+)\s+(?:(?:Epic|Legendary|Rare|Mythic)\s+)?skins?\b|\b(?:Ares|Tengu|Killshot|Scorpius|Eclipse)\b)/gi;
  let last=0,match;
  while((match=pattern.exec(source))!==null){
   if(match.index>last)container.append(document.createTextNode(source.slice(last,match.index)));
