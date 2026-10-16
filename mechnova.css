@@ -1709,3 +1709,127 @@ footer{font-size:13px;line-height:1.9}
  #codes .code-name{font-size:12px!important;letter-spacing:.65px!important}
  #codes .code-card .reward{font-size:12px!important;line-height:1.55!important}
 }
+
+
+/* Designed eligibility section headers for All / New / Returning Players. */
+#codes #allPlayersSection .category-title,
+#codes #newPlayersSection .category-title,
+#codes #returningPlayersSection .category-title{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ gap:12px!important;
+ margin:0 0 12px!important;
+ padding:12px 14px!important;
+ border:1px solid rgba(255,255,255,.14)!important;
+ border-bottom:1px solid rgba(255,255,255,.14)!important;
+ border-radius:12px!important;
+ background:#121b30!important;
+ box-shadow:0 6px 16px rgba(0,0,0,.17)!important;
+}
+#codes #allPlayersSection .category-title{
+ border-left:4px solid #34ddff!important;
+ background:linear-gradient(100deg,rgba(24,184,218,.18),rgba(22,35,59,.97) 65%)!important;
+}
+#codes #newPlayersSection .category-title{
+ border-left:4px solid #ffd166!important;
+ background:linear-gradient(100deg,rgba(255,177,65,.17),rgba(40,30,62,.97) 65%)!important;
+}
+#codes #returningPlayersSection .category-title{
+ border-left:4px solid #bc8cff!important;
+ background:linear-gradient(100deg,rgba(158,101,255,.2),rgba(30,27,61,.97) 65%)!important;
+}
+#codes #allPlayersSection .category-heading h3,
+#codes #newPlayersSection .category-heading h3,
+#codes #returningPlayersSection .category-heading h3{
+ display:inline-flex!important;
+ align-items:center!important;
+ gap:8px!important;
+ margin:0!important;
+ color:#fff!important;
+ font-size:clamp(18px,2vw,23px)!important;
+ font-weight:1000!important;
+ line-height:1.25!important;
+ letter-spacing:.15px!important;
+}
+#codes #allPlayersSection .category-heading h3::before{
+ content:"✓";
+ display:inline-grid;
+ place-items:center;
+ width:27px;height:27px;
+ border-radius:8px;
+ background:rgba(52,221,255,.17);
+ color:#64eaff;
+ font-size:16px;
+}
+#codes #newPlayersSection .category-heading h3::before{
+ content:"★";
+ display:inline-grid;
+ place-items:center;
+ width:27px;height:27px;
+ border-radius:8px;
+ background:rgba(255,209,102,.16);
+ color:#ffda83;
+ font-size:15px;
+}
+#codes #returningPlayersSection .category-heading h3::before{
+ content:"↻";
+ display:inline-grid;
+ place-items:center;
+ width:27px;height:27px;
+ border-radius:8px;
+ background:rgba(188,140,255,.18);
+ color:#d2b4ff;
+ font-size:18px;
+}
+#codes #allPlayersSection .code-active-count,
+#codes #newPlayersSection .code-active-count,
+#codes #returningPlayersSection .code-active-count{
+ padding:5px 9px!important;
+ border:1px solid rgba(255,255,255,.12)!important;
+ border-radius:999px!important;
+ font-size:10px!important;
+ font-weight:1000!important;
+ letter-spacing:.7px!important;
+}
+#codes #allPlayersSection .code-active-count{
+ background:rgba(28,197,225,.14)!important;
+ color:#72edff!important;
+ border-color:rgba(52,221,255,.34)!important;
+}
+#codes #newPlayersSection .code-active-count{
+ background:rgba(255,190,79,.14)!important;
+ color:#ffe09a!important;
+ border-color:rgba(255,209,102,.34)!important;
+}
+#codes #returningPlayersSection .code-active-count{
+ background:rgba(174,128,255,.15)!important;
+ color:#ddc5ff!important;
+ border-color:rgba(188,140,255,.36)!important;
+}
+#codes #allPlayersSection .category-title>small,
+#codes #newPlayersSection .category-title>small,
+#codes #returningPlayersSection .category-title>small{
+ max-width:44%;
+ color:#d3d8e9!important;
+ font-size:12px!important;
+ line-height:1.45!important;
+ text-align:right!important;
+}
+@media(max-width:700px){
+ #codes #allPlayersSection .category-title,
+ #codes #newPlayersSection .category-title,
+ #codes #returningPlayersSection .category-title{
+  align-items:flex-start!important;
+  flex-direction:column!important;
+  gap:7px!important;
+  padding:11px!important;
+ }
+ #codes #allPlayersSection .category-title>small,
+ #codes #newPlayersSection .category-title>small,
+ #codes #returningPlayersSection .category-title>small{
+  max-width:none!important;
+  text-align:left!important;
+  padding-left:35px!important;
+ }
+}
