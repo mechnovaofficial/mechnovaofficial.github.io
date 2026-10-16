@@ -514,3 +514,43 @@ body>header{
  background:linear-gradient(145deg,#121e39,#10172d)!important;
  border-color:rgba(139,157,255,.28)!important;
 }
+
+
+/* Readability pass: unify formerly tiny supporting text across every page.
+   Keep display headings and main body typography hierarchical; make the small labels/help text consistently readable. */
+:where(
+  small,.small,.sub,.muted,.pack-kind,
+  .promo-guide-card small,.promo-code-bridge-copy small,
+  .code-last-checked,.code-report-link,.code-expires-at,
+  .category-title small,.promo-code-status,.code-active-count,
+  .promo-code-total,.promo-code-bridge-link,.promo-expired-toggle strong,
+  .nav-code-ticker .ticker-label,.nav-code-ticker .ticker-track,
+  .public-side-label,.public-side-bottom,
+  .showcase-pack-badge,.showcase-pack-number,.showcase-reward-quantity,
+  .showcase-bonus-code,.promo-guide-arrow,
+  .mn-guide-kicker,.mn-type-label,.mn-type-fact small,.mn-flow-step small,
+  .mn-guide-alert strong,.mn-guide-alert p,.mn-guide-alert>a,
+  .mn-device-heading small,.mn-safety-note,.mn-faq-item summary,.mn-faq-answer p,
+  .promo-comparison-intro,.promo-comparison-list li,
+  .promo-important-bar strong,.promo-important-bar p,
+  .faq-method h3,.faq-method ol li,.faq-method p,.faq-method-or,.faq-important p,
+  .code-type-kicker,.portal-sidebar .special-affiliate-intro,
+  .portal-sidebar .special-affiliate-card strong,.portal-sidebar .special-affiliate-card span,
+  .portal-sidebar .special-affiliate-disclosure,.notice,footer
+){
+ font-size:14px!important;
+ line-height:1.55;
+}
+@media(max-width:600px){
+ :where(small,.small,.sub,.muted,.pack-kind,.promo-guide-card small,.promo-code-bridge-copy small,
+  .code-last-checked,.code-report-link,.code-expires-at,.category-title small,.promo-code-status,
+  .code-active-count,.promo-code-total,.promo-code-bridge-link,.promo-expired-toggle strong,
+  .mn-guide-kicker,.mn-type-label,.mn-type-fact small,.mn-flow-step small,
+  .mn-guide-alert strong,.mn-guide-alert p,.mn-device-heading small,.mn-safety-note,.mn-faq-item summary,
+  .mn-faq-answer p,.promo-comparison-intro,.promo-comparison-list li,.promo-important-bar strong,
+  .promo-important-bar p,.faq-method h3,.faq-method ol li,.faq-method p,.faq-method-or,
+  .faq-important p,.code-type-kicker,.portal-sidebar .special-affiliate-intro,
+  .portal-sidebar .special-affiliate-card strong,.portal-sidebar .special-affiliate-card span,
+  .portal-sidebar .special-affiliate-disclosure,.notice,footer
+ ){font-size:14px!important;line-height:1.5}
+}
