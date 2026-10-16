@@ -554,3 +554,91 @@ body>header{
   .portal-sidebar .special-affiliate-disclosure,.notice,footer
  ){font-size:14px!important;line-height:1.5}
 }
+
+
+/* Readable typography for the Quick Guide and Quick Answers sections.
+   Override the older compact promo-guide typography on desktop and mobile. */
+#promo-code-types .mn-guide-kicker,
+#faq .mn-guide-kicker{
+ font-size:14px!important;
+ letter-spacing:1px!important;
+ line-height:1.4!important;
+ padding:8px 14px!important;
+}
+#promo-code-types .mn-guide-heading p,
+#faq .mn-guide-heading p{
+ font-size:16px!important;
+ line-height:1.7!important;
+}
+#promo-code-types .mn-type-label{
+ font-size:12px!important;
+ letter-spacing:1px!important;
+ line-height:1.5!important;
+}
+#promo-code-types .mn-type-copy>p{
+ font-size:15px!important;
+ line-height:1.65!important;
+}
+#promo-code-types .mn-type-fact strong{
+ font-size:14px!important;
+ line-height:1.5!important;
+}
+#promo-code-types .mn-type-fact small,
+#promo-code-types .mn-flow-step small,
+#promo-code-types .mn-guide-alert p,
+#promo-code-types .mn-guide-alert>a{
+ font-size:15px!important;
+ line-height:1.65!important;
+}
+#promo-code-types .mn-flow-step strong,
+#promo-code-types .mn-guide-alert strong{
+ font-size:15px!important;
+ line-height:1.5!important;
+}
+#faq .mn-redeem-title p{
+ font-size:14px!important;
+ line-height:1.6!important;
+}
+#faq .mn-device-heading h4{
+ font-size:16px!important;
+ line-height:1.4!important;
+}
+#faq .mn-device-heading small{
+ font-size:14px!important;
+ line-height:1.5!important;
+}
+#faq .mn-mini-steps li{
+ font-size:15px!important;
+ line-height:1.7!important;
+}
+#faq .mn-mini-steps li>span{
+ font-size:12px!important;
+}
+#faq .mn-safety-note{
+ font-size:14px!important;
+ line-height:1.65!important;
+}
+#faq .mn-faq-item summary{
+ font-size:16px!important;
+ line-height:1.55!important;
+}
+#faq .mn-faq-answer p,
+#faq .mn-faq-answer a{
+ font-size:15px!important;
+ line-height:1.75!important;
+}
+@media(max-width:600px){
+ #promo-code-types .mn-guide-heading p,
+ #faq .mn-guide-heading p{font-size:15px!important}
+ #promo-code-types .mn-type-copy>p,
+ #promo-code-types .mn-type-fact small,
+ #promo-code-types .mn-flow-step small,
+ #promo-code-types .mn-guide-alert p,
+ #promo-code-types .mn-guide-alert>a,
+ #promo-code-types .mn-flow-step strong,
+ #promo-code-types .mn-guide-alert strong,
+ #faq .mn-mini-steps li,
+ #faq .mn-faq-answer p,
+ #faq .mn-faq-answer a{font-size:15px!important}
+ #faq .mn-faq-item summary{font-size:15px!important}
+}
