@@ -32,6 +32,10 @@
 <!-- The social preview banner is not part of the visible homepage; do not preload it on every visit. -->
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://translate.google.com" crossorigin>
+<!-- Start Firebase downloads early and in parallel; public cards need these APIs later in the page. -->
+<link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" as="script" fetchpriority="low">
+<link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js" as="script" fetchpriority="low">
+<link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" as="script" fetchpriority="low">
 <link rel="stylesheet" href="/mechnova.css?v=20261016-bonus-pack-numbering">
 <script type="application/ld+json">
 {
@@ -1241,6 +1245,8 @@ auth.onAuthStateChanged(async user=>{
     if(user) setAdminStatus("This account is not authorized as the site admin.",true);
   }
 });
+// Render the built-in pack catalogue immediately; Firestore settings refresh it in the background.
+applySiteSettings();
 renderCodes();
 // Re-check expiry at local midnight so an open page updates without a manual refresh.
 (function scheduleDailyExpiryRefresh(){
