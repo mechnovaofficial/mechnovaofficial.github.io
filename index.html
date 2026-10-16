@@ -701,6 +701,21 @@ function renderRunningCodeTicker(){
   }else ticker.setAttribute("aria-label","Running promo codes. Click to view code eligibility, status and rewards.");
  }
 }
+function appendRewardHighlights(container,text){
+ const source=String(text||"");
+ const pattern=/(Rank(?:-|\\s)\\s*\\d+\\s+[^,·]+|\\b\\d[\\d,]*(?:\\.\\d+)?\\s*(?:A-Coins?|Credits?|Gold Crates?|Amateur Crates?|Prodigy Crates?|Pilot Marks?|Implant Parts?|Fortune Keys?|Keys?|Coins?)\\b|\\b(?:Five|[0-9]+)\\s+(?:(?:Epic|Legendary|Rare|Mythic)\\s+)?skins?\\b|\\b(?:Ares|Tengu|Killshot|Scorpius|Eclipse)\\b)/gi;
+ let last=0,match;
+ while((match=pattern.exec(source))!==null){
+  if(match.index>last)container.append(document.createTextNode(source.slice(last,match.index)));
+  const strong=document.createElement("strong");
+  const value=match[0];
+  strong.className="reward-highlight"+(/^Rank/i.test(value)?" reward-highlight--rank":/(A-Coins?|Credits?)/i.test(value)?" reward-highlight--currency":" reward-highlight--item");
+  strong.textContent=value;
+  container.append(strong);
+  last=match.index+value.length;
+ }
+ if(last<source.length)container.append(document.createTextNode(source.slice(last)));
+}
 function renderCodes(){
  renderRunningCodeTicker();
  const term=$("search").value.trim().toLowerCase();
@@ -733,12 +748,7 @@ function renderCodes(){
    }
    const reward=document.createElement("div");reward.className="reward";
    const rewardText=String(c.reward||"").trim();
-   const rankMatch=rewardText.match(/^(Rank(?:-|\s)\s*\d+\s+[^,·]+)(.*)$/i);
-   if(rankMatch){
-    const lead=document.createElement("strong");lead.textContent=rankMatch[1].trim();reward.append(lead);
-    const remainder=rankMatch[2].replace(/^[,\s·]+/,"");
-    if(remainder)reward.append(document.createTextNode(" · "+remainder));
-   }else reward.textContent=rewardText;
+   appendRewardHighlights(reward,rewardText);
    const expiryValue=dateInputValue(c.expiresAt);
    if(expiryValue){
     const expiryDate=new Date(expiryValue+"T00:00:00");
