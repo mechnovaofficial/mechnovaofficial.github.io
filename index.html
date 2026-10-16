@@ -832,6 +832,8 @@ function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
    if(key){const img=document.createElement("img");img.src=rewardImages[key];img.alt="";img.loading="lazy";reward.append(img);}
    else{const low=label.toLowerCase();reward.textContent=low.includes("crate")?"▣":low.includes("pilot")?"P":/weapon|rifle|launcher|cannon|shotgun|rack/.test(low)?"⚔":low.includes("implant")?"✦":"★";}
    itemWrap.append(reward);
+   const displayName=label.replace(/[×x]\s*[0-9,]+\s*$/i,"").replace(/^\s*[0-9,]+\s+(?=(?:A-Coins|Credits|Pilot Marks|Implant Parts|Implants Parts)\b)/i,"").trim();
+   const rewardLabel=document.createElement("span");rewardLabel.className="showcase-reward-label";rewardLabel.textContent=displayName;itemWrap.append(rewardLabel);
    const quantity=document.createElement("small");quantity.className="showcase-reward-quantity";quantity.textContent=amount;itemWrap.append(quantity);
    rewards.append(itemWrap);
   });
