@@ -1405,3 +1405,11 @@ footer{font-size:13px;line-height:1.9}
  padding:2px 0!important;
  font-size:8px!important;
 }
+
+
+/* Dedicated eligibility badge for returning-player promo codes. */
+#codes .promo-code-status.returningplayers{
+ background:#5a469b!important;
+ color:#f4efff!important;
+ border:1px solid rgba(195,175,255,.35)!important;
+}
