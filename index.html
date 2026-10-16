@@ -1044,6 +1044,19 @@ function safeImageSrc(value){
  if(/^images\/[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(relative) && !relative.split("/").includes(".."))return relative;
  return "";
 }
+function setBrandAwareText(element,value){
+ if(!element)return;
+ const source=String(value??"");
+ element.replaceChildren();
+ source.split(/(MechNova)/gi).forEach(part=>{
+  if(/^MechNova$/i.test(part)){
+   const brand=document.createElement("span");
+   brand.className="mn-brand-name";
+   brand.textContent=part;
+   element.append(brand);
+  }else element.append(document.createTextNode(part));
+ });
+}
 function applySiteSettings(raw={}){
  const c={...SITE_DEFAULTS,...raw};
  applyPackSettings(raw);
@@ -1053,11 +1066,11 @@ function applySiteSettings(raw={}){
   const logoUrl=safeImageSrc(c.logoUrl);logoImg.hidden=!logoUrl;if(logoUrl)logoImg.src=logoUrl;else logoImg.removeAttribute("src");
   const brandText=Array.from(brand.childNodes).find(n=>n.nodeType===Node.TEXT_NODE);if(brandText)brandText.textContent=c.brand;
  }
- const title=$("publicHeroTitle"); if(title){title.replaceChildren();const lines=String(c.heroTitle||SITE_DEFAULTS.heroTitle).split("\n");lines.forEach((line,i)=>{if(i)title.append(document.createElement("br"));const span=document.createElement("span");span.textContent=line;title.append(span);});}
- if($("publicHeroDesc"))$("publicHeroDesc").textContent=c.heroDesc||"";
+ const title=$("publicHeroTitle"); if(title){title.replaceChildren();const lines=String(c.heroTitle||SITE_DEFAULTS.heroTitle).split("\n");lines.forEach((line,i)=>{if(i)title.append(document.createElement("br"));const span=document.createElement("span");setBrandAwareText(span,line);title.append(span);});}
+ if($("publicHeroDesc"))setBrandAwareText($("publicHeroDesc"),c.heroDesc||"");
  document.documentElement.style.setProperty("--bg",c.bg||SITE_DEFAULTS.bg);document.documentElement.style.setProperty("--cyan",c.accent||SITE_DEFAULTS.accent);document.documentElement.style.setProperty("--purple",c.secondary||SITE_DEFAULTS.secondary);document.body.style.fontFamily=c.font||SITE_DEFAULTS.font;
  const hero=document.querySelector(".hero");if(hero){const bg=safeImageSrc(c.heroBg);hero.style.backgroundImage=bg?`linear-gradient(90deg,#04101be8,#04101b88),url("${bg}")`:"";hero.style.backgroundSize="cover";hero.style.backgroundPosition="center";}
- const videos=document.querySelectorAll(".creator-videos .video-card");[1,2].forEach(n=>{const a=videos[n-1];const url=safeUrl(c["video"+n]);if(a&&url){a.href=url;const id=(url.match(/(?:youtu\.be\/|v=)([\w-]{6,})/)||[])[1];const img=a.querySelector("img");if(img&&id)img.src="https://i.ytimg.com/vi/"+id+"/hqdefault.jpg";const b=a.querySelector("strong");if(b)b.textContent=c["videoTitle"+n]||"MechNova Video";}});
+ const videos=document.querySelectorAll(".creator-videos .video-card");[1,2].forEach(n=>{const a=videos[n-1];const url=safeUrl(c["video"+n]);if(a&&url){a.href=url;const id=(url.match(/(?:youtu\.be\/|v=)([\w-]{6,})/)||[])[1];const img=a.querySelector("img");if(img&&id)img.src="https://i.ytimg.com/vi/"+id+"/hqdefault.jpg";const b=a.querySelector("strong");if(b)setBrandAwareText(b,c["videoTitle"+n]||"MechNova Video");}});
  document.querySelectorAll(".social-links a").forEach(a=>{const t=a.textContent.toLowerCase();const key=t.includes("youtube")?"youtube":t.includes("discord")?"discord":t.includes("instagram")?"instagram":null;if(key){const u=safeUrl(c[key]);if(u)a.href=u;}});
  const custom=$("customCmsSection");if(custom){custom.hidden=!(c.customTitle||c.customText);$("customCmsTitle").textContent=c.customTitle||"";$("customCmsText").textContent=c.customText||"";}
 }
@@ -1065,7 +1078,7 @@ function fillSiteEditor(raw={}){const c={...SITE_DEFAULTS,...raw};const map={bra
 
 const EARNING_DEFAULTS={adsEnabled:false,adsText:"Ads may appear here after approval and integration.",affiliateEnabled:false,affiliateTitle:"Gaming Setup Recommendations",affiliateText:"Explore gaming accessories we recommend.",affiliateUrl:"",sponsorEnabled:false,sponsorTitle:"Partner with MechNova",sponsorText:"For gaming collaborations and sponsored campaigns, contact us.",sponsorEmail:"",premiumEnabled:false,premiumTitle:"Premium Gaming Guides",premiumText:"Optional advanced guides and community extras.",premiumUrl:"",youtubeEnabled:true,youtubeUrl:"https://www.youtube.com/@OfficialMechNova",youtubeText:"Watch code updates, gameplay and guides on YouTube."};
 function fillEarningEditor(raw={}){const c={...EARNING_DEFAULTS,...(raw.monetization||{})};const map={adsEnabled:"earnAdsEnabled",adsText:"earnAdsText",affiliateEnabled:"earnAffiliateEnabled",affiliateTitle:"earnAffiliateTitle",affiliateText:"earnAffiliateText",affiliateUrl:"earnAffiliateUrl",sponsorEnabled:"earnSponsorEnabled",sponsorTitle:"earnSponsorTitle",sponsorText:"earnSponsorText",sponsorEmail:"earnSponsorEmail",premiumEnabled:"earnPremiumEnabled",premiumTitle:"earnPremiumTitle",premiumText:"earnPremiumText",premiumUrl:"earnPremiumUrl",youtubeEnabled:"earnYoutubeEnabled",youtubeUrl:"earnYoutubeUrl",youtubeText:"earnYoutubeText"};Object.entries(map).forEach(([k,id])=>{const el=$(id);if(el){if(el.type==="checkbox")el.checked=!!c[k];else el.value=c[k]??"";}});}
-function renderEarningCards(raw={}){const c={...EARNING_DEFAULTS,...(raw.monetization||{})};const host=$("earningPublicCards"),section=$("monetizationHub");if(!host||!section)return;host.replaceChildren();const entries=[{enabled:c.adsEnabled,title:"Website Ads",text:c.adsText,href:"",button:"Ad information"},{enabled:c.sponsorEnabled,title:c.sponsorTitle,text:c.sponsorText,href:c.sponsorEmail&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.sponsorEmail)?"mailto:"+c.sponsorEmail:"",button:"Contact for partnerships"},{enabled:c.premiumEnabled,title:c.premiumTitle,text:c.premiumText,href:safeUrl(c.premiumUrl),button:"View membership"},{enabled:c.youtubeEnabled,title:"MechNova on YouTube",text:c.youtubeText,href:safeUrl(c.youtubeUrl),button:"Watch videos"}];let visible=0;for(const item of entries){if(!item.enabled)continue;const itemCopy=String(item.title||"")+" "+String(item.text||"");if(/krush(?:na|an)\s*promo\s*codes?/i.test(itemCopy))continue;const card=document.createElement("article");card.className="earning-card";const h=document.createElement("h3");h.textContent=item.title||"MechNova";const p=document.createElement("p");p.textContent=item.text||"";card.append(h,p);if(item.href){const a=document.createElement("a");a.className="btn secondary";a.href=item.href;a.textContent=item.button;a.rel="noopener noreferrer";if(!item.href.startsWith("mailto:")){a.target="_blank";}card.append(a);}else if(item.title==="Website Ads"){const note=document.createElement("span");note.className="small";note.textContent="Advertising setup is pending approval and integration.";card.append(note);}else{const note=document.createElement("span");note.className="small";note.textContent="Contact details or a valid destination link are not configured yet.";card.append(note);}host.append(card);visible++;}section.hidden=visible===0;}
+function renderEarningCards(raw={}){const c={...EARNING_DEFAULTS,...(raw.monetization||{})};const host=$("earningPublicCards"),section=$("monetizationHub");if(!host||!section)return;host.replaceChildren();const entries=[{enabled:c.adsEnabled,title:"Website Ads",text:c.adsText,href:"",button:"Ad information"},{enabled:c.sponsorEnabled,title:c.sponsorTitle,text:c.sponsorText,href:c.sponsorEmail&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.sponsorEmail)?"mailto:"+c.sponsorEmail:"",button:"Contact for partnerships"},{enabled:c.premiumEnabled,title:c.premiumTitle,text:c.premiumText,href:safeUrl(c.premiumUrl),button:"View membership"},{enabled:c.youtubeEnabled,title:"MechNova on YouTube",text:c.youtubeText,href:safeUrl(c.youtubeUrl),button:"Watch videos"}];let visible=0;for(const item of entries){if(!item.enabled)continue;const itemCopy=String(item.title||"")+" "+String(item.text||"");if(/krush(?:na|an)\s*promo\s*codes?/i.test(itemCopy))continue;const card=document.createElement("article");card.className="earning-card";const h=document.createElement("h3");setBrandAwareText(h,item.title||"MechNova");const p=document.createElement("p");setBrandAwareText(p,item.text||"");card.append(h,p);if(item.href){const a=document.createElement("a");a.className="btn secondary";a.href=item.href;a.textContent=item.button;a.rel="noopener noreferrer";if(!item.href.startsWith("mailto:")){a.target="_blank";}card.append(a);}else if(item.title==="Website Ads"){const note=document.createElement("span");note.className="small";note.textContent="Advertising setup is pending approval and integration.";card.append(note);}else{const note=document.createElement("span");note.className="small";note.textContent="Contact details or a valid destination link are not configured yet.";card.append(note);}host.append(card);visible++;}section.hidden=visible===0;}
 
 async function loadSiteSettings(){try{const doc=await db.collection("siteSettings").doc("public").get();const data=doc.exists?doc.data():{};applySiteSettings(data);fillSiteEditor(data);fillEarningEditor(data);renderEarningCards(data);refreshPackEditorSelect();}catch(err){console.warn("Website settings could not load",err);applySiteSettings();fillSiteEditor();fillEarningEditor();renderEarningCards();}}
 let adminDocs = [];
@@ -1377,7 +1390,7 @@ document.querySelectorAll('.public-side-link').forEach(link=>link.addEventListen
         const a=document.createElement('a');a.className='video-card';
         a.href=(kind==='short'?'https://www.youtube.com/shorts/':'https://www.youtube.com/watch?v=')+encodeURIComponent(video.id);a.target='_blank';a.rel='noopener noreferrer';
         const img=document.createElement('img');img.src='https://i.ytimg.com/vi/'+encodeURIComponent(video.id)+'/hqdefault.jpg';img.alt=kind==='short'?'MechNova Short thumbnail':'MechNova video thumbnail';img.loading='lazy';
-        const title=document.createElement('strong');title.textContent=video.title;
+        const title=document.createElement('strong');setBrandAwareText(title,video.title);
         const badge=document.createElement('span');badge.className='video-kind';badge.textContent=kind==='short'?'SHORT':'VIDEO';
         a.append(img,badge,title);group.append(a);
       });
