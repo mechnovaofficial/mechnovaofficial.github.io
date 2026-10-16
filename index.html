@@ -789,7 +789,7 @@ function getBonusPackPromoCode(name,data){
  return String(bonusPackCodes[name]||inlineCode||"").trim().toUpperCase();
 }
 function canonicalPromoCode(value){
- const code=String(value||"").trim().replace(/^promo code:\\s*/i,"").toUpperCase();
+ const code=String(value||"").trim().replace(/^promo code:\s*/i,"").toUpperCase();
  const aliases={GRASSHOPER:"GRASSHOPPER",IMBACKBBAY:"IMBACKBABY",BLASTZPNE:"BLASTZONE",MIDFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL",MISFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL"};
  return aliases[code]||code;
 }
@@ -885,8 +885,8 @@ function applyPackSettings(raw={}){
    if(Array.isArray(savedBonusPacks[name])){
     savedBonusPacks[name]=savedBonusPacks[name].map(item=>{
      const value=String(item);
-     if(/^\\s*promo code:/i.test(value))return "Promo Code: "+canonicalPromoCode(value);
-     return value.replace(/\\bVartex\\b/gi,"Vortex");
+     if(/^\s*promo code:/i.test(value))return "Promo Code: "+canonicalPromoCode(value);
+     return value.replace(/\bVartex\b/gi,"Vortex");
     });
    }
   });
