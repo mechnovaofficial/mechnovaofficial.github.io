@@ -1297,3 +1297,111 @@ footer{font-size:13px;line-height:1.9}
  height:100%!important;
  object-fit:contain!important;
 }
+
+
+/* Screenshot-matched reward layout: a tall featured first reward, compact tiles for the rest. */
+#packShowcase .showcase-reward-icons{
+ display:grid!important;
+ grid-template-columns:76px repeat(3,minmax(0,1fr))!important;
+ grid-auto-rows:52px!important;
+ gap:5px!important;
+ width:100%!important;
+ max-width:232px!important;
+ margin:0 auto!important;
+ padding:6px 4px 9px!important;
+ min-height:0!important;
+ align-content:start!important;
+ align-items:stretch!important;
+ justify-content:start!important;
+ box-sizing:border-box!important;
+}
+#packShowcase .showcase-reward-item{
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:center!important;
+ justify-content:flex-start!important;
+ gap:3px!important;
+ width:100%!important;
+ min-width:0!important;
+ min-height:0!important;
+ padding:4px 2px!important;
+ overflow:hidden!important;
+ box-sizing:border-box!important;
+ border:1px solid rgba(255,255,255,.2)!important;
+ border-radius:8px!important;
+ background:rgba(232,224,255,.09)!important;
+}
+#packShowcase .showcase-reward-item:first-child{
+ grid-column:1!important;
+ grid-row:span 2!important;
+ padding:7px 3px 5px!important;
+ gap:4px!important;
+ border-radius:10px!important;
+ background:rgba(232,224,255,.13)!important;
+ border-color:rgba(220,201,255,.32)!important;
+}
+#packShowcase .showcase-reward-icons .showcase-reward-icon{
+ display:grid!important;
+ place-items:center!important;
+ width:30px!important;
+ height:30px!important;
+ flex:0 0 30px!important;
+ max-width:100%!important;
+ overflow:hidden!important;
+ border:0!important;
+ border-radius:5px!important;
+ background:transparent!important;
+ font-size:17px!important;
+}
+#packShowcase .showcase-reward-item:first-child .showcase-reward-icon{
+ width:48px!important;
+ height:48px!important;
+ flex:0 0 48px!important;
+ border-radius:6px!important;
+}
+#packShowcase .showcase-reward-icons .showcase-reward-icon img{
+ display:block!important;
+ width:100%!important;
+ height:100%!important;
+ object-fit:contain!important;
+}
+#packShowcase .showcase-reward-label{
+ display:none!important;
+}
+#packShowcase .showcase-reward-item:first-child .showcase-reward-label{
+ display:block!important;
+ width:100%!important;
+ max-width:100%!important;
+ overflow:hidden!important;
+ color:#f8f3ff!important;
+ font-size:10px!important;
+ font-weight:800!important;
+ line-height:1.15!important;
+ text-align:center!important;
+ white-space:nowrap!important;
+ text-overflow:ellipsis!important;
+}
+#packShowcase .showcase-reward-quantity{
+ display:block!important;
+ max-width:100%!important;
+ padding:3px 5px!important;
+ border-radius:5px!important;
+ background:rgba(30,17,58,.82)!important;
+ color:#fff!important;
+ font-size:9px!important;
+ font-weight:800!important;
+ line-height:1.1!important;
+ text-align:center!important;
+ white-space:nowrap!important;
+ overflow:hidden!important;
+}
+#packShowcase .showcase-reward-item:first-child .showcase-reward-quantity{
+ min-width:24px!important;
+ padding:4px 10px!important;
+ font-size:10px!important;
+}
+#packShowcase .showcase-reward-item:not(:first-child) .showcase-reward-quantity{
+ width:100%!important;
+ padding:2px 0!important;
+ font-size:8px!important;
+}
