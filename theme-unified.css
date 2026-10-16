@@ -361,3 +361,156 @@ body>header{
  border-color:#d89228!important;
  background:#674016!important;
 }
+
+
+/* FINAL GLOBAL COLOR NORMALIZATION: one shared color system site-wide.
+   Starter and Bonus labels no longer use separate warm/cool color palettes. */
+:root{
+ --mn-bg:#080b18!important;
+ --mn-surface:#10192e!important;
+ --mn-panel:#121d35!important;
+ --mn-panel-raised:#182442!important;
+ --mn-line:rgba(139,157,255,.27)!important;
+ --mn-line-strong:rgba(85,230,255,.5)!important;
+ --mn-text:#f4f7ff!important;
+ --mn-muted:#b7c3dc!important;
+ --mn-cyan:#55e6ff!important;
+ --mn-violet:#a58bff!important;
+}
+
+/* One card surface for packs, codes, guides, stats, creator cards and subpages. */
+:is(
+ .panel,.pack-card,.faq-item,.step,.code-card,.showcase-pack-card,
+ .stat,.earning-card,.creator-main,.creator-side,.creator-videos,
+ .quick-nav-side,.about-card,.affiliate-card,.redeem-platform-card,
+ .mn-redeem-device,.promo-guide-card,.promo-code-bridge,.pack-showcase-group,
+ .not-found,.pack-manager-column,.cms-pack-card,.video-card,.special-affiliate-card,
+ .mn-redeem-panel,.mn-promo-quick,.mn-guide-card,.mn-device-heading,
+ .admin-content-section,.admin-main-content>.cms-editor,.admin-main-content>.admin-content-section
+){
+ background:linear-gradient(145deg,rgba(22,32,61,.98),rgba(12,20,39,.98))!important;
+ border-color:rgba(139,157,255,.28)!important;
+ color:var(--mn-text);
+ box-shadow:0 12px 30px rgba(1,5,18,.22);
+}
+
+/* Remove type-specific orange/purple differences from both pack groups. */
+#packShowcase .pack-showcase-group,
+#packShowcase .starter-showcase,
+#packShowcase .bonus-showcase{
+ background:linear-gradient(145deg,rgba(22,32,61,.98),rgba(12,20,39,.98))!important;
+ border:1px solid rgba(139,157,255,.28)!important;
+}
+#packShowcase .pack-showcase-title,
+#packShowcase .starter-showcase .pack-showcase-title,
+#packShowcase .bonus-showcase .pack-showcase-title{
+ background:linear-gradient(105deg,#29265e,#173754)!important;
+ border:1px solid rgba(85,230,255,.36)!important;
+}
+#packShowcase .pack-showcase-title>span,
+#packShowcase .starter-showcase .pack-showcase-title>span,
+#packShowcase .bonus-showcase .pack-showcase-title>span{
+ background:linear-gradient(135deg,#4b3d91,#1b617c)!important;
+ color:#f7fbff!important;
+}
+#packShowcase .pack-showcase-title::after,
+#packShowcase .starter-showcase .pack-showcase-title::after,
+#packShowcase .bonus-showcase .pack-showcase-title::after{
+ border:1px solid rgba(85,230,255,.45)!important;
+ background:linear-gradient(110deg,#28366b,#164d64)!important;
+ color:#f4fbff!important;
+}
+#packShowcase .showcase-pack-card,
+#packShowcase .showcase-pack-card.is-bonus{
+ background:linear-gradient(145deg,rgba(22,32,61,.99),rgba(12,20,39,.99))!important;
+ border:1px solid rgba(139,157,255,.3)!important;
+ border-radius:14px!important;
+}
+#packShowcase .showcase-pack-art,
+#packShowcase .showcase-pack-card.is-bonus .showcase-pack-art{
+ background:radial-gradient(ellipse at 50% 38%,#303f70 0%,#202b50 48%,#121b32 100%)!important;
+}
+#packShowcase .showcase-pack-name,
+#packShowcase .showcase-pack-card.is-bonus .showcase-pack-name{
+ background:linear-gradient(105deg,#303b78,#18536e)!important;
+ color:#f5f9ff!important;
+ border:0!important;
+}
+#packShowcase .showcase-pack-badge{
+ background:linear-gradient(110deg,#55e6ff,#a58bff)!important;
+ color:#081226!important;
+ border:1px solid rgba(255,255,255,.34)!important;
+ box-shadow:0 3px 13px rgba(85,230,255,.25)!important;
+}
+#packShowcase .showcase-pack-number{
+ background:linear-gradient(110deg,#55e6ff,#a58bff)!important;
+ border-color:rgba(255,255,255,.42)!important;
+ color:#081226!important;
+}
+#packShowcase .showcase-pack-card.is-selected{
+ outline:2px solid #55e6ff!important;
+ outline-offset:-2px!important;
+}
+
+/* Promo-code cards use the same base surface, including expired listings. */
+#codes .code-card,
+#codes .promo-expired-list .code-card,
+#home .code-card,
+#allPlayersGrid .code-card,
+#newPlayersGrid .code-card,
+#expiredGrid .code-card{
+ background:linear-gradient(145deg,rgba(22,32,61,.98),rgba(12,20,39,.98))!important;
+ border-color:rgba(139,157,255,.28)!important;
+}
+#codes .code-card:hover,#home .code-card:hover,
+#allPlayersGrid .code-card:hover,#newPlayersGrid .code-card:hover{
+ background:linear-gradient(145deg,#1b2b50,#102740)!important;
+ border-color:rgba(85,230,255,.7)!important;
+}
+#codes .promo-official-proof,#home .promo-official-proof{
+ background:linear-gradient(145deg,rgba(28,43,79,.99),rgba(13,25,46,.99))!important;
+ border-color:rgba(85,230,255,.65)!important;
+}
+#codes .promo-official-proof #promoOfficialProofTitle,
+#home .promo-official-proof #promoOfficialProofTitle{color:#9df2ff!important}
+#codes .promo-official-proof a.btn,
+#codes .promo-official-proof a.btn.secondary,
+#home .promo-official-proof a.btn,
+#home .promo-official-proof a.btn.secondary{
+ background:linear-gradient(110deg,#55e6ff,#a58bff)!important;
+ border-color:rgba(255,255,255,.36)!important;
+ color:#081226!important;
+}
+
+/* Consistent subpage headers, cards, notices, and table surfaces. */
+.wrap>.hero,.wrap>.card,.wrap>header:not(.top),.wrap>section,.wrap>footer,
+.about-hero,.affiliate-hero,.affiliate-disclosure{
+ background:linear-gradient(145deg,rgba(22,32,61,.98),rgba(12,20,39,.98))!important;
+ border-color:rgba(139,157,255,.28)!important;
+}
+.wrap>.top{background:transparent!important;border-color:rgba(139,157,255,.24)!important}
+.wrap .note,.wrap .notice,.notice{
+ background:linear-gradient(145deg,rgba(23,36,66,.98),rgba(13,23,42,.98))!important;
+ border-color:rgba(139,157,255,.3)!important;
+ color:#dfe9fb!important;
+}
+.wrap th{background:linear-gradient(105deg,#29265e,#173754)!important;color:#f4f7ff!important}
+.wrap tr:nth-child(even){background:rgba(27,39,70,.52)!important}
+
+/* Match common button, input, and selection controls to the same palette. */
+#home .pack-select,#home input,#home select,#home textarea,
+.admin-main-content input,.admin-main-content select,.admin-main-content textarea,
+.wrap input,.wrap select,.wrap textarea,.affiliate-wrap input,.affiliate-wrap select,.affiliate-wrap textarea{
+ background:#0d162a!important;
+ border-color:rgba(139,157,255,.34)!important;
+ color:#f4f7ff!important;
+}
+#home .pack-showcase-title p,#packShowcase .pack-showcase-title p{color:#c3d4f1!important}
+#home .promo-guide-card:hover,#home .quick-nav-links a:hover{
+ border-color:rgba(85,230,255,.62)!important;
+}
+.admin-side-nav,.admin-content-section,.admin-main-content>.cms-editor,
+.admin-main-content>.admin-content-section,.admin-main-content .cms-editor{
+ background:linear-gradient(145deg,#121e39,#10172d)!important;
+ border-color:rgba(139,157,255,.28)!important;
+}
