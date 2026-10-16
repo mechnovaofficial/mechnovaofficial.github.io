@@ -642,3 +642,58 @@ body>header{
  #faq .mn-faq-answer a{font-size:15px!important}
  #faq .mn-faq-item summary{font-size:15px!important}
 }
+
+
+/* MechNova signature branding: electric cyan → violet → magenta → warm gold.
+   Applies across all public pages while leaving ordinary copy easy to read. */
+.mn-brand-name{
+ display:inline-block;
+ font-weight:900!important;
+ letter-spacing:.015em;
+ color:#6ceeff!important;
+ background-image:linear-gradient(100deg,#63f1ff 0%,#8c9bff 36%,#d58bff 69%,#ffcf75 100%);
+ background-size:100% 100%;
+ background-clip:text;
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent!important;
+ text-shadow:none!important;
+ filter:drop-shadow(0 0 7px rgba(119,145,255,.2));
+}
+.logo .brand-wordmark{
+ color:transparent!important;
+ background-image:linear-gradient(100deg,#63f1ff 0%,#8c9bff 36%,#d58bff 69%,#ffcf75 100%);
+ background-clip:text;
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent!important;
+ filter:drop-shadow(0 0 8px rgba(119,145,255,.18));
+}
+.logo .brand-wordmark>span{
+ color:transparent!important;
+ background-image:linear-gradient(100deg,#63f1ff 0%,#9da0ff 45%,#f098df 78%,#ffcf75 100%);
+ background-clip:text;
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent!important;
+}
+.logo .brand-wordmark small{
+ color:#b8c9e2!important;
+ -webkit-text-fill-color:#b8c9e2!important;
+ background:none!important;
+ filter:none!important;
+ text-shadow:none!important;
+}
+.public-side-brand b,.admin-side-brand b{
+ color:#fff!important;
+}
+.public-side-brand .mn-brand-name,.admin-side-brand .mn-brand-name{
+ font-size:inherit!important;
+ letter-spacing:inherit!important;
+}
+.brand,.brand .mn-brand-name{
+ font-weight:900!important;
+}
+footer .mn-brand-name{
+ font-weight:900!important;
+}
+@media(prefers-reduced-motion:reduce){
+ .mn-brand-name,.logo .brand-wordmark{filter:none!important}
+}
