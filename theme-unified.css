@@ -697,3 +697,19 @@ footer .mn-brand-name{
 @media(prefers-reduced-motion:reduce){
  .mn-brand-name,.logo .brand-wordmark{filter:none!important}
 }
+
+
+/* Animated signature gradient for MechNova text on every public page. */
+@keyframes mnBrandGradientFlow{
+ 0%,100%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+}
+.mn-brand-name,
+.logo .brand-wordmark,
+.logo .brand-wordmark>span{
+ background-size:230% 100%!important;
+ animation:mnBrandGradientFlow 7.5s ease-in-out infinite;
+}
+@media(prefers-reduced-motion:reduce){
+ .mn-brand-name,.logo .brand-wordmark,.logo .brand-wordmark>span{animation:none!important}
+}
