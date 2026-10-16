@@ -768,9 +768,23 @@ const defaultPackImages={
 };
 let packImages={...defaultPackImages};
  const packOfferLinks={starter:{Surge:"https://lps.plarium.com/en/desktop/mech-arena/rdo/media/ma_case_revoker_a_m_f058_p_sb_jt4155?plid=1776433&pxl=sharainfluencer&reward=Package46&inviterId=um000&af_ad=MfkI7wMIgPo&placement=MfkI7wMIgPo&af_inactivity_window=14d&pid=sharasoft&a=28&i=um000&campaign_ios=1776432&reward=Package46&is_retargeting=true&n=30&campaign_android=1776431&af_reengagement_window=lifetime",Brickhouse:"https://lps.plarium.com/en/desktop/mech-arena/rdo/media/ma_impulse_a_m_f058_p_sb_jt4029?plid=1660173&pxl=sharainfluencer&influencer=SharaSoft&reward=Package43&inviterId=um000&n=30&reward=Package43&af_ad=MfkI7wMIgPo&i=um000&campaign_android=1660174&a=28&af_inactivity_window=14d&pid=sharasoft&af_reengagement_window=lifetime&campaign_ios=1660175&is_retargeting=true&influencer=SharaSoft&placement=MfkI7wMIgPo",Scorpius:"https://lps.plarium.com/en/desktop/mech-arena/rdo/media/ma_ji_yoon_f058_jt2559?plid=923704&pxl=sharainfluencer&publisherId=SharaSoft-Package36&inviterId=um000&campaign_android=923703&pid=sharasoft&af_ad=MfkI7wMIgPo&af_sub3=30&af_reengagement_window=lifetime&campaign_ios=923705&influencer=SharaSoft&conditionalReward=-&placement=MfkI7wMIgPo&af_sub1=um000&af_inactivity_window=14d&is_retargeting=true&af_sub2=28&reward=Package36",Aegis:"https://lps.plarium.com/en/desktop/mech-arena/rdo/media/ma_case_minigun_a_m_f058_p_sb_jt4030?plid=1660170&pxl=sharainfluencer&influencer=SharaSoft&reward=Package44&inviterId=um000&n=30&is_retargeting=true&campaign_ios=1660172&i=um000&pid=sharasoft&reward=Package44&placement=MfkI7wMIgPo&campaign_android=1660171&a=28&af_ad=MfkI7wMIgPo&influencer=SharaSoft&af_reengagement_window=lifetime&af_inactivity_window=14d",Shadow:"https://lps.plarium.com/en/desktop/mech-arena/rdo/media/ma_shadow_f058_jt2560?plid=1220969&pxl=sharainfluencer&publisherId=SharaSoft-Package37&inviterId=um000&af_sub1=um000&af_reengagement_window=lifetime&pid=sharasoft&af_sub2=28&af_inactivity_window=14d&campaign_ios=1220970&influencer=SharaSoft&af_ad=MfkI7wMIgPo&reward=Package37&is_retargeting=true&conditionalReward=-&af_sub3=30&campaign_android=1220971&placement=MfkI7wMIgPo",Stalker:"https://lps.plarium.com/en/desktop/mech-arena/rdo/media/ma_maveric_f058_jt3248?plid=1533929&pxl=sharainfluencer&publisherId=SharaSoft-Package40&inviterId=um000&campaign_ios=1533927&af_reengagement_window=lifetime&influencer=SharaSoft&af_sub2=28&af_sub1=um000&campaign_android=1533928&af_ad=MfkI7wMIgPo&is_retargeting=true&reward=Package40&af_inactivity_window=14d&placement=MfkI7wMIgPo&pid=sharasoft&af_sub3=30&conditionalReward=-",Guardian:"https://lps.plarium.com/en/desktop/mech-arena/rdo/media/ma_acanta_a_m_f058_p_sb_jt3249?plid=1554434&pxl=sharainfluencer&adCampaign=1554434&publisherId=SharaSoft-Package39&inviterId=um000&is_retargeting=true&pid=sharasoft&campaign_ios=1554436&reward=Package39&af_sub3=30&af_inactivity_window=14d&placement=MfkI7wMIgPo&af_sub1=um000&influencer=SharaSoft&campaign_android=1554435&af_reengagement_window=lifetime&af_sub2=28&af_ad=MfkI7wMIgPo","Maverick Pilot":"https://lps.plarium.com/en/desktop/mech-arena/rdo/media/ma_maveric_f058_jt2561?plid=1221032&pxl=sharainfluencer&publisherId=SharaSoft-Package38&inviterId=um000&af_sub2=28&reward=Package38&placement=MfkI7wMIgPo&af_inactivity_window=14d&conditionalReward=-&af_sub3=30&af_ad=MfkI7wMIgPo&is_retargeting=true&af_reengagement_window=lifetime&pid=sharasoft&campaign_ios=1221031&af_sub1=um000&campaign_android=1221030&influencer=SharaSoft"}};
+const BONUS_PACK_CODE_ORDER = ["GRASSHOPER","CHILLBOT","WARTEX","BACKTRACK","ROBOTRUSH","BIGMECH"];
+function getBonusPackPromoCode(name,data){
+ const entry=Array.isArray(data[name])?data[name].map(String).find(item=>item.toLowerCase().startsWith("promo code:")):"";
+ const inlineCode=entry?entry.replace(/^promo code:\s*/i,"").trim():"";
+ return String(bonusPackCodes[name]||inlineCode||"").trim().toUpperCase();
+}
 function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
  const target=$(targetId);if(!target)return;if(clearTarget)target.replaceChildren();
- const names=visiblePackNames(type);const select=$(type==="starter"?"starterSelect":"bonusSelect");
+ const names=visiblePackNames(type);
+ if(type==="bonus"){
+  names.sort((a,b)=>{
+   const orderA=BONUS_PACK_CODE_ORDER.indexOf(getBonusPackPromoCode(a,data));
+   const orderB=BONUS_PACK_CODE_ORDER.indexOf(getBonusPackPromoCode(b,data));
+   return (orderA<0?999:orderA)-(orderB<0?999:orderB);
+  });
+ }
+ const select=$(type==="starter"?"starterSelect":"bonusSelect");
  names.forEach((name,index)=>{
   const card=document.createElement("article");card.className="showcase-pack-card"+(type==="bonus"?" is-bonus":"")+(select&&select.value===name?" is-selected":"");
   const art=document.createElement("div");art.className="showcase-pack-art";
@@ -778,6 +792,16 @@ function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
   const inlineBonusPromoCode=bonusPromoEntry?bonusPromoEntry.replace(/^promo code:\s*/i,"").trim():"";
   const bonusPromoCode=type==="bonus"?(String(bonusPackCodes[name]||inlineBonusPromoCode||"").trim()):"";
   let bonusCodeButton=null;let bonusCodeReveal=null;
+  if(type==="bonus"){
+   const codeOrder=BONUS_PACK_CODE_ORDER.indexOf(bonusPromoCode.toUpperCase());
+   if(codeOrder!==-1){
+    const orderBadge=document.createElement("span");
+    orderBadge.className="showcase-pack-number";
+    orderBadge.textContent=(codeOrder+1)+". "+bonusPromoCode.toUpperCase();
+    orderBadge.setAttribute("aria-label","Number "+(codeOrder+1)+", promo code "+bonusPromoCode.toUpperCase());
+    art.append(orderBadge);
+   }
+  }
   if(index<2){const badge=document.createElement("span");badge.className="showcase-pack-badge";badge.textContent="FEATURED";art.append(badge);}
   const imageUrl=safeImageSrc(packImages[name]);const offerUrl=type==="starter"?packOfferLinks.starter[name]:"";let offerLink=null;
   if(imageUrl){const img=document.createElement("img");img.src=imageUrl;img.alt=name+" mech";img.loading="lazy";img.onerror=()=>{const ph=document.createElement("div");ph.className="showcase-pack-placeholder";ph.textContent=name.slice(0,3).toUpperCase();ph.setAttribute("aria-label",name+" image unavailable");img.replaceWith(ph);};
