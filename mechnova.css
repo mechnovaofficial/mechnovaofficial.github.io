@@ -1646,3 +1646,66 @@ footer{font-size:13px;line-height:1.9}
  #codes .promo-code-copy{width:40px!important;height:40px!important;min-width:40px!important}
  #codes .code-card .reward{font-size:13px!important}
 }
+
+
+/* Make promo codes and the most useful reward details stand out at a glance. */
+#codes .code-name{
+ border:1px dashed #ffe17a!important;
+ background:linear-gradient(110deg,#32164f 0%,#3a1b60 100%)!important;
+ color:#ffe681!important;
+ font-size:14px!important;
+ font-weight:1000!important;
+ letter-spacing:1.1px!important;
+ text-shadow:0 0 12px rgba(255,225,122,.35)!important;
+ box-shadow:inset 0 0 0 1px rgba(255,225,122,.08),0 0 14px rgba(255,205,77,.08)!important;
+}
+#codes .code-card:focus-within .code-name,
+#codes .code-card:hover .code-name{
+ border-color:#fff0a8!important;
+ box-shadow:inset 0 0 0 1px rgba(255,225,122,.18),0 0 16px rgba(255,205,77,.16)!important;
+}
+#codes .promo-code-copy{
+ box-shadow:0 0 0 1px rgba(255,225,122,.26),0 4px 12px rgba(22,9,44,.2)!important;
+}
+#codes .code-card .reward{
+ color:#d8ceeb!important;
+ font-size:13px!important;
+ line-height:1.6!important;
+}
+#codes .code-card .reward-highlight{
+ display:inline;
+ padding:1px 3px;
+ border-radius:4px;
+ font-weight:900!important;
+ -webkit-box-decoration-break:clone;
+ box-decoration-break:clone;
+}
+#codes .code-card .reward-highlight--rank{
+ color:#fff8de!important;
+ background:rgba(255,211,95,.14)!important;
+ text-shadow:0 0 9px rgba(255,219,118,.12);
+}
+#codes .code-card .reward-highlight--currency{
+ color:#92f3ff!important;
+ background:rgba(57,216,241,.1)!important;
+ text-shadow:0 0 8px rgba(57,216,241,.12);
+}
+#codes .code-card .reward-highlight--item{
+ color:#ffe39a!important;
+ background:rgba(255,218,124,.1)!important;
+}
+#codes .code-card .code-expires-inline{
+ display:inline-block;
+ margin-top:4px;
+ padding:3px 7px;
+ border:1px solid rgba(255,207,99,.35);
+ border-radius:6px;
+ background:rgba(255,196,74,.1);
+ color:#ffe18a!important;
+ font-size:11px!important;
+ font-weight:900!important;
+}
+@media(max-width:700px){
+ #codes .code-name{font-size:12px!important;letter-spacing:.65px!important}
+ #codes .code-card .reward{font-size:12px!important;line-height:1.55!important}
+}
