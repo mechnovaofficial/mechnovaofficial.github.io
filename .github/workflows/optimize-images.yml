@@ -6,7 +6,15 @@ on:
     paths:
       - "index.html"
       - "mechnova.css"
+      - "theme-unified.css"
       - "promo-codes-2026.html"
+      - "about.html"
+      - "affiliate.html"
+      - "contact.html"
+      - "editorial-policy.html"
+      - "privacy-policy.html"
+      - "terms-and-disclaimer.html"
+      - "404.html"
   workflow_dispatch:
 
 permissions:
@@ -26,5 +34,5 @@ jobs:
           python-version: "3.x"
       - name: Install Pillow
         run: python -m pip install --upgrade Pillow
-      - name: Convert referenced PNGs and update local references
+      - name: Resize and compress referenced images
         run: python scripts/optimize_images.py
