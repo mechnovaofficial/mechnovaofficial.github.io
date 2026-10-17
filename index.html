@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
-<link rel="preload" href="/mechnova.css?v=20261016-youtube-partner-icon" as="style">
+<link rel="preload" href="/mechnova.css?v=20261017-mechnova-helper" as="style">
 <!-- The social preview banner is not part of the visible homepage; do not preload it on every visit. -->
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://translate.google.com" crossorigin>
@@ -1527,6 +1527,190 @@ document.querySelectorAll('.public-side-link').forEach(link=>link.addEventListen
 </script>
 <script>window.googleTranslateElementInit=googleTranslateElementInit;</script>
 <script defer src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- MechNova Helper: privacy-friendly, built-in website support widget. -->
+<div class="mn-helper-widget" id="mnHelperWidget">
+ <button class="mn-helper-launcher" id="mnHelperLauncher" type="button" aria-controls="mnHelperPanel" aria-expanded="false" aria-label="Open MechNova Helper chat">
+  <span class="mn-helper-launcher-mark" aria-hidden="true">
+   <svg viewBox="0 0 32 32" focusable="false"><path d="M8 11a8 8 0 0 1 16 0v8a5 5 0 0 1-5 5h-6a5 5 0 0 1-5-5z" fill="none" stroke="currentColor" stroke-width="2.3"/><path d="M16 3V1M5 15H2M30 15h-3" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><rect x="10" y="12" width="4" height="4" rx="2" fill="currentColor"/><rect x="18" y="12" width="4" height="4" rx="2" fill="currentColor"/><path d="M12 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </span>
+  <span class="mn-helper-launcher-label">Ask MechNova</span><span class="mn-helper-live-dot" aria-hidden="true"></span>
+ </button>
+ <section class="mn-helper-panel" id="mnHelperPanel" role="dialog" aria-modal="false" aria-labelledby="mnHelperTitle" aria-describedby="mnHelperSubtitle" hidden>
+  <header class="mn-helper-header">
+   <div class="mn-helper-avatar" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false"><path d="M8 11a8 8 0 0 1 16 0v8a5 5 0 0 1-5 5h-6a5 5 0 0 1-5-5z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M16 3V1M5 15H2M30 15h-3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="14" r="2" fill="currentColor"/><circle cx="20" cy="14" r="2" fill="currentColor"/><path d="M12 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+   <div class="mn-helper-heading"><strong id="mnHelperTitle">MechNova Helper</strong><span id="mnHelperSubtitle">Promo codes · Rewards · Game guide</span><span class="mn-helper-status"><i aria-hidden="true"></i> Website assistant</span></div>
+   <button class="mn-helper-close" id="mnHelperClose" type="button" aria-label="Close MechNova Helper">×</button>
+  </header>
+  <div class="mn-helper-messages" id="mnHelperMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
+  <div class="mn-helper-suggestions" id="mnHelperSuggestions" aria-label="Suggested questions">
+   <button type="button" data-mn-question="Show active promo codes">🎟️ Active codes</button>
+   <button type="button" data-mn-question="Which codes are for new players?">🆕 New players</button>
+   <button type="button" data-mn-question="How do I redeem a promo code?">📘 How to redeem</button>
+   <button type="button" data-mn-question="Show starter and bonus packs">🎁 Packs &amp; offers</button>
+  </div>
+  <form class="mn-helper-form" id="mnHelperForm">
+   <label class="mn-helper-sr-only" for="mnHelperInput">Ask MechNova Helper a question</label>
+   <input id="mnHelperInput" name="question" type="text" maxlength="240" placeholder="Ask about a code or reward…" autocomplete="off" required>
+   <button id="mnHelperSend" type="submit" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11.5 21 3l-6.5 18-3.2-7.3L3 11.5Zm8.3 2.2L21 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </form>
+  <div class="mn-helper-footnote">Community helper · Game rules and code eligibility may change.</div>
+ </section>
+</div>
+<script>
+(function initMechNovaHelper(){
+ const widget=document.getElementById("mnHelperWidget");
+ const launcher=document.getElementById("mnHelperLauncher");
+ const panel=document.getElementById("mnHelperPanel");
+ const closeButton=document.getElementById("mnHelperClose");
+ const form=document.getElementById("mnHelperForm");
+ const input=document.getElementById("mnHelperInput");
+ const messages=document.getElementById("mnHelperMessages");
+ const suggestions=document.getElementById("mnHelperSuggestions");
+ if(!widget||!launcher||!panel||!form||!input||!messages)return;
+
+ function addMessage(role,text,actions=[]){
+  const message=document.createElement("article");
+  message.className="mn-helper-message "+(role==="user"?"mn-helper-message--user":"mn-helper-message--bot");
+  const speaker=document.createElement("span");
+  speaker.className="mn-helper-speaker";
+  speaker.textContent=role==="user"?"You":"MechNova Helper";
+  const paragraph=document.createElement("p");
+  paragraph.textContent=text;
+  message.append(speaker,paragraph);
+  if(actions.length){
+   const actionRow=document.createElement("div");
+   actionRow.className="mn-helper-actions";
+   actions.forEach(action=>{
+    if(action.copy){
+     const button=document.createElement("button");
+     button.type="button";button.className="mn-helper-action";
+     button.textContent=action.label;
+     button.addEventListener("click",async()=>{
+      try{
+       if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(action.copy);}
+       else{
+        const temp=document.createElement("textarea");temp.value=action.copy;temp.setAttribute("readonly","");temp.style.position="fixed";temp.style.opacity="0";document.body.append(temp);temp.select();
+        const copied=document.execCommand("copy");temp.remove();if(!copied)throw new Error("Clipboard unavailable");
+       }
+       addMessage("bot","Copied "+action.copy+" to your clipboard.");
+      }catch(error){addMessage("bot","Copy was blocked by your browser. You can select the code from the previous message and copy it manually.");}
+     });
+     actionRow.append(button);
+    }else if(action.href){
+     const link=document.createElement("a");
+     link.className="mn-helper-action";link.href=action.href;link.textContent=action.label;
+     if(/^https?:/i.test(action.href)){link.target="_blank";link.rel="noopener noreferrer";}
+     else if(action.href.charAt(0)==="#"){link.addEventListener("click",()=>setOpen(false));}
+     actionRow.append(link);
+    }
+   });
+   if(actionRow.childNodes.length)message.append(actionRow);
+  }
+  messages.append(message);
+  messages.scrollTop=messages.scrollHeight;
+ }
+
+ function setOpen(open){
+  panel.hidden=!open;
+  launcher.setAttribute("aria-expanded",String(open));
+  launcher.setAttribute("aria-label",open?"Close MechNova Helper chat":"Open MechNova Helper chat");
+  launcher.classList.toggle("is-open",open);
+  if(open){window.setTimeout(()=>input.focus(),60);}
+  else launcher.focus({preventScroll:true});
+ }
+ function getCodes(){
+  try{return typeof codes!=="undefined"&&Array.isArray(codes)?codes.filter(item=>item&&item.code):[];}
+  catch(error){return [];}
+ }
+ function getStatus(code){
+  try{return typeof getEffectiveCodeType==="function"?getEffectiveCodeType(code):(String(code.type||"allplayers").toLowerCase());}
+  catch(error){return String(code.type||"allplayers").toLowerCase();}
+ }
+ function getCodeTypeLabel(code){
+  const type=getStatus(code);
+  if(type==="newplayers")return "New players";
+  if(type==="returningplayers")return "Returning players";
+  if(type==="expired")return "Expired / inactive listing";
+  return "All players";
+ }
+ function getExpiry(code){
+  let expiry=String(code.expiresAt||"");
+  try{if(typeof dateInputValue==="function")expiry=dateInputValue(code.expiresAt)||expiry;}catch(error){}
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(expiry))return "";
+  const date=new Date(expiry+"T00:00:00");
+  return Number.isNaN(date.getTime())?"":"Listed expiry: "+date.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})+".";
+ }
+ function answerFor(question){
+  const q=String(question||"").trim().toLowerCase();
+  const upper=String(question||"").toUpperCase();
+  const availableCodes=getCodes();
+  const mentionedCode=availableCodes.find(code=>upper.includes(String(code.code).toUpperCase()));
+  if(mentionedCode){
+   const status=getStatus(mentionedCode);
+   const state=status==="expired"?"EXPIRED / INACTIVE LISTING":"LISTED AS "+(status==="newplayers"?"NEW PLAYER":status==="returningplayers"?"RETURNING PLAYER":"ACTIVE");
+   const typeNote=status==="newplayers"?"Eligibility: marked for new players. Some new-player codes have a short account-age window; check the conditions shown in the game.":status==="returningplayers"?"Eligibility: marked for returning players.":"Eligibility: "+getCodeTypeLabel(mentionedCode)+".";
+   return {text:String(mentionedCode.code)+"\nReward: "+String(mentionedCode.reward||"Reward details are not listed.")+"\nStatus on this website: "+state+".\n"+typeNote+(getExpiry(mentionedCode)?"\n"+getExpiry(mentionedCode):"")+"\nNote: a website listing is not a live redemption guarantee; the game determines final eligibility.",actions:[{label:"Copy "+mentionedCode.code,copy:String(mentionedCode.code)},{label:"View code list",href:"#codes"}]};
+  }
+  if(/\b(hi|hello|hey|namaste|namaskar)\b|नमस्ते|हाय/.test(q)){
+   return {text:"Hi! 👋 I'm MechNova Helper. Ask me about promo-code rewards, player eligibility, redemption steps, packs or official MechNova links.",actions:[{label:"Browse active codes",href:"#codes"},{label:"Open game guide",href:"#redeem"}]};
+  }
+  if(/expired|expiry|expire|inactive|एक्सपायर|खत्म हो|समाप्त/.test(q)){
+   const list=availableCodes.filter(code=>getStatus(code)==="expired").slice(0,12).map(code=>String(code.code));
+   return {text:list.length?"Codes currently listed as expired/inactive:\n"+list.join(", ")+"\nCheck the expired section for the wider archive.":"I couldn't find an expired-code list right now. Open the code page to review current statuses.",actions:[{label:"Review promo-code list",href:"#codes"}]};
+  }
+  if(/new.?player|new account|starter code|beginner|नए.?खिलाड़ी|नया.?खिलाड़ी|नया अकाउंट|नए प्लेयर/.test(q)){
+   const list=availableCodes.filter(code=>getStatus(code)==="newplayers");
+   return {text:list.length?"Codes marked for new players:\n"+list.map(code=>String(code.code)).join(", ")+"\nAsk me about any code name for its listed reward. New-player eligibility windows can be short.":"I couldn't read the current new-player list. Open the promo-code section to check it.",actions:[{label:"Open new-player codes",href:"#codes"},{label:"Starter packs",href:"#packs"}]};
+  }
+  if(/returning|comeback|wapis|वापस|पुराने खिलाड़ी/.test(q)){
+   const list=availableCodes.filter(code=>getStatus(code)==="returningplayers");
+   return {text:list.length?"Codes marked for returning players:\n"+list.map(code=>String(code.code)).join(", ")+"\nThe game checks whether your account qualifies.":"No returning-player code is currently listed. Check the site again for changes.",actions:[{label:"View code list",href:"#codes"}]};
+  }
+  if(/redeem|redeeming|how to use|use code|enter code|काम कैसे|कैसे डाल|रिडीम|रीडिम|कहाँ डाल/.test(q)){
+   return {text:"How to redeem:\n1. Open Mech Arena and sign in to the account receiving the reward.\n2. Open Inbox/envelope → Promo Codes.\n3. Enter the code and confirm.\n4. Check the in-game Inbox for the reward.\nOn iPhone/iPad, follow the official activation page only if the game opens it. Never share your password or OTP.",actions:[{label:"Open full redemption guide",href:"#redeem"},{label:"View promo codes",href:"#codes"}]};
+  }
+  if(/not working|doesn.t work|invalid|rejected|problem|issue|error|काम नहीं|चल नहीं|गलत कोड|एरर/.test(q)){
+   return {text:"A code may fail because it expired, was already redeemed, is for a different account type, or the account is outside the eligibility window. Check the code's status and player category first. Final eligibility is decided in-game.",actions:[{label:"Check listed codes",href:"#codes"},{label:"Report a code issue",href:"mailto:krishnanare9@gmail.com?subject=MechNova%20promo%20code%20issue"}]};
+  }
+  if(/starter|bonus|pack|offer|पैक|ऑफर/.test(q)){
+   return {text:"Open Packs & Offers to explore the listed starter and bonus packs. Select a pack card to view its listed rewards; only use official offer links and read eligibility notes before opening an offer.",actions:[{label:"Explore packs & offers",href:"#packs"}]};
+  }
+  if(/youtube|video|gameplay|यूट्यूब|वीडियो/.test(q)){
+   return {text:"Visit the official MechNova YouTube channel for promo-code updates, gameplay and guides.",actions:[{label:"Open MechNova on YouTube",href:"https://www.youtube.com/@OfficialMechNova"}]};
+  }
+  if(/discord|community|join server/.test(q)){
+   return {text:"Join the MechNova community on Discord for updates and discussions.",actions:[{label:"Join MechNova Discord",href:"https://discord.gg/W5vGjBkgz"}]};
+  }
+  if(/instagram/.test(q)){
+   return {text:"Follow the official MechNova Instagram for community updates.",actions:[{label:"Open MechNova Instagram",href:"https://www.instagram.com/mechnovaofficial?stkn=MWMyYnNqdWs0aWJ2Zw=="}]};
+  }
+  if(/\b(active|working|valid|current|latest|all)\b.{0,24}\b(code|codes|promo)\b|\b(code|codes|promo)\b.{0,24}\b(active|working|valid|current|latest)\b|चल रहे कोड|एक्टिव कोड|वर्किंग कोड|नए कोड/.test(q)){
+   const list=availableCodes.filter(code=>getStatus(code)!=="expired");
+   return {text:list.length?"Codes currently listed as active on this website:\n"+list.map(code=>String(code.code)+" ("+getCodeTypeLabel(code)+")").join("\n")+"\nCodes can stop working or have account limits; confirm in-game.":"The current code list isn't available right now. Please open the promo-code section.",actions:[{label:"Open promo-code cards",href:"#codes"}]};
+  }
+  if(/reward|rewards|what does|give|milta|inaam|इनाम|रिवॉर्ड/.test(q)){
+   return {text:"Type a promo-code name (for example, CHILLBOT or MIDGAMECHANNEL4ALL) and I'll show the reward and player category listed on this website.",actions:[{label:"Browse promo codes",href:"#codes"}]};
+  }
+  return {text:"I can help with Mech Arena promo codes, rewards, new/returning-player eligibility, redemption steps, starter/bonus packs and official MechNova links. Try a question below, or type a code name such as CHILLBOT.",actions:[{label:"Promo codes",href:"#codes"},{label:"How to redeem",href:"#redeem"},{label:"Packs & offers",href:"#packs"}]};
+ }
+ function sendQuestion(raw){
+  const question=String(raw||"").trim();
+  if(!question)return;
+  addMessage("user",question);
+  input.value="";
+  const reply=answerFor(question);
+  window.setTimeout(()=>addMessage("bot",reply.text,reply.actions||[]),120);
+ }
+ launcher.addEventListener("click",()=>setOpen(panel.hidden));
+ if(closeButton)closeButton.addEventListener("click",()=>setOpen(false));
+ form.addEventListener("submit",event=>{event.preventDefault();sendQuestion(input.value);});
+ if(suggestions)suggestions.querySelectorAll("[data-mn-question]").forEach(button=>button.addEventListener("click",()=>sendQuestion(button.getAttribute("data-mn-question"))));
+ document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!panel.hidden)setOpen(false);});
+ addMessage("bot","Welcome to MechNova Helper! 🤖 I can look up rewards from the code list, explain who a code is for, walk you through redemption and point you to packs or official community links.");
+})();
+</script>
+
 </body>
 </html> 
 
