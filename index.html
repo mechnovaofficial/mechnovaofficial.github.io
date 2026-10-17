@@ -63,6 +63,14 @@
 .mn-heading-icon{width:25px;height:25px;vertical-align:-4px;margin-right:5px;filter:drop-shadow(0 0 8px rgba(54,217,255,.24))}
 .mn-button-icon{width:20px;height:20px;vertical-align:middle}
 .mn-footer-icon{width:17px;height:17px;vertical-align:middle}
+.mn-search-icon-wrap{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;flex:0 0 25px}
+.mn-search-icon{display:block;width:22px;height:22px;filter:drop-shadow(0 0 6px rgba(54,217,255,.45))}
+.mn-heading-icon--special{filter:drop-shadow(0 0 7px rgba(255,210,122,.38))}
+.mn-heading-icon--community{filter:drop-shadow(0 0 7px rgba(81,228,255,.3))}
+.mn-heading-icon--links{filter:drop-shadow(0 0 7px rgba(177,140,255,.32))}
+.portal-sidebar .creator-side h3{display:flex;align-items:center;gap:7px}
+.portal-sidebar .creator-side h3 .mn-heading-icon{margin:0;vertical-align:middle;flex:0 0 24px;width:24px;height:24px}
+
 .nav-links a{display:inline-flex;align-items:center;gap:7px}
 .public-side-link{display:flex;align-items:center;gap:10px}
 .public-side-link>span{display:inline-flex;align-items:center;gap:5px}
@@ -103,6 +111,10 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
  <symbol id="mn-icon-editorial" viewBox="0 0 24 24"><path fill="#b88bff" d="m3 17.5 12-12 4.5 4.5-12 12L2 23Z"/><path fill="#eadfff" d="m15.5 4.9 2.1-2.1a1.8 1.8 0 0 1 2.5 0l1.1 1.1a1.8 1.8 0 0 1 0 2.5l-2.1 2.1Z"/><path fill="#fff" d="m4 18 2 2-2.5.5Z"/></symbol>
  <symbol id="mn-icon-contact" viewBox="0 0 24 24"><rect x="1.5" y="4" width="21" height="16" rx="3" fill="#ff718a"/><path fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" d="m3.5 6 8.5 7 8.5-7"/></symbol>
  <symbol id="mn-icon-admin" viewBox="0 0 24 24"><path fill="#a7c3e3" d="m20.6 13.5 2-1.5-2-3.5-2.3.7a7.8 7.8 0 0 0-1.7-1L16.3 5h-4.1l-.4 2.4a7.8 7.8 0 0 0-1.7 1l-2.3-.7-2 3.5 2 1.5v2l-2 1.5 2 3.5 2.3-.7a7.8 7.8 0 0 0 1.7 1l.4 2.4h4.1l.3-2.4a7.8 7.8 0 0 0 1.7-1l2.3.7 2-3.5-2-1.5Z" transform="translate(-1 -2)"/><circle cx="12" cy="12" r="3.3" fill="#233951" stroke="#d9e9ff" stroke-width="1.5"/></symbol>
+
+ <symbol id="mn-icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.6" fill="#36d9ff" fill-opacity=".18" stroke="#50e5ff" stroke-width="2.8"/><path d="m15.5 15.5 5.2 5.2" fill="none" stroke="#ffd27a" stroke-width="3.2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="2.2" fill="#c9f8ff" fill-opacity=".9"/></symbol>
+ <symbol id="mn-icon-users" viewBox="0 0 24 24"><circle cx="9" cy="7.2" r="4" fill="#52dfff"/><circle cx="17.2" cy="8.5" r="3.1" fill="#b18cff"/><path d="M1.5 20c.3-4.1 3.1-6.5 7.5-6.5s7.2 2.4 7.5 6.5Z" fill="#36c9f2"/><path d="M15 13.1c4.6-.5 7.2 1.8 7.5 5.4H17c-.2-2.1-.9-3.8-2-5.4Z" fill="#9b72ff"/></symbol>
+ <symbol id="mn-icon-link" viewBox="0 0 24 24"><path d="m9.5 14.5-1.6 1.6a4.2 4.2 0 0 1-5.9-5.9l4-4a4.2 4.2 0 0 1 5.9 0" fill="none" stroke="#52e4ff" stroke-width="3" stroke-linecap="round"/><path d="m14.5 9.5 1.6-1.6a4.2 4.2 0 0 1 5.9 5.9l-4 4a4.2 4.2 0 0 1-5.9 0" fill="none" stroke="#b18cff" stroke-width="3" stroke-linecap="round"/><path d="m8.8 15.2 6.4-6.4" fill="none" stroke="#ffd27a" stroke-width="3" stroke-linecap="round"/></symbol>
 </svg>
 
 
@@ -207,7 +219,7 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
    <span class="promo-code-total"><strong id="activeCount">0</strong> active</span>
   </div>
   <div class="toolbar promo-code-toolbar">
-   <label class="promo-code-search"><span aria-hidden="true">⌕</span><input type="search" id="search" placeholder="Search code or reward..." aria-label="Search promo codes"></label>
+   <label class="promo-code-search"><span class="mn-search-icon-wrap" aria-hidden="true"><svg class="mn-search-icon" focusable="false" viewBox="0 0 24 24"><use href="#mn-icon-search"></use></svg></span><input type="search" id="search" placeholder="Search code or reward..." aria-label="Search promo codes"></label>
    <select id="filter" aria-label="Filter promo codes">
     <option value="all">All Codes</option>
     <option value="allplayers">All Players</option>
@@ -304,7 +316,7 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
  </section>
 
  <section class="creator-side special-side-section" id="special" aria-labelledby="specialSectionTitle">
-  <h3 id="specialSectionTitle">✦ Special</h3>
+  <h3 id="specialSectionTitle"><svg class="mn-heading-icon mn-heading-icon--special" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#mn-icon-star"></use></svg><span>Special</span></h3>
   <p class="sub">Featured extras and useful picks for the <span class="mn-brand-name">MechNova</span> community.</p>
   <p class="sub special-affiliate-intro">Tap a product image to view the gear pick.</p>
   <div class="special-affiliate-grid" aria-label="Clickable affiliate gaming gear picks">
@@ -329,8 +341,8 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
   <small class="special-affiliate-disclosure">Affiliate links may earn <span class="mn-brand-name">MechNova</span> a commission at no extra cost to you.</small>
  </section>
 
- <section class="creator-side"><h3>✦ Follow <span class="mn-brand-name">MechNova</span></h3><p class="sub">Join the community for new codes, updates and gameplay.</p><div class="social-links"><a href="https://www.youtube.com/@OfficialMechNova" target="_blank" rel="noopener" class="social-link social-link--youtube"><svg class="social-icon youtube-brand-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#social-mark-youtube"></use></svg><span>YouTube</span></a><a href="https://discord.gg/W5vGjBkgz" target="_blank" rel="noopener" class="social-link social-link--discord"><svg class="social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#social-mark-discord"></use></svg><span>Discord</span></a><a href="https://www.instagram.com/mechnovaofficial?stkn=MWMyYnNqdWs0aWJ2Zw==" target="_blank" rel="noopener" class="social-link social-link--instagram"><svg class="social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#social-mark-instagram"></use></svg><span>Instagram</span></a></div><div class="notice">Independent Mech Arena fan project. Not affiliated with Plarium.</div></section>
- <section class="creator-side quick-nav-side" aria-labelledby="quickLinksTitle"><h3 id="quickLinksTitle">✦ Quick Links</h3><p class="sub">Jump straight to the useful sections.</p><nav class="quick-nav-links" aria-label="Quick links"><a href="#codes"><span class="quick-nav-number">01</span><span><strong>Promo Codes</strong><small>Check code status and rewards</small></span><b aria-hidden="true">→</b></a><a href="#redeem"><span class="quick-nav-number">02</span><span><strong>How to Redeem</strong><small>Follow the redemption steps</small></span><b aria-hidden="true">→</b></a><a href="#packShowcase"><span class="quick-nav-number">03</span><span><strong>Packs &amp; Offers</strong><small>Browse the listed pack rewards</small></span><b aria-hidden="true">→</b></a><a href="#faq"><span class="quick-nav-number">04</span><span><strong>FAQ</strong><small>Answers and eligibility notes</small></span><b aria-hidden="true">→</b></a><a href="#special"><span class="quick-nav-number">05</span><span><strong>Special</strong><small>Featured extras and affiliate picks</small></span><b aria-hidden="true">→</b></a></nav></section>
+ <section class="creator-side"><h3><svg class="mn-heading-icon mn-heading-icon--community" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#mn-icon-users"></use></svg><span>Follow <span class="mn-brand-name">MechNova</span></span></h3><p class="sub">Join the community for new codes, updates and gameplay.</p><div class="social-links"><a href="https://www.youtube.com/@OfficialMechNova" target="_blank" rel="noopener" class="social-link social-link--youtube"><svg class="social-icon youtube-brand-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#social-mark-youtube"></use></svg><span>YouTube</span></a><a href="https://discord.gg/W5vGjBkgz" target="_blank" rel="noopener" class="social-link social-link--discord"><svg class="social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#social-mark-discord"></use></svg><span>Discord</span></a><a href="https://www.instagram.com/mechnovaofficial?stkn=MWMyYnNqdWs0aWJ2Zw==" target="_blank" rel="noopener" class="social-link social-link--instagram"><svg class="social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#social-mark-instagram"></use></svg><span>Instagram</span></a></div><div class="notice">Independent Mech Arena fan project. Not affiliated with Plarium.</div></section>
+ <section class="creator-side quick-nav-side" aria-labelledby="quickLinksTitle"><h3 id="quickLinksTitle"><svg class="mn-heading-icon mn-heading-icon--links" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#mn-icon-link"></use></svg><span>Quick Links</span></h3><p class="sub">Jump straight to the useful sections.</p><nav class="quick-nav-links" aria-label="Quick links"><a href="#codes"><span class="quick-nav-number">01</span><span><strong>Promo Codes</strong><small>Check code status and rewards</small></span><b aria-hidden="true">→</b></a><a href="#redeem"><span class="quick-nav-number">02</span><span><strong>How to Redeem</strong><small>Follow the redemption steps</small></span><b aria-hidden="true">→</b></a><a href="#packShowcase"><span class="quick-nav-number">03</span><span><strong>Packs &amp; Offers</strong><small>Browse the listed pack rewards</small></span><b aria-hidden="true">→</b></a><a href="#faq"><span class="quick-nav-number">04</span><span><strong>FAQ</strong><small>Answers and eligibility notes</small></span><b aria-hidden="true">→</b></a><a href="#special"><span class="quick-nav-number">05</span><span><strong>Special</strong><small>Featured extras and affiliate picks</small></span><b aria-hidden="true">→</b></a></nav></section>
 </aside></div>
 <div class="promo-help-band">
 <section class="section mn-promo-quick" id="promo-code-types">
