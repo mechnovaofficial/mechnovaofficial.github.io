@@ -843,8 +843,7 @@ const defaultPackImages={
  "Surge":"images/surge.webp",
  "Brickhouse":"images/brickhouse.webp",
  "Scorpius":"images/scorpius1.webp",
- "Vortex":"images/vortex.webp",
- "Vortex":"images/vortex1.webp",
+ "Vortex":"images/vartex1.webp",
  "Aegis":"images/aegis1.webp",
  "Stalker":"images/stalker1.webp",
  "Guardian":"images/guardian.webp",
@@ -922,7 +921,7 @@ function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
    const itemWrap=document.createElement("span");itemWrap.className="showcase-reward-item";
    const reward=document.createElement("span");reward.className="showcase-reward-icon";reward.setAttribute("role","img");reward.setAttribute("aria-label",label);
    const key=Object.keys(rewardImages).find(k=>label.toLowerCase().includes(k.toLowerCase()));
-   if(key){const img=document.createElement("img");img.src=rewardImages[key];img.alt="";img.loading="lazy";reward.append(img);}
+   if(key){const img=document.createElement("img");img.src=rewardImages[key];img.alt=key;img.loading="lazy";if(key==="Acantha Pilot"){img.style.setProperty("object-fit","cover","important");img.style.setProperty("object-position","50% 24%","important");}reward.append(img);}
    else{const low=label.toLowerCase();reward.textContent=low.includes("crate")?"▣":low.includes("pilot")?"P":/weapon|rifle|launcher|cannon|shotgun|rack/.test(low)?"⚔":low.includes("implant")?"✦":"★";}
    itemWrap.append(reward);
    const displayName=label.replace(/[×x]\s*[0-9,]+\s*$/i,"").replace(/^\s*[0-9,]+\s+(?=(?:A-Coins|Credits|Pilot Marks|Implant Parts|Implants Parts)\b)/i,"").trim();
@@ -998,6 +997,7 @@ function applyPackSettings(raw={}){
 }
 
 const rewardImages={
+ "Acantha Pilot":"https://mecharena.game/wp-content/uploads/2024/09/Acantha-wallpaper.png",
  "Pilot Marks":"images/pilot-marks.webp",
  "Pilot Mark":"images/pilot-marks.webp",
  "Implants Parts":"images/implants-parts1.webp",
@@ -1033,7 +1033,7 @@ function showPack(selectId,data,outputId){
  data[name].forEach(item=>{
   const card=document.createElement("div");card.className="reward-item";
   const key=Object.keys(rewardImages).find(k=>item.toLowerCase().includes(k.toLowerCase()));
-  if(key){const img=document.createElement("img");img.src=rewardImages[key];img.alt=key;img.loading="lazy";card.append(img);}else{const sym=document.createElement("span");sym.className="reward-symbol";sym.textContent=item.toLowerCase().includes("crate")?"▣":item.toLowerCase().includes("pilot")?"P":item.toLowerCase().includes("weapon")||item.toLowerCase().includes("rifle")||item.toLowerCase().includes("launcher")||item.toLowerCase().includes("cannon")||item.toLowerCase().includes("shotgun")||item.toLowerCase().includes("rack")?"⚔":item.toLowerCase().includes("implant")?"✦":"★";card.append(sym);}
+  if(key){const img=document.createElement("img");img.src=rewardImages[key];img.alt=key;img.loading="lazy";if(key==="Acantha Pilot"){img.style.setProperty("object-fit","cover","important");img.style.setProperty("object-position","50% 24%","important");}card.append(img);}else{const sym=document.createElement("span");sym.className="reward-symbol";sym.textContent=item.toLowerCase().includes("crate")?"▣":item.toLowerCase().includes("pilot")?"P":item.toLowerCase().includes("weapon")||item.toLowerCase().includes("rifle")||item.toLowerCase().includes("launcher")||item.toLowerCase().includes("cannon")||item.toLowerCase().includes("shotgun")||item.toLowerCase().includes("rack")?"⚔":item.toLowerCase().includes("implant")?"✦":"★";card.append(sym);}
   const text=document.createElement("div"),strong=document.createElement("b"),small=document.createElement("span");
   const match=item.match(/^(.*?)(?:\s*[×x]\s*([\d,]+))?$/);strong.textContent=match?match[1].trim():item;small.textContent=match&&match[2]?"Quantity: "+match[2]:"Included reward";text.append(strong,small);card.append(text);items.append(card);
  });box.append(items);
