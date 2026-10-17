@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
-<link rel="preload" href="/mechnova.css?v=20261017-channel-logo" as="style">
+<link rel="preload" href="/mechnova.css?v=20261017-chat-branding" as="style">
 <!-- The social preview banner is not part of the visible homepage; do not preload it on every visit. -->
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://translate.google.com" crossorigin>
@@ -1548,8 +1548,8 @@ document.querySelectorAll('.public-side-link').forEach(link=>link.addEventListen
 </button>
  <section class="mn-helper-panel" id="mnHelperPanel" role="dialog" aria-modal="false" aria-labelledby="mnHelperTitle" aria-describedby="mnHelperSubtitle" hidden>
   <header class="mn-helper-header">
-   <div class="mn-helper-avatar" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false"><path d="M8 11a8 8 0 0 1 16 0v8a5 5 0 0 1-5 5h-6a5 5 0 0 1-5-5z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M16 3V1M5 15H2M30 15h-3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="14" r="2" fill="currentColor"/><circle cx="20" cy="14" r="2" fill="currentColor"/><path d="M12 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-   <div class="mn-helper-heading"><strong id="mnHelperTitle">MechNova Helper</strong><span id="mnHelperSubtitle">Promo codes · Rewards · Game guide</span><span class="mn-helper-status"><i aria-hidden="true"></i> Website assistant</span></div>
+   <div class="mn-helper-avatar" aria-hidden="true"><img class="mn-helper-chat-logo" src="/images/MechNova-logo.webp?v=20261017-chat-logo" alt="" width="44" height="44" decoding="async"></div>
+   <div class="mn-helper-heading"><strong id="mnHelperTitle"><span class="mn-helper-brandword">MechNova</span> <span class="mn-helper-title-rest">Helper</span></strong><span id="mnHelperSubtitle">Promo codes · Rewards · Game guide</span><span class="mn-helper-status"><i aria-hidden="true"></i> Website assistant</span></div>
    <button class="mn-helper-close" id="mnHelperClose" type="button" aria-label="Close MechNova Helper">×</button>
   </header>
   <div class="mn-helper-messages" id="mnHelperMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
@@ -1584,7 +1584,12 @@ document.querySelectorAll('.public-side-link').forEach(link=>link.addEventListen
   message.className="mn-helper-message "+(role==="user"?"mn-helper-message--user":"mn-helper-message--bot");
   const speaker=document.createElement("span");
   speaker.className="mn-helper-speaker";
-  speaker.textContent=role==="user"?"You":"MechNova Helper";
+  if(role==="user"){speaker.textContent="You";}
+  else{
+   const brand=document.createElement("span");brand.className="mn-helper-speaker-brand";brand.textContent="MechNova";
+   const roleLabel=document.createElement("span");roleLabel.className="mn-helper-speaker-role";roleLabel.textContent=" Helper";
+   speaker.append(brand,roleLabel);
+  }
   const paragraph=document.createElement("p");
   paragraph.textContent=text;
   message.append(speaker,paragraph);
