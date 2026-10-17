@@ -2337,3 +2337,10 @@ h3{
 @media(prefers-reduced-motion:reduce){
  .mn-helper-mech{animation:none!important}
 }
+
+
+/* Use the user's exact Lancer screenshot cutout as the chat mascot. */
+.mn-helper-mech{aspect-ratio:238/270!important;height:auto!important;max-height:min(51vh,430px)!important}
+.mn-helper-mech img{display:block;width:100%;height:100%;max-width:none;object-fit:contain;object-position:center bottom;aspect-ratio:238/270}
+@media(max-width:700px){.mn-helper-mech{max-height:31vh!important}.mn-helper-mech img{height:100%}}
+@media(prefers-reduced-motion:reduce){.mn-helper-mech{animation:none!important}}
