@@ -997,3 +997,94 @@ body:has(.public-shell) .public-menu-toggle:hover{
   body:has(.public-shell) .nav-links a:hover,
   #home .public-side-link:hover{transform:none!important}
 }
+
+
+/* Menu logo + single-line navigation labels: override legacy 17px span widths */
+#home .public-side-logo{
+  display:block;
+  flex:0 0 46px;
+  width:46px;
+  height:46px;
+  object-fit:contain;
+  padding:3px;
+  border:1px solid rgba(85,230,255,.32);
+  border-radius:13px;
+  background:linear-gradient(145deg,rgba(40,67,112,.68),rgba(28,22,65,.8));
+  box-shadow:0 5px 22px rgba(42,174,226,.14),inset 0 1px rgba(255,255,255,.12);
+}
+#home .public-side-brand>div{
+  flex:1 1 auto;
+  min-width:0;
+}
+#home .public-side-brand b,
+#home .public-side-brand small{
+  white-space:nowrap;
+}
+#home .public-side-link{
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-start;
+  width:100%;
+  box-sizing:border-box;
+  white-space:nowrap;
+}
+#home .public-side-link .mn-side-icon{
+  display:block;
+  flex:0 0 22px;
+}
+#home .public-side-link span{
+  width:auto!important;
+  min-width:0!important;
+  max-width:none;
+  font-size:13px!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  color:inherit;
+}
+#home .public-side-link>span{
+  display:inline-flex;
+  align-items:center;
+  flex:1 1 auto;
+  gap:4px;
+  line-height:1.25;
+}
+#home .public-side-link>span .mn-brand-name{
+  display:inline!important;
+  flex:0 0 auto;
+  white-space:nowrap!important;
+}
+#home .public-side-bottom .social-link{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  flex-wrap:nowrap;
+  white-space:nowrap;
+}
+#home .public-side-bottom .social-link span{
+  width:auto!important;
+  white-space:nowrap;
+}
+@media(min-width:851px){
+  body:has(.public-shell) .nav-links{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    align-items:center;
+    white-space:nowrap;
+    min-width:0;
+    gap:clamp(4px,.65vw,11px);
+  }
+  body:has(.public-shell) .nav-links a{
+    flex:0 0 auto;
+    white-space:nowrap;
+    padding:8px clamp(5px,.55vw,9px);
+  }
+}
+@media(max-width:850px){
+  #home .public-side-nav{width:min(350px,91vw)}
+  #home .public-side-link{min-height:44px;padding:8px 10px}
+}
+@media(max-width:540px){
+  #home .public-side-nav{width:min(340px,calc(100vw - 20px))}
+  #home .public-side-link{font-size:13px}
+}
