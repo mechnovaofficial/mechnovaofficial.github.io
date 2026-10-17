@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
-<link rel="preload" href="/mechnova.css?v=20261017-click-to-reveal-codes" as="style">
+<link rel="preload" href="/mechnova.css?v=20261017-reveal-on-click-v2" as="style">
 <!-- The social preview banner is not part of the visible homepage; do not preload it on every visit. -->
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://translate.google.com" crossorigin>
@@ -36,7 +36,7 @@
 <link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" as="script" fetchpriority="low">
 <link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js" as="script" fetchpriority="low">
 <link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" as="script" fetchpriority="low">
-<link rel="stylesheet" href="/mechnova.css?v=20261017-click-to-reveal-codes">
+<link rel="stylesheet" href="/mechnova.css?v=20261017-reveal-on-click-v2">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,7 +52,7 @@
 @media(max-width:600px){.brand-logo{width:40px;height:40px;flex-basis:40px}}
 </style>
  <script defer src="/analytics.js?v=20261010a"></script>
-<link rel="stylesheet" href="/theme-unified.css?v=20261017-click-to-reveal-codes">
+<link rel="stylesheet" href="/theme-unified.css?v=20261017-reveal-on-click-v2">
 
 /* MechNova site-wide navigation and utility icon pass */
 <style id="mechnova-icon-pass">
@@ -843,13 +843,25 @@ function renderCodes(){
   list.forEach(c=>{
    const card=document.createElement("article");card.className="code-card";
    const top=document.createElement("div");top.className="code-top";
-   const name=document.createElement("div");name.className="code-name";name.textContent=c.code;
+   const name=document.createElement("button");
+   name.className="code-name promo-code-reveal";
+   name.type="button";
+   name.textContent=currentLang==="hi"?"कोड देखने के लिए क्लिक करें":"CLICK TO REVEAL CODE";
+   name.setAttribute("aria-expanded","false");
+   name.setAttribute("aria-label",currentLang==="hi"?"प्रोमो कोड दिखाएँ":"Reveal promo code");
+   name.addEventListener("click",()=>{
+    const revealed=name.getAttribute("aria-expanded")!=="true";
+    name.textContent=revealed?c.code:(currentLang==="hi"?"कोड देखने के लिए क्लिक करें":"CLICK TO REVEAL CODE");
+    name.setAttribute("aria-expanded",String(revealed));
+    name.setAttribute("aria-label",revealed?(currentLang==="hi"?"प्रोमो कोड दिख गया":"Promo code revealed"):(currentLang==="hi"?"प्रोमो कोड दिखाएँ":"Reveal promo code"));
+    name.classList.toggle("is-revealed",revealed);
+   });
    const effectiveType=getEffectiveCodeType(c);
    const badge=document.createElement("span");badge.className="pill promo-code-status "+effectiveType;badge.textContent=effectiveType==="expired"?"EXPIRED":effectiveType==="newplayers"?"NEW":effectiveType==="returningplayers"?"RETURNING":"ACTIVE";
    top.append(name,badge);
    if(effectiveType!=="expired"){
     const btn=document.createElement("button");btn.className="card-btn promo-code-copy";btn.type="button";btn.setAttribute("aria-label","Copy promo code "+c.code);btn.textContent="⧉";
-    btn.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(c.code);btn.textContent="✓";btn.classList.add("is-copied");btn.setAttribute("aria-label","Copied "+c.code);setTimeout(()=>{btn.textContent="⧉";btn.classList.remove("is-copied");btn.setAttribute("aria-label","Copy promo code "+c.code);},1400);}catch(e){window.prompt("Copy this code:",c.code);}});
+    btn.addEventListener("click",async()=>{name.textContent=c.code;name.setAttribute("aria-expanded","true");name.setAttribute("aria-label",currentLang==="hi"?"प्रोमो कोड दिख गया":"Promo code revealed");name.classList.add("is-revealed");try{await navigator.clipboard.writeText(c.code);btn.textContent="✓";btn.classList.add("is-copied");btn.setAttribute("aria-label","Copied "+c.code);setTimeout(()=>{btn.textContent="⧉";btn.classList.remove("is-copied");btn.setAttribute("aria-label","Copy promo code "+c.code);},1400);}catch(e){window.prompt("Copy this code:",c.code);}});
     top.append(btn);
    }
    const reward=document.createElement("div");reward.className="reward";
