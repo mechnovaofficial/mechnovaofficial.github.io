@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
-<link rel="preload" href="/mechnova.css?v=20261017-header-logo-left" as="style">
+<link rel="preload" href="/mechnova.css?v=20261017-click-to-reveal-codes" as="style">
 <!-- The social preview banner is not part of the visible homepage; do not preload it on every visit. -->
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://translate.google.com" crossorigin>
@@ -36,7 +36,7 @@
 <link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" as="script" fetchpriority="low">
 <link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js" as="script" fetchpriority="low">
 <link rel="preload" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" as="script" fetchpriority="low">
-<link rel="stylesheet" href="/mechnova.css?v=20261017-header-logo-left">
+<link rel="stylesheet" href="/mechnova.css?v=20261017-click-to-reveal-codes">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,7 +52,7 @@
 @media(max-width:600px){.brand-logo{width:40px;height:40px;flex-basis:40px}}
 </style>
  <script defer src="/analytics.js?v=20261010a"></script>
-<link rel="stylesheet" href="/theme-unified.css?v=20261017-header-logo-left">
+<link rel="stylesheet" href="/theme-unified.css?v=20261017-click-to-reveal-codes">
 
 /* MechNova site-wide navigation and utility icon pass */
 <style id="mechnova-icon-pass">
@@ -933,16 +933,7 @@ function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
   const rawBonusPromoCode=type==="bonus"?(String(bonusPackCodes[name]||inlineBonusPromoCode||"").trim()):"";
   const bonusPromoCode=rawBonusPromoCode&&!isListedExpiredPromoCode(rawBonusPromoCode)?canonicalPromoCode(rawBonusPromoCode):"";
   let bonusCodeButton=null;let bonusCodeReveal=null;
-  if(type==="bonus"){
-   const codeOrder=BONUS_PACK_CODE_ORDER.indexOf(bonusPromoCode.toUpperCase());
-   if(codeOrder!==-1){
-    const orderBadge=document.createElement("span");
-    orderBadge.className="showcase-pack-number";
-    orderBadge.textContent=(codeOrder+1)+". "+bonusPromoCode.toUpperCase();
-    orderBadge.setAttribute("aria-label","Number "+(codeOrder+1)+", promo code "+bonusPromoCode.toUpperCase());
-    art.append(orderBadge);
-   }
-  }
+  // Promo codes are deliberately not printed over pack artwork. The image click reveals the code below the art.
   if(index<2){const badge=document.createElement("span");badge.className="showcase-pack-badge";badge.textContent="FEATURED";art.append(badge);}
   const imageUrl=safeImageSrc(packImages[name]);const offerUrl=type==="starter"?packOfferLinks.starter[name]:"";let offerLink=null;
   if(imageUrl){const img=document.createElement("img");img.alt=name+" mech";img.loading="lazy";let vortexFallbackTried=false;img.onerror=()=>{if(/^vortex$/i.test(name)&&!vortexFallbackTried){vortexFallbackTried=true;img.src="https://raw.githubusercontent.com/mechnovaofficial/mechnovaofficial.github.io/main/images/vartex1.webp?v=20261017-vortexfallback";return;}const ph=document.createElement("div");ph.className="showcase-pack-placeholder";ph.textContent=name.slice(0,3).toUpperCase();ph.setAttribute("aria-label",name+" image unavailable");img.replaceWith(ph);};img.src=imageUrl;
