@@ -2344,3 +2344,52 @@ h3{
 .mn-helper-mech img{display:block;width:100%;height:100%;max-width:none;object-fit:contain;object-position:center bottom;aspect-ratio:238/270}
 @media(max-width:700px){.mn-helper-mech{max-height:31vh!important}.mn-helper-mech img{height:100%}}
 @media(prefers-reduced-motion:reduce){.mn-helper-mech{animation:none!important}}
+
+
+/* Replace the standing mech mascot with the actual MechNova channel logo. */
+.mn-helper-launcher{width:clamp(144px,15vw,190px)!important}
+.mn-helper-mech{
+ display:grid!important;place-items:center;
+ width:clamp(118px,12.5vw,162px)!important;
+ height:clamp(118px,12.5vw,162px)!important;
+ max-height:none!important;aspect-ratio:1!important;
+ padding:10px!important;overflow:visible!important;
+ border:1px solid rgba(105,226,255,.68)!important;
+ border-radius:30px!important;
+ background:radial-gradient(circle at 50% 28%,rgba(48,169,255,.25),rgba(6,22,50,.95) 72%)!important;
+ box-shadow:0 0 0 4px rgba(30,154,255,.08),0 0 27px rgba(54,195,255,.35),inset 0 0 22px rgba(57,154,255,.15)!important;
+ animation:mnHelperLogoFloat 3.4s ease-in-out infinite!important;
+}
+.mn-helper-mech img{
+ display:block;width:100%!important;height:100%!important;
+ max-width:100%!important;object-fit:contain!important;object-position:center!important;
+ aspect-ratio:1!important;border-radius:20px;
+ filter:drop-shadow(0 5px 11px rgba(0,0,0,.36))!important;
+}
+.mn-helper-launcher:hover .mn-helper-mech,
+.mn-helper-launcher:focus-visible .mn-helper-mech{
+ border-color:#c1f8ff!important;
+ box-shadow:0 0 0 4px rgba(30,154,255,.14),0 0 34px rgba(54,215,255,.58),inset 0 0 24px rgba(57,154,255,.2)!important;
+}
+@keyframes mnHelperLogoFloat{
+ 0%,100%{transform:translateY(0) scale(1)}
+ 50%{transform:translateY(-5px) scale(1.018)}
+}
+@media(max-width:700px){
+ .mn-helper-launcher{width:clamp(112px,29vw,136px)!important}
+ .mn-helper-mech{
+  width:clamp(86px,23vw,112px)!important;
+  height:clamp(86px,23vw,112px)!important;
+  padding:6px!important;border-radius:22px!important;
+ }
+ .mn-helper-mech img{border-radius:15px}
+ .mn-helper-panel{bottom:calc(clamp(102px,30vw,142px) + 48px)}
+}
+@media(max-width:380px){
+ .mn-helper-launcher{width:104px!important}
+ .mn-helper-mech{width:82px!important;height:82px!important}
+ .mn-helper-panel{bottom:142px}
+}
+@media(prefers-reduced-motion:reduce){
+ .mn-helper-mech{animation:none!important}
+}
