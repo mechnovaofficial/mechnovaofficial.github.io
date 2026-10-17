@@ -2393,3 +2393,44 @@ h3{
 @media(prefers-reduced-motion:reduce){
  .mn-helper-mech{animation:none!important}
 }
+
+
+/* Brand the Helper chat internally with the official logo and animated wordmark. */
+.mn-helper-avatar{
+ overflow:hidden!important;
+ padding:3px!important;
+ border-color:rgba(91,222,255,.78)!important;
+ background:radial-gradient(circle at 30% 20%,#2d85c3,#07152b 76%)!important;
+ box-shadow:0 0 17px rgba(73,208,255,.23),inset 0 0 11px rgba(73,208,255,.18)!important;
+}
+.mn-helper-chat-logo{
+ display:block!important;width:100%!important;height:100%!important;
+ max-width:none!important;object-fit:contain!important;object-position:center;
+ border-radius:9px;filter:drop-shadow(0 1px 7px rgba(55,210,255,.16));
+}
+.mn-helper-heading #mnHelperTitle{
+ display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;
+ font-size:16px!important;letter-spacing:.05px;
+}
+.mn-helper-brandword,
+.mn-helper-speaker-brand{
+ display:inline-block;
+ color:transparent!important;
+ background:linear-gradient(100deg,#54edff 0%,#3c9cff 28%,#be70ff 54%,#ff66c9 73%,#ffcf69 100%)!important;
+ -webkit-background-clip:text!important;background-clip:text!important;
+ background-size:200% 100%!important;
+ animation:mnBrandGradientFlow 6s ease-in-out infinite!important;
+ font-weight:950!important;
+}
+.mn-helper-title-rest{color:#fff!important;font-weight:850}
+.mn-helper-speaker{display:flex;align-items:center;gap:0}
+.mn-helper-speaker-brand{font-size:10px;letter-spacing:.15px}
+.mn-helper-speaker-role{color:#85dff7;font-size:10px;font-weight:850;letter-spacing:.25px}
+.mn-helper-message--user .mn-helper-speaker-brand{background:none!important;color:#c9b5ff!important;-webkit-text-fill-color:#c9b5ff!important;animation:none!important}
+@media(max-width:520px){
+ .mn-helper-heading #mnHelperTitle{font-size:15px!important}
+ .mn-helper-avatar{padding:2px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .mn-helper-brandword,.mn-helper-speaker-brand{animation:none!important}
+}
