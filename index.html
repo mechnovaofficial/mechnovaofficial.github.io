@@ -843,7 +843,7 @@ const defaultPackImages={
  "Surge":"images/surge.webp",
  "Brickhouse":"images/brickhouse.webp",
  "Scorpius":"images/scorpius1.webp",
- "Vortex":"images/vortex.webp",
+ "Vortex":"https://mechnovaofficial.github.io/images/vortex.webp?v=20261017-vortexfix",
  "Aegis":"images/aegis1.webp",
  "Stalker":"images/stalker1.webp",
  "Guardian":"images/guardian.webp",
@@ -904,7 +904,7 @@ function renderPackShowcaseGroup(type,data,targetId,clearTarget=true){
   }
   if(index<2){const badge=document.createElement("span");badge.className="showcase-pack-badge";badge.textContent="FEATURED";art.append(badge);}
   const imageUrl=safeImageSrc(packImages[name]);const offerUrl=type==="starter"?packOfferLinks.starter[name]:"";let offerLink=null;
-  if(imageUrl){const img=document.createElement("img");img.src=imageUrl;img.alt=name+" mech";img.loading="lazy";img.onerror=()=>{const ph=document.createElement("div");ph.className="showcase-pack-placeholder";ph.textContent=name.slice(0,3).toUpperCase();ph.setAttribute("aria-label",name+" image unavailable");img.replaceWith(ph);};
+  if(imageUrl){const img=document.createElement("img");img.alt=name+" mech";img.loading="lazy";let vortexFallbackTried=false;img.onerror=()=>{if(/^vortex$/i.test(name)&&!vortexFallbackTried){vortexFallbackTried=true;img.src="https://raw.githubusercontent.com/mechnovaofficial/mechnovaofficial.github.io/main/images/vartex1.webp?v=20261017-vortexfallback";return;}const ph=document.createElement("div");ph.className="showcase-pack-placeholder";ph.textContent=name.slice(0,3).toUpperCase();ph.setAttribute("aria-label",name+" image unavailable");img.replaceWith(ph);};img.src=imageUrl;
    if(offerUrl){offerLink=document.createElement("a");offerLink.className="showcase-pack-offer-link";offerLink.href=offerUrl;offerLink.target="_blank";offerLink.rel="sponsored noopener noreferrer";offerLink.setAttribute("aria-label","Open the "+name+" offer on Plarium in a new tab");offerLink.style.display="grid";offerLink.style.placeItems="center";offerLink.style.width="100%";offerLink.style.height="100%";offerLink.append(img);art.append(offerLink);}
    else if(type==="bonus"&&bonusPromoCode){bonusCodeButton=document.createElement("button");bonusCodeButton.type="button";bonusCodeButton.className="showcase-bonus-code-image";bonusCodeButton.setAttribute("aria-label","Reveal the promo code for "+name);bonusCodeButton.setAttribute("aria-expanded","false");bonusCodeButton.style.cssText="display:grid;place-items:center;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:pointer";bonusCodeButton.append(img);art.append(bonusCodeButton);}
    else art.append(img);
@@ -1026,7 +1026,7 @@ function showPack(selectId,data,outputId){
  const name=$(selectId).value,box=$(outputId);box.replaceChildren();
  if(!name||!data[name]){box.textContent="No pack is currently published in this category.";return;}
  const art=document.createElement("div");art.className="pack-visual";
- if(safeImageSrc(packImages[name])){const img=document.createElement("img");img.className="mech-art";img.src=safeImageSrc(packImages[name]);img.alt=name+" mech";img.loading="lazy";img.onerror=()=>{const ph=document.createElement("div");ph.className="mech-placeholder";ph.textContent=name.slice(0,3).toUpperCase();img.replaceWith(ph);};art.append(img);}
+ if(safeImageSrc(packImages[name])){const img=document.createElement("img");img.className="mech-art";img.alt=name+" mech";img.loading="lazy";let vortexFallbackTried=false;img.onerror=()=>{if(/^vortex$/i.test(name)&&!vortexFallbackTried){vortexFallbackTried=true;img.src="https://raw.githubusercontent.com/mechnovaofficial/mechnovaofficial.github.io/main/images/vartex1.webp?v=20261017-vortexfallback";return;}const ph=document.createElement("div");ph.className="mech-placeholder";ph.textContent=name.slice(0,3).toUpperCase();img.replaceWith(ph);};img.src=safeImageSrc(packImages[name]);art.append(img);}
  else {const ph=document.createElement("div");ph.className="mech-placeholder";ph.textContent=name.slice(0,3).toUpperCase();art.append(ph);}
  const heading=document.createElement("div");const title=document.createElement("div");title.className="pack-name";title.textContent=name;const kind=document.createElement("div");kind.className="pack-kind";kind.textContent=selectId==="starterSelect"?"STARTER PACK · LISTED LOADOUT":"BONUS PACK · LISTED REWARDS";heading.append(title,kind);art.append(heading);box.append(art);
  const items=document.createElement("div");items.className="reward-items";
