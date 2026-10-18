@@ -52,7 +52,7 @@
 @media(max-width:600px){.brand-logo{width:40px;height:40px;flex-basis:40px}}
 </style>
  <script defer src="/analytics.js?v=20261010a"></script>
-<link rel="stylesheet" href="/theme-unified.css?v=20261017-reveal-on-click-v2">
+<link rel="stylesheet" href="/theme-unified.css?v=20261018-code-display-fix-v3">
 
 <style id="mechnova-icon-pass">
 /* Full-colour, recognizable SVG icons; external icon libraries are not required. */
@@ -83,6 +83,54 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
 .btn:hover,.public-menu-toggle:hover,.promo-expired-toggle:hover,.promo-code-copy:hover{filter:brightness(1.12)}
 @media(max-width:700px){footer a:not(.social-link){white-space:nowrap}.mn-footer-links{gap:8px 12px}}
 @media(prefers-reduced-motion:reduce){footer a:not(.social-link),.btn,.public-menu-toggle,.promo-expired-toggle,.promo-code-copy{transition:none!important}}
+</style>
+
+
+<!-- MechNova category visibility fix, loaded after every stylesheet. -->
+<style id="mechnova-category-visibility-fix">
+/* The category chips must stay visible, despite older accessibility-only hiding rules. */
+#codes .code-top{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) auto 40px!important;
+ align-items:center!important;
+ gap:7px!important;
+}
+#codes .promo-code-status{
+ position:static!important;
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ width:auto!important;
+ height:auto!important;
+ min-width:0!important;
+ padding:5px 7px!important;
+ margin:0!important;
+ overflow:visible!important;
+ clip:auto!important;
+ clip-path:none!important;
+ white-space:nowrap!important;
+ border:1px solid!important;
+ border-radius:7px!important;
+ font-size:8px!important;
+ line-height:1.2!important;
+ font-weight:950!important;
+ letter-spacing:0!important;
+ visibility:visible!important;
+ opacity:1!important;
+}
+#codes .promo-code-status.allplayers{background:#126b55!important;color:#d9fff2!important;border-color:#35c69a!important}
+#codes .promo-code-status.newplayers{background:#8e2947!important;color:#fff0f3!important;border-color:#f17d9c!important}
+#codes .promo-code-status.returningplayers{background:#5a469b!important;color:#f4efff!important;border-color:#c3afff!important}
+#codes .promo-code-status.expired{background:#586477!important;color:#eef3f8!important;border-color:#8b9aaf!important}
+#codes .code-card:has(.promo-code-status.expired) .code-top{grid-template-columns:minmax(0,1fr) auto!important}
+@media(max-width:700px){
+ #codes .code-top{grid-template-columns:minmax(0,1fr) auto 36px!important;gap:5px!important}
+ #codes .promo-code-status{font-size:7px!important;padding:5px 4px!important}
+}
+@media(max-width:400px){
+ #codes .code-top{grid-template-columns:minmax(0,1fr) auto 40px!important;gap:5px!important}
+ #codes .promo-code-status{font-size:7px!important;padding:4px 3px!important}
+}
 </style>
 
 </head>
