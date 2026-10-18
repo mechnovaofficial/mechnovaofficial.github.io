@@ -2505,3 +2505,49 @@ h3{
 #codes .promo-code-status.returningplayers{background:#24466f;color:#e5f2ff;border:1px solid #64b5f6}
 #codes .promo-code-status.expired{background:#586477;color:#eef3f8;border:1px solid #8b9aaf}
 @media(max-width:480px){#codes .promo-code-status{font-size:7px;letter-spacing:0;padding:5px 6px}}
+
+
+/* Fix: show the eligibility badges that an older accessibility-only rule visually hid. */
+#codes .code-top{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) auto 40px!important;
+ align-items:center!important;
+ gap:7px!important;
+}
+#codes .promo-code-status{
+ position:static!important;
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ width:auto!important;
+ height:auto!important;
+ min-width:0!important;
+ padding:5px 7px!important;
+ margin:0!important;
+ overflow:visible!important;
+ clip:auto!important;
+ clip-path:none!important;
+ white-space:nowrap!important;
+ border-width:1px!important;
+ border-style:solid!important;
+ border-radius:7px!important;
+ font-size:8px!important;
+ line-height:1.2!important;
+ font-weight:950!important;
+ letter-spacing:.2px!important;
+}
+#codes .promo-code-status.allplayers{background:#126b55!important;color:#d9fff2!important;border-color:#35c69a!important}
+#codes .promo-code-status.newplayers{background:#8e2947!important;color:#fff0f3!important;border-color:#f17d9c!important}
+#codes .promo-code-status.returningplayers{background:#5a469b!important;color:#f4efff!important;border-color:#c3afff!important}
+#codes .promo-code-status.expired{background:#586477!important;color:#eef3f8!important;border-color:#8b9aaf!important}
+#codes .code-card:has(.promo-code-status.expired) .code-top{
+ grid-template-columns:minmax(0,1fr) auto!important;
+}
+@media(max-width:700px){
+ #codes .code-top{grid-template-columns:minmax(0,1fr) auto 36px!important;gap:5px!important}
+ #codes .promo-code-status{font-size:7px!important;letter-spacing:0!important;padding:5px 5px!important}
+}
+@media(max-width:400px){
+ #codes .code-top{grid-template-columns:minmax(0,1fr) auto 40px!important;gap:5px!important}
+ #codes .promo-code-status{font-size:7px!important;padding:5px 4px!important}
+}
