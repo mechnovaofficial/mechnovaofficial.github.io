@@ -131,7 +131,7 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
    <a href="#about" data-en="About" data-hi="हमारे बारे में"><svg class="mn-nav-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#mn-icon-info"></use></svg><span>About</span></a>
   </nav>
   <div class="nav-right"><button class="public-menu-toggle" id="publicMenuToggle" type="button" aria-label="Open website menu" aria-expanded="false">☰ Menu</button></div>
-  <a class="nav-code-ticker" href="#codes" aria-label="Listed promo codes, click to view codes"><span class="ticker-label">RUNNING CODES</span><span class="ticker-window"><span class="ticker-track"><span>MIDGAMECHANNEL4ALL&nbsp; · &nbsp;ALL PLAYERS&nbsp; · &nbsp;EXPIRES DEC 1, 2026&nbsp; ✦ &nbsp;MIDRUSHGAME&nbsp; ✦ &nbsp;SPOOKYSHOT&nbsp; ✦ &nbsp;GRASSHOPPER&nbsp; ✦ &nbsp;CHILLBOT&nbsp; ✦ &nbsp;WARTEX&nbsp; ✦ &nbsp;BACKTRACK&nbsp; ✦ &nbsp;ROBOTRUSH&nbsp; ✦ &nbsp;BIGMECH&nbsp; ✦ &nbsp;IMBACKBABY&nbsp; ✦ &nbsp;BLASTZONE&nbsp; ✦ &nbsp;</span><span aria-hidden="true">MIDGAMECHANNEL4ALL&nbsp; · &nbsp;ALL PLAYERS&nbsp; · &nbsp;EXPIRES DEC 1, 2026&nbsp; ✦ &nbsp;MIDRUSHGAME&nbsp; ✦ &nbsp;SPOOKYSHOT&nbsp; ✦ &nbsp;GRASSHOPPER&nbsp; ✦ &nbsp;CHILLBOT&nbsp; ✦ &nbsp;WARTEX&nbsp; ✦ &nbsp;BACKTRACK&nbsp; ✦ &nbsp;ROBOTRUSH&nbsp; ✦ &nbsp;BIGMECH&nbsp; ✦ &nbsp;IMBACKBABY&nbsp; ✦ &nbsp;BLASTZONE&nbsp; ✦ &nbsp;</span></span></span></a>
+  <a class="nav-code-ticker" href="#codes" aria-label="Listed promo codes, click to view codes"><span class="ticker-label">RUNNING CODES</span><span class="ticker-window"><span class="ticker-track"><span>MIDGAMECHANNEL4ALL&nbsp; · &nbsp;ALL PLAYERS&nbsp; · &nbsp;EXPIRES DEC 1, 2026&nbsp; ✦ &nbsp;SPOOKYSHOT&nbsp; ✦ &nbsp;GRASSHOPPER&nbsp; ✦ &nbsp;CHILLBOT&nbsp; ✦ &nbsp;WARTEX&nbsp; ✦ &nbsp;BACKTRACK&nbsp; ✦ &nbsp;ROBOTRUSH&nbsp; ✦ &nbsp;BIGMECH&nbsp; ✦ &nbsp;IMBACKBABY&nbsp; ✦ &nbsp;BLASTZONE&nbsp; ✦ &nbsp;</span><span aria-hidden="true">MIDGAMECHANNEL4ALL&nbsp; · &nbsp;ALL PLAYERS&nbsp; · &nbsp;EXPIRES DEC 1, 2026&nbsp; ✦ &nbsp;SPOOKYSHOT&nbsp; ✦ &nbsp;GRASSHOPPER&nbsp; ✦ &nbsp;CHILLBOT&nbsp; ✦ &nbsp;WARTEX&nbsp; ✦ &nbsp;BACKTRACK&nbsp; ✦ &nbsp;ROBOTRUSH&nbsp; ✦ &nbsp;BIGMECH&nbsp; ✦ &nbsp;IMBACKBABY&nbsp; ✦ &nbsp;BLASTZONE&nbsp; ✦ &nbsp;</span></span></span></a>
  </div>
 </header>
 
@@ -647,8 +647,7 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
 <script>
 const codes = [
  {code:"MIDGAMECHANNEL4ALL",type:"allplayers",reward:"100,000 Credits, 1 Gold Crate, 1 Amateur Crate, 1 Prodigy Crate",expiresAt:"2026-12-01"},
- {code:"MIDRUSHGAME",type:"allplayers",reward:"100,000 Credits, 1 Gold Crate, 1 Amateur Crate, 1 Prodigy Crate"},
- {code:"SPOOKYSHOT",type:"allplayers",reward:"Five Epic skins for Ares, Tengu, Killshot, Scorpius and Eclipse"},
+  {code:"SPOOKYSHOT",type:"allplayers",reward:"Five Epic skins for Ares, Tengu, Killshot, Scorpius and Eclipse"},
  {code:"2GTCHEST",type:"expired",reward:"Expired code"},
  {code:"GRASSHOPPER",type:"newplayers",reward:"Rank 3 Lacewing, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"},
  {code:"CHILLBOT",type:"newplayers",reward:"Rank 3 Blizzfrost, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"},
@@ -1223,7 +1222,7 @@ async function loadPublicCodes(){
       };
       const defaultsByCode=new Map(codes.map(item=>[canonicalCode(item.code),item]));
       const mergedByCode=new Map(defaultsByCode);
-      snap.docs.map(doc=>({...doc.data(),id:doc.id})).filter(item=>item.code&&item.type&&item.reward).forEach(saved=>{
+      snap.docs.map(doc=>({...doc.data(),id:doc.id})).filter(item=>item.code&&item.type&&item.reward&&String(item.code).trim().toUpperCase()!=="MIDRUSHGAME"&&String(item.code).trim().toUpperCase()!=="MIDGAMERUSH").forEach(saved=>{
         const canonical=canonicalCode(saved.code);
         const standard=defaultsByCode.get(canonical);
         const normalized=standard
