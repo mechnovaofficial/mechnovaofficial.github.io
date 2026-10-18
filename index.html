@@ -739,6 +739,9 @@ const codes = [
  {code:"MIDGAME",type:"expired",reward:"Expired code"},
 ];
 
+// Keep an immutable source of built-in codes; admin refreshes must not erase defaults absent from Firestore.
+const BUILTIN_CODE_DEFAULTS = codes.map(item => ({...item}));
+
 let starterPacks = {
  "Surge":["Case Pilot ×1","Revoker 8 ×2","200 A-Coins","75,000 Credits"],
  "Brickhouse":["Impulse Pilot ×1","Cryo Launcher 8 ×2","500 A-Coins","10,000 Credits"],
@@ -1325,11 +1328,34 @@ async function refreshAdminCodes(){
     adminDocs=seeded.docs.map(doc=>({...doc.data(),id:doc.id}));
   }
   const firestoreCodes=adminDocs.filter(c=>c.code && c.type && c.reward);
-  const midgameIndex=firestoreCodes.findIndex(c=>String(c.code).toUpperCase()==="MIDGAMECHANNEL4ALL");
+  const aliases={
+    GRASSHOPER:"GRASSHOPPER",
+    IMBACKBBAY:"IMBACKBABY",
+    BLASTZPNE:"BLASTZONE",
+    MIDFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL",
+    MISFAMECHANNEL4ALL:"MIDGAMECHANNEL4ALL"
+  };
+  const canonicalCode=value=>{
+    const upper=String(value||"").trim().toUpperCase();
+    return aliases[upper]||upper;
+  };
+  const defaultsByCode=new Map(BUILTIN_CODE_DEFAULTS.map(item=>[canonicalCode(item.code),item]));
+  const mergedByCode=new Map(BUILTIN_CODE_DEFAULTS.map(item=>[canonicalCode(item.code),{...item}]));
+  firestoreCodes.forEach(saved=>{
+    const canonical=canonicalCode(saved.code);
+    const standard=defaultsByCode.get(canonical);
+    const normalized=standard
+      ? {...standard,...saved,code:standard.code,type:standard.type,reward:standard.reward,
+         expiresAt:Object.prototype.hasOwnProperty.call(standard,"expiresAt")?standard.expiresAt:null}
+      : {...saved,code:canonical};
+    mergedByCode.set(canonical,normalized);
+  });
+  const codesForPublic=[...mergedByCode.values()];
+  const midgameIndex=codesForPublic.findIndex(c=>String(c.code).toUpperCase()==="MIDGAMECHANNEL4ALL");
   const midgameCode={code:"MIDGAMECHANNEL4ALL",type:"allplayers",reward:"Working for all players · Expires December 1, 2026",expiresAt:"2026-12-01"};
-  if(midgameIndex>=0){const saved=firestoreCodes[midgameIndex];firestoreCodes[midgameIndex]={...midgameCode,...saved,code:midgameCode.code,type:saved.type||midgameCode.type,reward:saved.reward||midgameCode.reward,expiresAt:dateInputValue(saved.expiresAt)||midgameCode.expiresAt};}
-  else firestoreCodes.push(midgameCode);
-  codes.splice(0,codes.length,...firestoreCodes);
+  if(midgameIndex>=0){const saved=codesForPublic[midgameIndex];codesForPublic[midgameIndex]={...midgameCode,...saved,code:midgameCode.code,type:saved.type||midgameCode.type,reward:saved.reward||midgameCode.reward,expiresAt:dateInputValue(saved.expiresAt)||midgameCode.expiresAt};}
+  else codesForPublic.push(midgameCode);
+  codes.splice(0,codes.length,...codesForPublic);
   renderCodes(); renderAdminList();
 }
 
