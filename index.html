@@ -239,7 +239,7 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
 <section class="section" id="codes">
  <div class="section-head">
   <h2><svg class="mn-heading-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#mn-icon-ticket"></use></svg> Promo Codes</h2>
-  <div class="sub">Search the code or reward, then copy an active code with one tap.</div>
+  <div class="sub">Choose the category that matches your account. Check each reward and confirm redemption in-game; expired codes are archived separately.</div>
  </div>
  <div class="panel promo-code-hub">
   <div class="promo-code-hub-heading">
@@ -257,11 +257,11 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
    </select>
   </div>
   <div class="code-category" id="allPlayersSection">
-   <div class="category-title"><div class="category-heading"><h3>For All Players</h3><span class="code-active-count" id="allPlayersActiveCount">0 ACTIVE</span></div><small>Works on eligible new and existing accounts</small></div>
+   <div class="category-title"><div class="category-heading"><h3>For All Players</h3><span class="code-active-count" id="allPlayersActiveCount">0 ACTIVE</span></div><small>For eligible new and existing accounts; availability can vary by code.</small></div>
    <div class="code-grid" id="allPlayersGrid"></div>
   </div>
   <div class="code-category" id="newPlayersSection">
-   <div class="category-title"><div class="category-heading"><h3>For New Players</h3><span class="code-active-count" id="newPlayersActiveCount">0 ACTIVE</span></div><small>Eligible newly created accounts; the redemption window is limited.</small></div>
+   <div class="category-title"><div class="category-heading"><h3>For New Players</h3><span class="code-active-count" id="newPlayersActiveCount">0 ACTIVE</span></div><small>Only eligible newly created accounts; some codes have a short account-age redemption window.</small></div>
    <div class="code-grid" id="newPlayersGrid"></div>
   </div>
   <div class="code-category" id="returningPlayersSection">
@@ -856,7 +856,7 @@ function renderCodes(){
     name.classList.toggle("is-revealed",revealed);
    });
    const effectiveType=getEffectiveCodeType(c);
-   const badge=document.createElement("span");badge.className="pill promo-code-status "+effectiveType;badge.textContent=effectiveType==="expired"?"EXPIRED":effectiveType==="newplayers"?"NEW":effectiveType==="returningplayers"?"RETURNING":"ACTIVE";
+   const badge=document.createElement("span");badge.className="pill promo-code-status "+effectiveType;badge.textContent=effectiveType==="expired"?"EXPIRED":effectiveType==="newplayers"?"NEW PLAYERS":effectiveType==="returningplayers"?"RETURNING PLAYERS":"ALL PLAYERS";
    top.append(name,badge);
    if(effectiveType!=="expired"){
     const btn=document.createElement("button");btn.className="card-btn promo-code-copy";btn.type="button";btn.setAttribute("aria-label","Copy promo code "+c.code);btn.textContent="⧉";
