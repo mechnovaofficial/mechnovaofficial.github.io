@@ -2497,3 +2497,11 @@ h3{
   outline:3px solid #67e3ff!important;
   outline-offset:3px!important;
 }
+
+
+/* Make the promo-code category explicit on every card. */
+#codes .promo-code-status.allplayers{background:#126b55;color:#d9fff2;border:1px solid #35c69a}
+#codes .promo-code-status.newplayers{background:#8e2947;color:#fff0f3;border:1px solid #f17d9c}
+#codes .promo-code-status.returningplayers{background:#24466f;color:#e5f2ff;border:1px solid #64b5f6}
+#codes .promo-code-status.expired{background:#586477;color:#eef3f8;border:1px solid #8b9aaf}
+@media(max-width:480px){#codes .promo-code-status{font-size:7px;letter-spacing:0;padding:5px 6px}}
