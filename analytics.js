@@ -10,19 +10,31 @@
 
   function getChoice() {
     try {
-      return window.localStorage.getItem(CONSENT_KEY) || window.sessionStorage.getItem(CONSENT_KEY) || memoryChoice;
+      const saved = window.localStorage.getItem(CONSENT_KEY);
+      if (saved) return saved;
     } catch (_) {
-      return memoryChoice;
+      // Try session storage if persistent storage is unavailable.
     }
+    try {
+      const sessionSaved = window.sessionStorage.getItem(CONSENT_KEY);
+      if (sessionSaved) return sessionSaved;
+    } catch (_) {
+      // Fall back to the in-memory choice for this page.
+    }
+    return memoryChoice;
   }
 
   function saveChoice(choice) {
     memoryChoice = choice;
     try {
       window.localStorage.setItem(CONSENT_KEY, choice);
+    } catch (_) {
+      // Persistent storage may be disabled by the browser.
+    }
+    try {
       window.sessionStorage.setItem(CONSENT_KEY, choice);
     } catch (_) {
-      // Keep the selection for this page if browser storage is disabled.
+      // Keep the selection in memory if all browser storage is disabled.
     }
   }
 
