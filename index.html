@@ -88,6 +88,9 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
 
 <!-- MechNova category visibility fix, loaded after every stylesheet. -->
 <style id="mechnova-category-visibility-fix">
+/* Display actual admin-recorded verification metadata without inventing dates. */
+#codes .code-last-checked{display:block;margin-top:9px;color:#a9bbd5;font-size:11px;line-height:1.4}
+#codes .code-card{min-width:0}
 /* The category chips must stay visible, despite older accessibility-only hiding rules. */
 #codes .code-top{
  display:grid!important;
@@ -990,14 +993,23 @@ function renderCodes(){
     const expiryLabel=document.createElement("span");expiryLabel.className="code-expires-inline";
     expiryLabel.textContent=" · Expires "+niceDate;reward.append(expiryLabel);
    }
-   card.append(top,reward);root.append(card);
+   const checked=document.createElement("small");
+   checked.className="code-last-checked";
+   checked.textContent=formatLastChecked(c.lastCheckedAt);
+   checked.setAttribute("aria-label",checked.textContent);
+   card.append(top,reward,checked);root.append(card);
   });
  });
  const expiredVisible=expiredRevealed||filter==="expired";
  $("expiredToggleLabel").textContent=expiredVisible?(currentLang==="hi"?"समाप्त कोड छिपाएँ":"Hide expired promo codes"):(currentLang==="hi"?"समाप्त प्रोमो कोड दिखाएँ":"Show expired promo codes");
  $("expiredToggle").setAttribute("aria-expanded",String(expiredVisible));
  const fallback=$("codesStaticFallback");
- if(fallback) fallback.hidden=true;
+ if(fallback){
+  // Keep the static reference visible if interactive cards fail to render.
+  // Suppress it during intentional searches or category filtering.
+  const renderedCards=document.querySelectorAll("#allPlayersGrid .code-card,#newPlayersGrid .code-card,#returningPlayersGrid .code-card").length;
+  fallback.hidden=renderedCards>0 || Boolean(term) || filter!=="all";
+ }
 }
 
 const packVisibility={starter:{},bonus:{}};
