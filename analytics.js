@@ -214,3 +214,85 @@
   if (getChoice() === "accepted") loadAnalytics();
   else if (!getChoice()) showConsentBanner(false);
 })();
+
+/* MechNova UX/security visibility pass — public navigation cleanup and copy feedback. */
+(function mechnovaUxHardening(){
+  "use strict";
+  function init(){
+    const params = new URLSearchParams(window.location.search);
+    const adminRoute = params.get("admin") === "1" || window.location.hash === "#admin";
+    // Keep admin entry points out of ordinary public navigation. This is UI hiding only;
+    // Firestore Security Rules remain the actual authorization boundary.
+    document.querySelectorAll("#adminToggle, .admin-top, footer a[href='#admin']").forEach(function(el){
+      if(!adminRoute) el.hidden = true;
+    });
+    const adminSection = document.getElementById("admin");
+    if(adminSection && !adminRoute) {
+      adminSection.hidden = true;
+      adminSection.setAttribute("aria-hidden","true");
+    } else if(adminSection && adminRoute) {
+      adminSection.hidden = false;
+      adminSection.removeAttribute("aria-hidden");
+    }
+
+    // Hide a nonfunctional offer generator instead of presenting a broken feature.
+    const candidates = Array.from(document.querySelectorAll("section, .panel, .card, .tool-card, details"));
+    candidates.forEach(function(el){
+      if(el.dataset.mnGeneratorChecked) return;
+      const text = (el.innerText || "").toLowerCase();
+      if(text.includes("offer link generator") &&
+         (text.includes("link generation is not configured") || text.includes("no working plarium offer link"))) {
+        el.hidden = true;
+        el.setAttribute("aria-hidden","true");
+        el.dataset.mnGeneratorChecked = "1";
+      }
+    });
+
+    let toast = document.getElementById("mn-copy-toast");
+    if(!toast){
+      toast = document.createElement("div");
+      toast.id = "mn-copy-toast";
+      toast.setAttribute("role","status");
+      toast.setAttribute("aria-live","polite");
+      toast.textContent = "Code copied!";
+      toast.style.cssText = "position:fixed;left:50%;bottom:24px;transform:translate(-50%,12px);z-index:99999;padding:11px 18px;border:1px solid #36d9ff;border-radius:12px;background:#07182a;color:#eafaff;font:800 14px Inter,system-ui,sans-serif;box-shadow:0 10px 35px #0008;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease";
+      document.body.appendChild(toast);
+    }
+    let toastTimer;
+    function showToast(message){
+      toast.textContent = message;
+      toast.style.opacity = "1";
+      toast.style.transform = "translate(-50%,0)";
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){
+        toast.style.opacity = "0";
+        toast.style.transform = "translate(-50%,12px)";
+      }, 1700);
+    }
+    document.addEventListener("click", function(event){
+      const btn = event.target instanceof Element ? event.target.closest(".promo-code-copy") : null;
+      if(!btn) return;
+      // Wait for the site's existing copy handler to complete before reporting success.
+      setTimeout(function(){
+        const label = (btn.innerText || btn.getAttribute("aria-label") || "").toLowerCase();
+        if(label.includes("copied") || btn.dataset.copied === "true" || btn.classList.contains("copied")) {
+          showToast("Code copied!");
+        } else {
+          showToast("Copy attempted — please check clipboard permission.");
+        }
+      }, 120);
+    }, true);
+
+    // Clearer, persistent fan-project disclaimer without changing the existing legal page.
+    const footer = document.querySelector("footer");
+    if(footer && !document.getElementById("mn-trademark-note")){
+      const note = document.createElement("p");
+      note.id = "mn-trademark-note";
+      note.textContent = "MechNova is an independent fan project and is not affiliated with, endorsed by, or sponsored by Plarium. Mech Arena names and trademarks belong to their respective owners.";
+      note.style.cssText = "max-width:900px;margin:12px auto;padding:10px 14px;border:1px solid rgba(255,199,92,.45);border-radius:10px;background:rgba(255,185,55,.07);color:#d8e4f3;font-size:12px;line-height:1.65;text-align:center";
+      footer.appendChild(note);
+    }
+  }
+  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, {once:true});
+  else init();
+})();
