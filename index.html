@@ -1217,10 +1217,16 @@ $("search").addEventListener("input",renderCodes);
 $("filter").addEventListener("change",renderCodes);
 $("expiredToggle").addEventListener("click",()=>{expiredRevealed=!(expiredRevealed||$("filter").value==="expired");$("filter").value="all";renderCodes();});
 
-refreshPublicPacks();
-$("starterSelect").addEventListener("change",()=>{showPack("starterSelect",starterPacks,"starterRewards");renderPackShowcaseGroup("starter",starterPacks,"starterPackCards",true);updateGenerator();});
-$("bonusSelect").addEventListener("change",()=>showPack("bonusSelect",bonusPacks,"bonusRewards"));
+// Render promo codes before optional pack showcase work. A pack/image/config error must
+// never prevent the primary promo-code hub from initializing.
 renderCodes();
+try{
+ refreshPublicPacks();
+}catch(err){
+ console.error("MechNova pack showcase failed to initialize; promo codes remain available.",err);
+}
+$("starterSelect").addEventListener("change",()=>{try{showPack("starterSelect",starterPacks,"starterRewards");renderPackShowcaseGroup("starter",starterPacks,"starterPackCards",true);updateGenerator();}catch(err){console.error("Starter pack display failed.",err);}});
+$("bonusSelect").addEventListener("change",()=>{try{showPack("bonusSelect",bonusPacks,"bonusRewards");}catch(err){console.error("Bonus pack display failed.",err);}});
 
 function updateGenerator(){
  const selectedPack=$("starterSelect").value;
