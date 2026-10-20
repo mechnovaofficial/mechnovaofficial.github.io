@@ -133,6 +133,20 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
 }
 </style>
 
+<style id="mn-static-code-fallback-style">
+.mn-static-code-fallback{margin:0 0 18px;padding:18px;border:1px solid rgba(54,217,255,.3);border-radius:16px;background:linear-gradient(140deg,rgba(14,31,52,.98),rgba(10,17,33,.98));color:#edf7ff}
+.mn-static-code-fallback[hidden]{display:none!important}
+.mn-static-code-fallback h3{margin:0 0 8px;font-size:clamp(18px,2.5vw,24px)}
+.mn-static-code-fallback p{line-height:1.65}
+.mn-static-code-fallback .mn-static-table-wrap{max-width:100%;overflow-x:auto;border:1px solid rgba(145,170,205,.22);border-radius:10px}
+.mn-static-code-fallback table{width:100%;min-width:620px;border-collapse:collapse;font-size:14px}
+.mn-static-code-fallback th,.mn-static-code-fallback td{padding:10px 12px;border-bottom:1px solid rgba(145,170,205,.18);text-align:left;vertical-align:top}
+.mn-static-code-fallback th{background:#172943;color:#d6f6ff}
+.mn-static-code-fallback tr:last-child td{border-bottom:0}
+.mn-static-code-fallback details>summary{cursor:pointer;font-weight:800;color:#8deaff;text-decoration:underline;text-underline-offset:3px}
+.mn-static-code-fallback details code{display:inline-block;margin-top:7px;padding:5px 7px;border-radius:6px;background:#050d18;color:#fff;font-size:12px;overflow-wrap:anywhere}
+@media(max-width:600px){.mn-static-code-fallback{padding:12px}.mn-static-code-fallback th,.mn-static-code-fallback td{padding:8px}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#home">Skip to main content</a>
@@ -292,6 +306,28 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
   <h2><svg class="mn-heading-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#mn-icon-ticket"></use></svg> Promo Codes</h2>
   <div class="sub">Choose the category that matches your account. Check each reward and confirm redemption in-game; expired codes are archived separately.</div>
  </div>
+ <section class="mn-static-code-fallback" id="codesStaticFallback" aria-labelledby="codesStaticFallbackTitle">
+  <h3 id="codesStaticFallbackTitle">Promo-code reference list</h3>
+  <p>This simple reference remains available if the interactive code cards cannot load. Entries below are previously listed codes and reward descriptions, not a live redemption test or a guarantee of eligibility. Check the publisher's current instructions and the result in your game before relying on an offer.</p>
+  <p><strong>How to use:</strong> open a row's “Click to reveal code” item, then copy the exact spelling. New-player and returning-player offers may be account-limited.</p>
+  <div class="mn-static-table-wrap"><table>
+   <thead><tr><th>Player category</th><th>Code</th><th>Reward listed by MechNova</th></tr></thead>
+   <tbody>
+    <tr><td>All players</td><td><details><summary>Click to reveal code</summary><code>MIDGAMECHANNEL4ALL</code></details></td><td>100,000 Credits, Gold Crate, Amateur Crate and Prodigy Crate. Listed expiry: 1 December 2026; reconfirm before use.</td></tr>
+    <tr><td>All players</td><td><details><summary>Click to reveal code</summary><code>MIDRUSHGAME</code></details></td><td>100,000 Credits, Gold Crate, Amateur Crate and Prodigy Crate.</td></tr>
+    <tr><td>All players</td><td><details><summary>Click to reveal code</summary><code>SPOOKYSHOT</code></details></td><td>Five Epic skins for Ares, Tengu, Killshot, Scorpius and Eclipse.</td></tr>
+    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>GRASSHOPPER</code></details></td><td>Rank 3 Lacewing, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
+    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>CHILLBOT</code></details></td><td>Rank 3 Blizzfrost, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
+    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>WARTEX</code></details></td><td>Rank 3 Vortex, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
+    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>BACKTRACK</code></details></td><td>Rank 3 Redeemer, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
+    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>ROBOTRUSH</code></details></td><td>Rank 3 Shadow, 200 A-Coins and 50,000 Credits.</td></tr>
+    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>BIGMECH</code></details></td><td>Rank 3 Blockhorn, 200 A-Coins and 1 Prodigy Crate.</td></tr>
+    <tr><td>Returning players</td><td><details><summary>Click to reveal code</summary><code>IMBACKBABY</code></details></td><td>Rank 3 Blockhorn, 200 A-Coins and 1 Prodigy Crate.</td></tr>
+    <tr><td>Returning players</td><td><details><summary>Click to reveal code</summary><code>BLASTZONE</code></details></td><td>Rank 3 Guardian.</td></tr>
+   </tbody>
+  </table></div>
+  <p>For more context, read the <a href="/promo-codes-2026.html">full 2026 promo-code guide</a> and the <a href="/editorial-policy.html">Editorial Policy</a>. If this fallback is visible, the interactive list may not have initialized—refresh once and report the issue if it persists.</p>
+ </section>
  <div class="panel promo-code-hub">
   <div class="promo-code-hub-heading">
    <div><h3>All Promo Codes</h3><p>Tap the copy button to copy a code instantly</p></div>
@@ -959,6 +995,8 @@ function renderCodes(){
  const expiredVisible=expiredRevealed||filter==="expired";
  $("expiredToggleLabel").textContent=expiredVisible?(currentLang==="hi"?"समाप्त कोड छिपाएँ":"Hide expired promo codes"):(currentLang==="hi"?"समाप्त प्रोमो कोड दिखाएँ":"Show expired promo codes");
  $("expiredToggle").setAttribute("aria-expanded",String(expiredVisible));
+ const fallback=$("codesStaticFallback");
+ if(fallback) fallback.hidden=true;
 }
 
 const packVisibility={starter:{},bonus:{}};
