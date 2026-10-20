@@ -269,18 +269,31 @@
         toast.style.transform = "translate(-50%,12px)";
       }, 1700);
     }
-    document.addEventListener("click", function(event){
+    document.addEventListener("click", async function(event){
       const btn = event.target instanceof Element ? event.target.closest(".promo-code-copy") : null;
       if(!btn) return;
-      // Wait for the site's existing copy handler to complete before reporting success.
-      setTimeout(function(){
-        const label = (btn.innerText || btn.getAttribute("aria-label") || "").toLowerCase();
-        if(label.includes("copied") || btn.dataset.copied === "true" || btn.classList.contains("copied")) {
-          showToast("Code copied!");
+      const card = btn.closest(".code-card");
+      const codeNode = card && card.querySelector(".code-name");
+      const code = codeNode ? codeNode.textContent.trim() : "";
+      if(!code) return;
+      try {
+        if(navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(code);
         } else {
-          showToast("Copy attempted — please check clipboard permission.");
+          const field = document.createElement("textarea");
+          field.value = code;
+          field.setAttribute("readonly","");
+          field.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+          document.body.appendChild(field);
+          field.select();
+          const copied = document.execCommand("copy");
+          field.remove();
+          if(!copied) throw new Error("Clipboard copy was blocked");
         }
-      }, 120);
+        showToast("Code copied!");
+      } catch(error) {
+        showToast("Copy blocked — tap and hold the code to copy.");
+      }
     }, true);
 
     // Clearer, persistent fan-project disclaimer without changing the existing legal page.
