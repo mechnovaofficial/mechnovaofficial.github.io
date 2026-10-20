@@ -10,7 +10,7 @@
 
   function getChoice() {
     try {
-      return window.localStorage.getItem(CONSENT_KEY) || memoryChoice;
+      return window.localStorage.getItem(CONSENT_KEY) || window.sessionStorage.getItem(CONSENT_KEY) || memoryChoice;
     } catch (_) {
       return memoryChoice;
     }
@@ -20,6 +20,7 @@
     memoryChoice = choice;
     try {
       window.localStorage.setItem(CONSENT_KEY, choice);
+      window.sessionStorage.setItem(CONSENT_KEY, choice);
     } catch (_) {
       // Keep the selection for this page if browser storage is disabled.
     }
@@ -95,6 +96,7 @@
       '#mechnovaAnalyticsConsent .mn-consent-accept{border-color:#67e5ff;background:linear-gradient(100deg,#42d7f4,#a1eeff);color:#062031}' +
       '#mechnovaAnalyticsConsent button:focus-visible{outline:3px solid #fff;outline-offset:2px}' +
       '@media(min-width:620px){#mechnovaAnalyticsConsent{grid-template-columns:minmax(0,1fr) auto;align-items:center}#mechnovaAnalyticsConsent .mn-consent-actions{flex-direction:column}}' +
+      '@media(max-width:619px){#mechnovaAnalyticsConsent{left:8px;bottom:calc(8px + env(safe-area-inset-bottom));width:calc(100vw - 16px);max-height:42dvh;overflow-y:auto;padding:12px;border-radius:12px;gap:8px}#mechnovaAnalyticsConsent p{font-size:11px;line-height:1.4;margin-bottom:5px}#mechnovaAnalyticsConsent .mn-consent-actions{display:flex;flex-direction:row;gap:7px}#mechnovaAnalyticsConsent button{flex:1;min-height:36px;padding:8px 9px}}' +
       '@media(prefers-reduced-motion:reduce){#mechnovaAnalyticsConsent *{animation:none!important;transition:none!important}}';
 
     wrap.appendChild(style);
