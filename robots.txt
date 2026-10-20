@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://mechnovaofficial.github.io/sitemap.xml
+Sitemap: https://mechnovaofficial.github.io/sitemap.txt
