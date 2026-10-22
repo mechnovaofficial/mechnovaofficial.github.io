@@ -313,21 +313,21 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
  <section class="mn-static-code-fallback" id="codesStaticFallback" aria-labelledby="codesStaticFallbackTitle">
   <h3 id="codesStaticFallbackTitle">Promo-code reference list</h3>
   <p>This simple reference remains available if the interactive code cards cannot load. Entries below are previously listed codes and reward descriptions, not a live redemption test or a guarantee of eligibility. Check the publisher's current instructions and the result in your game before relying on an offer.</p>
-  <p><strong>How to use:</strong> open a row's “Click to reveal code” item, then copy the exact spelling. New-player and returning-player offers may be account-limited.</p>
+  <p><strong>How to use:</strong> read the code directly from its row and copy the exact spelling. New-player and returning-player offers may be account-limited.</p>
   <div class="mn-static-table-wrap"><table>
    <thead><tr><th>Player category</th><th>Code</th><th>Reward listed by MechNova</th></tr></thead>
    <tbody>
-    <tr><td>All players</td><td><details><summary>Click to reveal code</summary><code>MIDGAMECHANNEL4ALL</code></details></td><td>100,000 Credits, Gold Crate, Amateur Crate and Prodigy Crate. Listed expiry: 1 December 2026; reconfirm before use.</td></tr>
-    <tr><td>All players</td><td><details><summary>Click to reveal code</summary><code>MIDRUSHGAME</code></details></td><td>100,000 Credits, Gold Crate, Amateur Crate and Prodigy Crate.</td></tr>
-    <tr><td>All players</td><td><details><summary>Click to reveal code</summary><code>SPOOKYSHOT</code></details></td><td>Five Epic skins for Ares, Tengu, Killshot, Scorpius and Eclipse.</td></tr>
-    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>GRASSHOPPER</code></details></td><td>Rank 3 Lacewing, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
-    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>CHILLBOT</code></details></td><td>Rank 3 Blizzfrost, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
-    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>WARTEX</code></details></td><td>Rank 3 Vortex, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
-    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>BACKTRACK</code></details></td><td>Rank 3 Redeemer, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
-    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>ROBOTRUSH</code></details></td><td>Rank 3 Shadow, 200 A-Coins and 50,000 Credits.</td></tr>
-    <tr><td>New players</td><td><details><summary>Click to reveal code</summary><code>BIGMECH</code></details></td><td>Rank 3 Blockhorn, 200 A-Coins and 1 Prodigy Crate.</td></tr>
-    <tr><td>Returning players</td><td><details><summary>Click to reveal code</summary><code>IMBACKBABY</code></details></td><td>Rank 3 Blockhorn, 200 A-Coins and 1 Prodigy Crate.</td></tr>
-    <tr><td>Returning players</td><td><details><summary>Click to reveal code</summary><code>BLASTZONE</code></details></td><td>Rank 3 Guardian.</td></tr>
+    <tr><td>All players</td><td><code>MIDGAMECHANNEL4ALL</code></td><td>100,000 Credits, Gold Crate, Amateur Crate and Prodigy Crate. Listed expiry: 1 December 2026; reconfirm before use.</td></tr>
+    <tr><td>All players</td><td><code>MIDRUSHGAME</code></td><td>100,000 Credits, Gold Crate, Amateur Crate and Prodigy Crate.</td></tr>
+    <tr><td>All players</td><td><code>SPOOKYSHOT</code></td><td>Five Epic skins for Ares, Tengu, Killshot, Scorpius and Eclipse.</td></tr>
+    <tr><td>New players</td><td><code>GRASSHOPPER</code></td><td>Rank 3 Lacewing, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
+    <tr><td>New players</td><td><code>CHILLBOT</code></td><td>Rank 3 Blizzfrost, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
+    <tr><td>New players</td><td><code>WARTEX</code></td><td>Rank 3 Vortex, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
+    <tr><td>New players</td><td><code>BACKTRACK</code></td><td>Rank 3 Redeemer, 200 A-Coins, 100,000 Credits and 1 Prodigy Crate.</td></tr>
+    <tr><td>New players</td><td><code>ROBOTRUSH</code></td><td>Rank 3 Shadow, 200 A-Coins and 50,000 Credits.</td></tr>
+    <tr><td>New players</td><td><code>BIGMECH</code></td><td>Rank 3 Blockhorn, 200 A-Coins and 1 Prodigy Crate.</td></tr>
+    <tr><td>Returning players</td><td><code>IMBACKBABY</code></td><td>Rank 3 Blockhorn, 200 A-Coins and 1 Prodigy Crate.</td></tr>
+    <tr><td>Returning players</td><td><code>BLASTZONE</code></td><td>Rank 3 Guardian.</td></tr>
    </tbody>
   </table></div>
   <p>For more context, read the <a href="/promo-codes-2026.html">full 2026 promo-code guide</a> and the <a href="/editorial-policy.html">Editorial Policy</a>. If this fallback is visible, the interactive list may not have initialized—refresh once and report the issue if it persists.</p>
@@ -962,19 +962,10 @@ function renderCodes(){
   list.forEach(c=>{
    const card=document.createElement("article");card.className="code-card";
    const top=document.createElement("div");top.className="code-top";
-   const name=document.createElement("button");
-   name.className="code-name promo-code-reveal";
-   name.type="button";
-   name.textContent=currentLang==="hi"?"कोड देखने के लिए क्लिक करें":"CLICK TO REVEAL CODE";
-   name.setAttribute("aria-expanded","false");
-   name.setAttribute("aria-label",currentLang==="hi"?"प्रोमो कोड दिखाएँ":"Reveal promo code");
-   name.addEventListener("click",()=>{
-    const revealed=name.getAttribute("aria-expanded")!=="true";
-    name.textContent=revealed?c.code:(currentLang==="hi"?"कोड देखने के लिए क्लिक करें":"CLICK TO REVEAL CODE");
-    name.setAttribute("aria-expanded",String(revealed));
-    name.setAttribute("aria-label",revealed?(currentLang==="hi"?"प्रोमो कोड दिख गया":"Promo code revealed"):(currentLang==="hi"?"प्रोमो कोड दिखाएँ":"Reveal promo code"));
-    name.classList.toggle("is-revealed",revealed);
-   });
+   const name=document.createElement("span");
+   name.className="code-name promo-code-reveal is-revealed";
+   name.textContent=c.code;
+   name.setAttribute("aria-label","Promo code "+c.code);
    const effectiveType=getEffectiveCodeType(c);
    const badge=document.createElement("span");badge.className="pill promo-code-status "+effectiveType;badge.textContent=effectiveType==="expired"?"EXPIRED":effectiveType==="newplayers"?"NEW PLAYERS":effectiveType==="returningplayers"?"RETURNING PLAYERS":"ALL PLAYERS";
    top.append(name,badge);
