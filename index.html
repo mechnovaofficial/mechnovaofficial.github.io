@@ -150,6 +150,22 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
 .mn-static-code-fallback details code{display:inline-block;margin-top:7px;padding:5px 7px;border-radius:6px;background:#050d18;color:#fff;font-size:12px;overflow-wrap:anywhere}
 @media(max-width:600px){.mn-static-code-fallback{padding:12px}.mn-static-code-fallback th,.mn-static-code-fallback td{padding:8px}}
 </style>
+<style id="mn-brand-new-code-style">
+#codes .code-card.brand-new-code-card{
+ border:1px solid rgba(255,190,75,.9)!important;
+ background:linear-gradient(145deg,rgba(61,43,18,.42),rgba(12,25,43,.98) 58%)!important;
+ box-shadow:0 0 0 1px rgba(255,190,75,.14),0 0 22px rgba(255,174,57,.12)!important;
+ position:relative;
+}
+#codes .brand-new-code-label{
+ display:inline-flex;align-items:center;gap:5px;width:max-content;max-width:100%;
+ margin:8px 0 2px;padding:4px 9px;border-radius:999px;
+ background:linear-gradient(90deg,#ffd36b,#ff9f43);color:#271403;
+ border:1px solid rgba(255,244,196,.85);font-size:10px;line-height:1.2;
+ font-weight:950;letter-spacing:.8px;text-transform:uppercase;
+ box-shadow:0 0 12px rgba(255,181,65,.2);
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#home">Skip to main content</a>
@@ -328,7 +344,7 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
     <tr><td>New players</td><td><code>BIGMECH</code></td><td>Rank 3 Blockhorn, 200 A-Coins and 1 Prodigy Crate.</td></tr>
     <tr><td>Returning players</td><td><code>IMBACKBABY</code></td><td>Rank 3 Blockhorn, 200 A-Coins and 1 Prodigy Crate.</td></tr>
     <tr><td>Returning players</td><td><code>BLASTZONE</code></td><td>Rank 3 Guardian.</td></tr>
-    <tr><td>New players</td><td><code>TRICKORFEAR</code></td><td>200 A-Coins, 31,100 Credits and 13 Fortune Keys.</td></tr>
+    <tr><td>New players · BRAND NEW</td><td><code>TRICKORFEAR</code></td><td>200 A-Coins, 31,100 Credits and 13 Fortune Keys.</td></tr>
    </tbody>
   </table></div>
   <p>For more context, read the <a href="/promo-codes-2026.html">full 2026 promo-code guide</a> and the <a href="/editorial-policy.html">Editorial Policy</a>. If this fallback is visible, the interactive list may not have initialized—refresh once and report the issue if it persists.</p>
@@ -962,7 +978,7 @@ function renderCodes(){
   const list=codes.filter(c=>getEffectiveCodeType(c)===group.type&&(c.code.toLowerCase().includes(term)||c.reward.toLowerCase().includes(term)));
   if(!list.length){const empty=document.createElement("div");empty.className="empty";empty.textContent=currentLang==="hi"?"इस श्रेणी में कोई मिलता-जुलता कोड नहीं है।":"No matching codes in this category.";root.append(empty);return;}
   list.forEach(c=>{
-   const card=document.createElement("article");card.className="code-card";
+   const card=document.createElement("article");card.className="code-card";if(c.code==="TRICKORFEAR")card.classList.add("brand-new-code-card");
    const top=document.createElement("div");top.className="code-top";
    const name=document.createElement("span");
    name.className="code-name promo-code-reveal is-revealed";
@@ -990,7 +1006,7 @@ function renderCodes(){
    checked.className="code-last-checked";
    checked.textContent=formatLastChecked(c.lastCheckedAt);
    checked.setAttribute("aria-label",checked.textContent);
-   card.append(top,reward,checked);root.append(card);
+   if(c.code==="TRICKORFEAR"){const fresh=document.createElement("div");fresh.className="brand-new-code-label";fresh.textContent="✦ BRAND NEW CODE";card.append(top,fresh,reward,checked);}else{card.append(top,reward,checked);}root.append(card);
   });
  });
  const expiredVisible=expiredRevealed||filter==="expired";
