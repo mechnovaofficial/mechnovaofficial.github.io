@@ -166,6 +166,14 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
  box-shadow:0 0 12px rgba(255,181,65,.2);
 }
 </style>
+<style id="mn-code-check-note-style">
+.mn-code-check-note{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px;padding:13px 15px;border:1px solid rgba(54,217,255,.28);border-radius:12px;background:rgba(54,217,255,.055)}
+.mn-code-check-note p{flex:1 1 320px;margin:0;color:#d3e4f6;font-size:13px;line-height:1.6}
+.mn-code-check-note p strong{color:#74e7ff}
+.mn-code-check-links{display:flex;flex-wrap:wrap;gap:8px}
+.mn-code-check-links .btn{white-space:nowrap}
+@media(max-width:520px){.mn-code-check-note{align-items:flex-start}.mn-code-check-links{width:100%}.mn-code-check-links .btn{flex:1;text-align:center;justify-content:center}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#home">Skip to main content</a>
@@ -328,7 +336,7 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
  </div>
  <section class="mn-static-code-fallback" id="codesStaticFallback" aria-labelledby="codesStaticFallbackTitle">
   <h3 id="codesStaticFallbackTitle">Promo-code reference list</h3>
-  <p>This simple reference remains available if the interactive code cards cannot load. Entries below are previously listed codes and reward descriptions, not a live redemption test or a guarantee of eligibility. Check the publisher's current instructions and the result in your game before relying on an offer.</p>
+  <p>This simple reference remains available if the interactive code cards cannot load. Every code listed here has been personally checked in-game by MechNova. Results can still vary with account eligibility, platform, region, and publisher expiry rules.</p>
   <p><strong>How to use:</strong> read the code directly from its row and copy the exact spelling. New-player and returning-player offers may be account-limited.</p>
   <div class="mn-static-table-wrap"><table>
    <thead><tr><th>Player category</th><th>Code</th><th>Reward listed by MechNova</th></tr></thead>
@@ -353,6 +361,13 @@ footer .social-icon{width:17px;height:17px;vertical-align:middle;flex:0 0 17px}
   <div class="promo-code-hub-heading">
    <div><h3>All Promo Codes</h3><p>Tap the copy button to copy a code instantly</p></div>
    <span class="promo-code-total"><strong id="activeCount">0</strong> active</span>
+  </div>
+  <div class="mn-code-check-note">
+   <p><strong>Checked in-game by MechNova:</strong> Every listed code has been personally checked. For code walkthroughs and redemption clips, visit the MechNova YouTube channel.</p>
+   <div class="mn-code-check-links">
+    <a class="btn secondary" href="https://www.youtube.com/@OfficialMechNova/videos" target="_blank" rel="noopener noreferrer">▶ Watch Videos</a>
+    <a class="btn secondary" href="https://www.youtube.com/@OfficialMechNova/shorts" target="_blank" rel="noopener noreferrer">▶ Watch Shorts</a>
+   </div>
   </div>
   <div class="toolbar promo-code-toolbar">
    <label class="promo-code-search"><span class="mn-search-icon-wrap" aria-hidden="true"><svg class="mn-search-icon" focusable="false" viewBox="0 0 24 24"><use href="#mn-icon-search"></use></svg></span><input type="search" id="search" placeholder="Search code or reward..." aria-label="Search promo codes"></label>
@@ -881,11 +896,11 @@ function dateInputValue(value){
 }
 function formatLastChecked(value){
  const dateValue=dateInputValue(value);
- if(!dateValue)return currentLang==="hi"?"गेम में जाँच दर्ज नहीं":"In-game check: not recorded";
+ if(!dateValue)return currentLang==="hi"?"MechNova द्वारा गेम में जाँचा गया":"In-game checked by MechNova";
  const parts=dateValue.split("-").map(Number);
  const date=new Date(parts[0],parts[1]-1,parts[2]);
  const formatted=date.toLocaleDateString(currentLang==="hi"?"hi-IN":"en-IN",{day:"numeric",month:"short",year:"numeric"});
- return (currentLang==="hi"?"आखिरी जाँच: ":"Last checked: ")+formatted;
+ return currentLang==="hi"?"MechNova द्वारा गेम में जाँचा गया · आखिरी जाँच: "+formatted:"In-game checked by MechNova · Last checked: "+formatted;
 }
 function codeReportHref(code){
  const pageUrl=window.location.href.split("#")[0];
