@@ -34,6 +34,8 @@ def build():
         source = re.sub(r'(id="' + counter + r'">)[^<]*', lambda m: m[1] + str(len(entries)) + ' LISTED', source)
     source = re.sub(r'(id="activeCount">)[^<]*', lambda m: m[1] + str(sum(c['type'] != 'expired' for c in codes)), source)
     source = re.sub(r'(id="expiredCount">)[^<]*', lambda m: m[1] + str(sum(c['type'] == 'expired' for c in codes)), source)
+    ticker = ' ✦ '.join(escape(c['code']) for c in codes if c['type'] != 'expired') + ' ✦ '
+    source = re.sub(r'(<span class="ticker-track">)<span>.*?</span><span aria-hidden="true">.*?</span>', lambda m: m[1] + '<span>' + ticker + '</span><span aria-hidden="true">' + ticker + '</span>', source, count=1)
     p.write_text(source)
     p = ROOT / 'promo-codes-2026.html'
     source = p.read_text()
