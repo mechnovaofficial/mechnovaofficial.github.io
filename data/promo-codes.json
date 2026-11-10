@@ -1,0 +1,227 @@
+[
+  {
+    "code": "MIDGAMECHANNEL4ALL",
+    "type": "allplayers",
+    "reward": "100,000 Credits, 1 Gold Crate, 1 Amateur Crate, 1 Prodigy Crate",
+    "expiresAt": "2026-12-01"
+  },
+  {
+    "code": "MIDRUSHGAME",
+    "type": "allplayers",
+    "reward": "100,000 Credits, 1 Gold Crate, 1 Amateur Crate, 1 Prodigy Crate"
+  },
+  {
+    "code": "SPOOKYSHOT",
+    "type": "allplayers",
+    "reward": "Five Epic skins for Ares, Tengu, Killshot, Scorpius and Eclipse"
+  },
+  {
+    "code": "MECHALLOWEEN",
+    "type": "allplayers",
+    "reward": "200 A-Coins, 31,100 Credits, 13 Fortune Keys, 1 Prodigy Crate",
+    "videoId": "3_3Q7S1eOi8",
+    "videoPublished": "2026-11-03"
+  },
+  {
+    "code": "2GTCHEST",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "GRASSHOPPER",
+    "type": "newplayers",
+    "reward": "Rank 3 Lacewing, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"
+  },
+  {
+    "code": "CHILLBOT",
+    "type": "newplayers",
+    "reward": "Rank 3 Blizzfrost, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"
+  },
+  {
+    "code": "WARTEX",
+    "type": "newplayers",
+    "reward": "Rank 3 Vortex, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"
+  },
+  {
+    "code": "BACKTRACK",
+    "type": "newplayers",
+    "reward": "Rank 3 Redeemer, 200 A-Coins, 100,000 Credits, 1 Prodigy Crate"
+  },
+  {
+    "code": "ROBOTRUSH",
+    "type": "newplayers",
+    "reward": "Rank 3 Shadow, 200 A-Coins, 50,000 Credits"
+  },
+  {
+    "code": "BIGMECH",
+    "type": "newplayers",
+    "reward": "Rank 3 Blockhorn, 200 A-Coins, 1 Prodigy Crate"
+  },
+  {
+    "code": "IMBACKBABY",
+    "type": "returningplayers",
+    "reward": "Rank 3 Blockhorn, 200 A-Coins, 1 Prodigy Crate"
+  },
+  {
+    "code": "BLASTZONE",
+    "type": "returningplayers",
+    "reward": "Rank 3 Guardian"
+  },
+  {
+    "code": "TRICKORFEAR",
+    "type": "newplayers",
+    "reward": "200 A-Coins, 31,100 Credits, 13 Fortune Keys",
+    "videoId": "01ZkRORyJt4",
+    "videoPublished": "2026-10-30"
+  },
+  {
+    "code": "ROSHAN1",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "ENERGIZED",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "TGIBF",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "HOLIDAYMECH",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "2GTLOADOUT",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "MIDPILOTUP",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "2GTLOVEMECH",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "F4CEB00K",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "500KSTORE.PLARIUM.COM",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "FOR42",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "OLDSMIDGAME",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "MELEEREADY4",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "SPRINGHAPPY26",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "MIDMECH",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "CYBERMECH",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "SPOOKYSEASON",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "HAPPYBDAYMA",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "BACKTO5V5",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "SLINGSHOT",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "ILOVEMIDGAME",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "MIDTENGUGIFT",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "BLASTZONE2GT",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "SUMMER4ALL",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "SUMMERPILOTS",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "PLARIUMSWEET16",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "MECH4YEARS",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "FIREPOWER",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "MECFEAST",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "GGTBONUS",
+    "type": "expired",
+    "reward": "Expired code"
+  },
+  {
+    "code": "MIDGAME",
+    "type": "expired",
+    "reward": "Expired code"
+  }
+]
