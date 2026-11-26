@@ -1,5 +1,13 @@
 [
   {
+    "code": "MABF2026",
+    "type": "allplayers",
+    "reward": "200 A-Coins, 30,000 Credits, 5 Fortune Keys, 1 Prodigy Crate",
+    "expiresAtUTC": "2026-11-29T23:59:00Z",
+    "expiryLabel": "30 Nov 2026, 5:29 AM IST",
+    "listingNote": "Listed 26 Nov 2026 \u00b7 Plarium forum"
+  },
+  {
     "code": "MIDGAMECHANNEL4ALL",
     "type": "allplayers",
     "reward": "100,000 Credits, 1 Gold Crate, 1 Amateur Crate, 1 Prodigy Crate",

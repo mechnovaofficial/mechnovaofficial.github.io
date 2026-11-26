@@ -23,11 +23,11 @@ def build():
         cards = []
         for c in entries:
             name, reward = escape(c['code']), escape(c['reward'])
-            expiry = ' · Listed expiry: ' + escape(c['expiresAt']) if c.get('expiresAt') else ''
+            expiry = ' · Listed expiry: ' + escape(c.get('expiryLabel') or c['expiresAt']) if c.get('expiryLabel') or c.get('expiresAt') else ''
             evidence = ''
             if c.get('videoId'):
                 evidence = '<a class="code-evidence" href="https://www.youtube.com/watch?v=' + escape(c['videoId']) + '">Watch ' + name + ' coverage · Published ' + escape(c['videoPublished']) + '</a>'
-            cards.append('<article class="code-card"><div class="code-top"><span class="code-name">' + name + '</span><span class="pill promo-code-status ' + category + '">' + LABELS[category].upper() + '</span></div><div class="reward">' + reward + expiry + '</div><small class="code-last-checked">In-game checked by MechNova</small>' + evidence + '</article>')
+            cards.append('<article class="code-card"><div class="code-top"><span class="code-name">' + name + '</span><span class="pill promo-code-status ' + category + '">' + LABELS[category].upper() + '</span></div><div class="reward">' + reward + expiry + '</div><small class="code-last-checked">' + escape(c.get('listingNote', 'In-game checked by MechNova')) + '</small>' + evidence + '</article>')
         pattern = r'(<div class="code-grid" id="' + grid + r'">)[\s\S]*?(</div>\s*\n  </div>)'
         source, n = re.subn(pattern, lambda m: m[1] + '\n' + '\n'.join(cards) + '\n' + m[2], source, count=1)
         assert n == 1, grid
@@ -43,8 +43,8 @@ def build():
     rows = []
     for c in codes:
         if c['type'] == 'expired': continue
-        expiry = ' Listed expiry: ' + c['expiresAt'] + '.' if c.get('expiresAt') else ''
-        rows.append('<tr><td><code>' + escape(c['code']) + '</code></td><td>' + LABELS[c['type']] + '</td><td>' + escape(c['reward'] + expiry) + '</td></tr>')
+        expiry = ' Listed expiry: ' + (c.get('expiryLabel') or c['expiresAt']) + '.' if c.get('expiryLabel') or c.get('expiresAt') else ''
+        rows.append('<tr><td><code>' + escape(c['code']) + '</code></td><td>' + LABELS[c['type']] + '</td><td>' + escape(c['reward'] + expiry + (' ' + c['listingNote'] if c.get('listingNote') else '')) + '</td></tr>')
     p.write_text(source[:start] + '<tbody>\n' + '\n'.join(rows) + '\n</tbody>' + source[end:])
 
 if __name__ == '__main__':
