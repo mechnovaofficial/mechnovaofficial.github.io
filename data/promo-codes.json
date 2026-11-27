@@ -1,5 +1,13 @@
 [
   {
+    "code": "D1SCORD150K",
+    "type": "allplayers",
+    "reward": "150,000 Credits, 150 Elite Mod Parts, 1 Champion Crate",
+    "expiresAtUTC": "2026-11-27T23:59:00Z",
+    "expiryLabel": "28 Nov 2026, 5:29 AM IST",
+    "listingNote": "Listed 27 Nov 2026 \u00b7 Plarium announcement"
+  },
+  {
     "code": "MABF2026",
     "type": "allplayers",
     "reward": "200 A-Coins, 30,000 Credits, 5 Fortune Keys, 1 Prodigy Crate",
