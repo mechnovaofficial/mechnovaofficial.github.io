@@ -1142,14 +1142,7 @@ function renderRunningCodeTicker(){
   track.appendChild(item);
  });
  const ticker=track.closest(".nav-code-ticker");
- if(ticker){
-  const midgame=running.find(c=>String(c.code).toUpperCase()==="MIDGAMECHANNEL4ALL");
-  if(midgame){
-   const expiry=dateInputValue(midgame.expiresAt);
-   const expiryText=c.expiryLabel?" · EXPIRES "+c.expiryLabel:expiry? " and expires "+new Date(expiry+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):"";
-   ticker.setAttribute("aria-label","Listed promo codes. MIDGAMECHANNEL4ALL is for all players"+expiryText+". Click to view codes.");
-  }else ticker.setAttribute("aria-label","Listed promo codes. Click to view code eligibility, status and rewards.");
- }
+ if(ticker)ticker.setAttribute("aria-label","Listed promo codes. Click to view code eligibility, status and rewards.");
 }
 function appendRewardHighlights(container,text){
  const source=String(text||"");
